@@ -636,8 +636,32 @@
     ═══════════════════════════ */
     footer {
       border-top: 1px solid #e8e8e8;
-      padding: 20px 16px 24px;
+      padding: 48px 16px 24px;
       text-align: center;
+    }
+    .ft-contact {
+      display: flex;
+      justify-content: center;
+      gap: 48px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid #e8e8e8;
+    }
+    .ft-contact-item { text-align: left; }
+    .ft-contact-lbl {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 9px;
+      font-weight: 300;
+      color: #999;
+      letter-spacing: 0.06em;
+      margin-bottom: 5px;
+    }
+    .ft-contact-val {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      font-weight: 400;
+      color: #000;
     }
     .ft-payments {
       display: flex;
@@ -1106,6 +1130,20 @@
 </div>
 
 <footer>
+  <div class="ft-contact">
+    <div class="ft-contact-item">
+      <div class="ft-contact-lbl">General & Wholesale</div>
+      <div class="ft-contact-val">support@nofearmotocross.com</div>
+    </div>
+    <div class="ft-contact-item">
+      <div class="ft-contact-lbl">Press & Collabs</div>
+      <div class="ft-contact-val">social@nofearmotocross.com</div>
+    </div>
+    <div class="ft-contact-item">
+      <div class="ft-contact-lbl">Instagram</div>
+      <div class="ft-contact-val">@nofear</div>
+    </div>
+  </div>
   <div class="ft-payments">
     <svg class="pay-icon" viewBox="0 0 38 24" xmlns="http://www.w3.org/2000/svg"><rect width="38" height="24" rx="4" fill="#2E77BC"/><text x="19" y="16" text-anchor="middle" fill="white" font-family="Arial,sans-serif" font-weight="bold" font-size="8" letter-spacing="0.5">AMEX</text></svg>
     <svg class="pay-icon" viewBox="0 0 38 24" xmlns="http://www.w3.org/2000/svg"><rect width="38" height="24" rx="4" fill="#000"/><text x="19" y="15" text-anchor="middle" fill="white" font-family="Arial,sans-serif" font-size="7">Apple Pay</text></svg>
