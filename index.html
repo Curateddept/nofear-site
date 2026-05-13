@@ -633,6 +633,59 @@
     .btn-light:hover { border-color: #000; }
 
     /* ═══════════════════════════
+       FAQ
+    ═══════════════════════════ */
+    .faq-list { border-top: 1px solid #e8e8e8; }
+    .faq-item { border-bottom: 1px solid #e8e8e8; }
+    .faq-q {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      background: none;
+      border: none;
+      padding: 24px 0;
+      cursor: pointer;
+      text-align: left;
+      font-family: 'IBM Plex Mono', monospace;
+    }
+    .faq-num {
+      font-size: 11px;
+      font-weight: 300;
+      color: #999;
+      letter-spacing: 0.06em;
+      flex-shrink: 0;
+      width: 24px;
+    }
+    .faq-text {
+      font-size: 15px;
+      font-weight: 400;
+      color: #000;
+      flex: 1;
+      line-height: 1.4;
+    }
+    .faq-icon {
+      font-size: 22px;
+      font-weight: 300;
+      color: #000;
+      flex-shrink: 0;
+      transition: transform 0.25s ease;
+      line-height: 1;
+    }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+    .faq-a {
+      display: none;
+      padding: 0 0 28px 44px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 13px;
+      font-weight: 300;
+      color: #555;
+      line-height: 1.85;
+    }
+    .faq-a p + p { margin-top: 16px; }
+    .faq-item.open .faq-a { display: block; }
+
+    /* ═══════════════════════════
        FOOTER
     ═══════════════════════════ */
     footer {
@@ -896,6 +949,7 @@
           <a class="nav-drop-link" href="#" onclick="go('clothing'); return false;">Clothing</a>
           <div style="height:1px;background:#e8e8e8;margin:8px 0;"></div>
           <a class="nav-drop-link" href="#" onclick="go('distributors'); return false;">International Distributors</a>
+          <a class="nav-drop-link" href="#" onclick="go('faq'); return false;">FAQ</a>
         </div>
         <div class="nav-drop-images">
           <a class="nav-drop-img-item" href="https://www.nofearmotocross.com/collections/seta" target="_blank">
@@ -919,6 +973,7 @@
     </div>
     <button class="nav-item" onclick="go('about')">About</button>
     <button class="nav-item" onclick="go('contact')">Contact</button>
+    <button class="nav-item" onclick="go('faq')">FAQ</button>
   </div>
 
   <div class="nav-logo-center" onclick="go('home')">
@@ -1114,6 +1169,63 @@
 <!-- ════════════════════════
      CONTACT
 ════════════════════════ -->
+<div id="faq" class="page">
+  <div style="border-top:1px solid #e8e8e8; padding: 80px 48px 100px; max-width: 760px;">
+    <p style="font-family:'IBM Plex Mono',monospace; font-size:12px; font-weight:300; color:#999; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:32px;">Support</p>
+    <h1 style="font-family:'IBM Plex Mono',monospace; font-size:clamp(28px,4vw,48px); font-weight:400; letter-spacing:-0.01em; line-height:1.1; margin-bottom:64px;">Frequently Asked<br>Questions.</h1>
+
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-num">01</span>
+          <span class="faq-text">When is my gear going to get here?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <p>Orders are currently expected to ship within 7–10 business days unless otherwise stated on the product page. Once your order ships, you'll receive tracking information directly to your email.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-num">02</span>
+          <span class="faq-text">Are you guys going to have t-shirts and merchandise available?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <p>Yes. Very much yes.</p>
+          <p>Merchandise and apparel are coming in the very foreseeable future. This first launch focuses on motocross gear and accessories, but the clothing side of No Fear is right around the corner.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-num">03</span>
+          <span class="faq-text">Are you accepting sponsorships at this time?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <p>Not at the moment.</p>
+          <p>As much as we appreciate the support and interest, we are currently not accepting sponsorship applications. In the near future, we will open that door and release more information when available.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-num">04</span>
+          <span class="faq-text">Where can I get distribution information for outside the U.S.?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <p>Please visit our <a href="#" onclick="go('distributors'); return false;" style="color:#000; border-bottom:1px solid #000;">International Distributors</a> page to learn more about purchasing No Fear Motocross products outside of the United States.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
 <div id="distributors" class="page">
   <div style="border-top:1px solid #e8e8e8; padding: 80px 48px 100px; max-width: 800px;">
     <p style="font-family:'IBM Plex Mono',monospace; font-size:12px; font-weight:300; color:#999; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:32px;">Global Retail</p>
@@ -1259,6 +1371,13 @@
   }
 
   /* CONTACT FORM */
+  function toggleFaq(btn) {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
   async function handleSubmit(e) {
     e.preventDefault();
     const btn = e.target.querySelector('button[type="submit"]');
