@@ -972,7 +972,14 @@
     </div>
     <button class="nav-item" onclick="go('about')">About</button>
     <button class="nav-item" onclick="go('contact')">Contact</button>
-    <button class="nav-item" onclick="go('faq')">FAQ</button>
+    <div class="nav-item" style="cursor:pointer;">
+      <span onclick="go('faq')">FAQ</span>
+      <div class="nav-dropdown" style="min-width:220px; grid-template-columns:1fr;" onclick="event.stopPropagation()">
+        <div class="nav-drop-links" style="border-right:none;">
+          <a class="nav-drop-link" href="#" onclick="go('distributors'); return false;">International Distributors</a>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="nav-logo-center" onclick="go('home')">
@@ -1038,7 +1045,7 @@
         <a class="ed-label-link" href="https://www.nofearmotocross.com/collections/gloves" target="_blank">Shop Now</a>
       </div>
     </div>
-    <div class="ed-cell" style="border-right:none;">
+    <div class="ed-cell" style="border-right:none;" onclick="go('clothing')" style="cursor:pointer;">
       <div class="ed-coming-soon">
         <div class="ed-coming-soon-inner">
           <span>COMING<br>SOON</span>
@@ -1047,7 +1054,7 @@
       </div>
       <div class="ed-label">
         <div class="ed-label-name">Clothing</div>
-        <a class="ed-label-link" href="#" target="_blank">Soon</a>
+        <a class="ed-label-link" href="#" onclick="go('clothing'); return false;">Soon</a>
       </div>
     </div>
   </div>
