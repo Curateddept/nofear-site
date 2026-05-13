@@ -1084,10 +1084,10 @@
       </div>
       <div class="contact-right">
         <form onsubmit="handleSubmit(event)">
-          <div class="f-row"><label class="f-lbl">Name</label><input class="f-in" type="text" required></div>
-          <div class="f-row"><label class="f-lbl">Email</label><input class="f-in" type="email" required></div>
-          <div class="f-row"><label class="f-lbl">Subject</label><input class="f-in" type="text"></div>
-          <div class="f-row"><label class="f-lbl">Message</label><textarea class="f-ta" required></textarea></div>
+          <div class="f-row"><label class="f-lbl">Name</label><input class="f-in" type="text" name="name" required></div>
+          <div class="f-row"><label class="f-lbl">Email</label><input class="f-in" type="email" name="email" required></div>
+          <div class="f-row"><label class="f-lbl">Subject</label><input class="f-in" type="text" name="subject"></div>
+          <div class="f-row"><label class="f-lbl">Message</label><textarea class="f-ta" name="message" required></textarea></div>
           <button type="submit" class="btn btn-dark" style="margin-top:8px;">Send Message</button>
         </form>
       </div>
@@ -1144,13 +1144,29 @@
   }
 
   /* CONTACT FORM */
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     const btn = e.target.querySelector('button[type="submit"]');
-    btn.textContent = 'Sent';
+    btn.textContent = 'Sending...';
     btn.disabled = true;
-    e.target.reset();
-    setTimeout(() => { btn.textContent = 'Send Message'; btn.disabled = false; }, 3000);
+    try {
+      const res = await fetch('https://formspree.io/f/meendypv', {
+        method: 'POST',
+        body: new FormData(e.target),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        btn.textContent = 'Sent ✓';
+        e.target.reset();
+        setTimeout(() => { btn.textContent = 'Send Message'; btn.disabled = false; }, 3000);
+      } else {
+        btn.textContent = 'Error — try again';
+        btn.disabled = false;
+      }
+    } catch {
+      btn.textContent = 'Error — try again';
+      btn.disabled = false;
+    }
   }
 
   /* SHOPIFY — replace with your store URL */
