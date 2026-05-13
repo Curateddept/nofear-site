@@ -736,18 +736,18 @@
       font-family: 'IBM Plex Mono', monospace;
       font-size: 12px;
       font-weight: 300;
-      color: #bbb;
+      color: #999;
     }
-    .ft-dot { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #bbb; }
+    .ft-dot { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #ccc; }
     .ft-policy-link {
       font-family: 'IBM Plex Mono', monospace;
       font-size: 12px;
       font-weight: 400;
-      color: #bbb;
+      color: #000;
       text-decoration: none;
-      transition: color 0.15s;
+      transition: opacity 0.15s;
     }
-    .ft-policy-link:hover { color: #000; }
+    .ft-policy-link:hover { opacity: 0.4; }
 
     /* ═══════════════════════════
        ABOUT PAGE
@@ -948,7 +948,6 @@
           <a class="nav-drop-link" href="https://www.nofearmotocross.com/collections/gloves" target="_blank">Gloves</a>
           <a class="nav-drop-link" href="#" onclick="go('clothing'); return false;">Clothing</a>
           <div style="height:1px;background:#e8e8e8;margin:8px 0;"></div>
-          <a class="nav-drop-link" href="#" onclick="go('distributors'); return false;">International Distributors</a>
           <a class="nav-drop-link" href="#" onclick="go('faq'); return false;">FAQ</a>
         </div>
         <div class="nav-drop-images">
@@ -1218,7 +1217,24 @@
           <span class="faq-icon">+</span>
         </button>
         <div class="faq-a">
-          <p>Please visit our <a href="#" onclick="go('distributors'); return false;" style="color:#000; border-bottom:1px solid #000;">International Distributors</a> page to learn more about purchasing No Fear Motocross products outside of the United States.</p>
+          <p>No Fear Motocross products are currently available direct to consumer within the United States only. To purchase outside of the USA, please contact one of our official global distributors below.</p>
+          <div style="margin-top:28px; display:flex; flex-direction:column; gap:20px;">
+            <div>
+              <p style="font-size:11px; color:#999; letter-spacing:0.06em; text-transform:uppercase; margin-bottom:4px;">Australia</p>
+              <p style="font-size:14px; color:#000; font-weight:400; margin-bottom:2px;">Motorcycle Specialties</p>
+              <a href="https://www.mcsonline.com.au" target="_blank" style="color:#555; border-bottom:1px solid #e8e8e8;">www.mcsonline.com.au</a>
+            </div>
+            <div>
+              <p style="font-size:11px; color:#999; letter-spacing:0.06em; text-transform:uppercase; margin-bottom:4px;">New Zealand</p>
+              <p style="font-size:14px; color:#000; font-weight:400; margin-bottom:2px;">Crown Kiwi Enterprises</p>
+              <a href="https://www.crownkiwi.co.nz" target="_blank" style="color:#555; border-bottom:1px solid #e8e8e8;">www.crownkiwi.co.nz</a>
+            </div>
+            <div>
+              <p style="font-size:11px; color:#999; letter-spacing:0.06em; text-transform:uppercase; margin-bottom:4px;">Canada</p>
+              <p style="font-size:14px; color:#000; font-weight:400; margin-bottom:2px;">Fortnine</p>
+              <a href="https://www.fortnine.ca" target="_blank" style="color:#555; border-bottom:1px solid #e8e8e8;">www.fortnine.ca</a>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -1346,6 +1362,8 @@
     <a class="ft-policy-link" href="https://www.nofearmotocross.com/policies/contact-information" target="_blank">Contact information</a>
     <span class="ft-dot">·</span>
     <a class="ft-policy-link" href="https://www.nofearmotocross.com/policies/refund-policy" target="_blank">Refund policy</a>
+    <span class="ft-dot">·</span>
+    <a class="ft-policy-link" href="#" onclick="go('distributors'); return false;">International Distributors</a>
   </div>
 </footer>
 
