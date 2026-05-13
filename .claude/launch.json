@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "no-fear-site",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "8823", "--directory", "/Users/albertgarcia/Downloads/no-fear-site"],
+      "port": 8823
+    }
+  ]
+}
