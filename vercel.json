@@ -1,14 +1,14 @@
 {
   "redirects": [
-    { "source": "/products/:handle*", "destination": "https://nofearmotocross.myshopify.com/products/:handle*", "permanent": false },
-    { "source": "/collections/:handle*", "destination": "https://nofearmotocross.myshopify.com/collections/:handle*", "permanent": false },
-    { "source": "/pages/:handle*", "destination": "https://nofearmotocross.myshopify.com/pages/:handle*", "permanent": false },
-    { "source": "/cart", "destination": "https://nofearmotocross.myshopify.com/cart", "permanent": false },
-    { "source": "/cart/:rest*", "destination": "https://nofearmotocross.myshopify.com/cart/:rest*", "permanent": false },
-    { "source": "/account", "destination": "https://nofearmotocross.myshopify.com/account", "permanent": false },
-    { "source": "/account/:rest*", "destination": "https://nofearmotocross.myshopify.com/account/:rest*", "permanent": false },
-    { "source": "/orders/:rest*", "destination": "https://nofearmotocross.myshopify.com/orders/:rest*", "permanent": false },
-    { "source": "/policies/:rest*", "destination": "https://nofearmotocross.myshopify.com/policies/:rest*", "permanent": false },
-    { "source": "/checkouts/:rest*", "destination": "https://nofearmotocross.myshopify.com/checkouts/:rest*", "permanent": false }
+    { "source": "/products/:handle*", "destination": "https://z4wtb4-5t.myshopify.com/products/:handle*", "permanent": false },
+    { "source": "/collections/:handle*", "destination": "https://z4wtb4-5t.myshopify.com/collections/:handle*", "permanent": false },
+    { "source": "/pages/:handle*", "destination": "https://z4wtb4-5t.myshopify.com/pages/:handle*", "permanent": false },
+    { "source": "/cart", "destination": "https://z4wtb4-5t.myshopify.com/cart", "permanent": false },
+    { "source": "/cart/:rest*", "destination": "https://z4wtb4-5t.myshopify.com/cart/:rest*", "permanent": false },
+    { "source": "/account", "destination": "https://z4wtb4-5t.myshopify.com/account", "permanent": false },
+    { "source": "/account/:rest*", "destination": "https://z4wtb4-5t.myshopify.com/account/:rest*", "permanent": false },
+    { "source": "/orders/:rest*", "destination": "https://z4wtb4-5t.myshopify.com/orders/:rest*", "permanent": false },
+    { "source": "/policies/:rest*", "destination": "https://z4wtb4-5t.myshopify.com/policies/:rest*", "permanent": false },
+    { "source": "/checkouts/:rest*", "destination": "https://z4wtb4-5t.myshopify.com/checkouts/:rest*", "permanent": false }
   ]
 }
