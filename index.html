@@ -1067,9 +1067,9 @@
     #catalog {
       background: #fff;
       min-height: 100vh;
-      display: flex;
       flex-direction: column;
     }
+    #catalog.active { display: flex; }
     .catalog-counter {
       font-family: 'IBM Plex Mono', monospace;
       font-size: 11px;
@@ -1612,31 +1612,23 @@
 
 <div id="contact" class="page">
   <div id="contact" class="page" style="padding-top:0;">
-    <div style="display:grid;grid-template-columns:1fr 1fr;border-top:1px solid #e8e8e8;">
-      <div class="contact-left">
-        <h1>Get In<br>Touch.</h1>
-        <div class="c-row"><div class="c-lbl">General & Wholesale</div><div class="c-val">support@nofearmotocross.com</div></div>
-        <div class="c-row"><div class="c-lbl">Press & Collabs</div><div class="c-val">social@nofearmotocross.com</div></div>
-        <div class="c-row"><div class="c-lbl">Instagram</div><div class="c-val">@nofear</div></div>
-      </div>
-      <div class="contact-right">
-        <form onsubmit="handleSubmit(event)">
-          <div class="f-row"><label class="f-lbl">Name</label><input class="f-in" type="text" name="name" required></div>
-          <div class="f-row"><label class="f-lbl">Email</label><input class="f-in" type="email" name="email" required></div>
-          <div class="f-row"><label class="f-lbl">Phone</label><input class="f-in" type="tel" name="phone"></div>
-          <div class="f-row"><label class="f-lbl">Reason</label>
-            <select class="f-in" name="reason" required>
-              <option value="" disabled selected>Select a reason</option>
-              <option value="Collaboration">Collaboration</option>
-              <option value="My Order">My Order</option>
-              <option value="Help with Order">Help with Order</option>
-              <option value="Customer Support">Customer Support</option>
-            </select>
-          </div>
-          <div class="f-row"><label class="f-lbl">Message</label><textarea class="f-ta" name="message" required></textarea></div>
-          <button type="submit" class="btn btn-dark" style="margin-top:8px;">Send Message</button>
-        </form>
-      </div>
+    <div style="border-top:1px solid #e8e8e8; max-width:560px; margin:0 auto; padding:60px 24px 80px;">
+      <form onsubmit="handleSubmit(event)">
+        <div class="f-row"><label class="f-lbl">Name</label><input class="f-in" type="text" name="name" required></div>
+        <div class="f-row"><label class="f-lbl">Email</label><input class="f-in" type="email" name="email" required></div>
+        <div class="f-row"><label class="f-lbl">Phone</label><input class="f-in" type="tel" name="phone"></div>
+        <div class="f-row"><label class="f-lbl">Reason</label>
+          <select class="f-in" name="reason" required>
+            <option value="" disabled selected>Select a reason</option>
+            <option value="Collaboration">Collaboration</option>
+            <option value="My Order">My Order</option>
+            <option value="Help with Order">Help with Order</option>
+            <option value="Customer Support">Customer Support</option>
+          </select>
+        </div>
+        <div class="f-row"><label class="f-lbl">Message</label><textarea class="f-ta" name="message" required></textarea></div>
+        <button type="submit" class="btn btn-dark" style="margin-top:8px;">Send Message</button>
+      </form>
     </div>
   </div>
 
