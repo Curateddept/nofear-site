@@ -1,0 +1,13 @@
+{
+  "name": "nofear-site",
+  "version": "1.0.0",
+  "description": "NO FEAR Motocross website",
+  "private": true,
+  "scripts": {
+    "dev": "python server.py",
+    "build": "echo 'Static site - no build required'"
+  },
+  "dependencies": {
+    "@vercel/speed-insights": "^2.0.0"
+  }
+}
