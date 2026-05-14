@@ -733,18 +733,29 @@
     .cta-band {
       border-top: 1px solid #e8e8e8;
       border-bottom: 1px solid #e8e8e8;
-      padding: 80px 24px;
+      padding: 120px 24px;
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
       gap: 24px;
+      background: url('assets/images/cta-bg.jpg') center center / cover no-repeat;
+      position: relative;
     }
+    .cta-band::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.45);
+    }
+    .cta-band > * { position: relative; z-index: 1; }
+    .cta-band .btn { color: #fff; border-color: rgba(255,255,255,0.6); }
+    .cta-band .btn:hover { background: #fff; color: #000; border-color: #fff; }
     .cta-eyebrow {
       font-family: 'IBM Plex Mono', monospace;
       font-size: 13px;
       font-weight: 300;
-      color: #999;
+      color: rgba(255,255,255,0.7);
       letter-spacing: 0.08em;
     }
     .cta-title {
@@ -753,7 +764,7 @@
       font-weight: 400;
       letter-spacing: -0.01em;
       line-height: 1.1;
-      color: #000;
+      color: #fff;
     }
     .btn {
       display: inline-block;
@@ -1289,7 +1300,7 @@
   <div class="cta-band">
     <span class="cta-eyebrow">Now Available to live with No Fear</span>
     <div class="cta-title">Be Everything.<br>Fear Nothing.</div>
-    <a class="btn btn-dark" href="https://nofearmotocross.myshopify.com/" target="_blank">Shop Now</a>
+    <a class="btn btn-light" href="https://nofearmotocross.myshopify.com/" target="_blank">Shop Now</a>
   </div>
 
 </div>
