@@ -1062,9 +1062,134 @@
     select.f-in { appearance: none; -webkit-appearance: none; cursor: pointer; }
 
     /* ═══════════════════════════
+       CATALOG / LOOKBOOK
+    ═══════════════════════════ */
+    #catalog {
+      background: #0a0a0a;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .catalog-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 28px 40px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .catalog-header-title {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      color: rgba(255,255,255,0.5);
+      text-transform: uppercase;
+    }
+    .catalog-counter {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      color: rgba(255,255,255,0.4);
+    }
+    .catalog-stage {
+      flex: 1;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 120px;
+      min-height: calc(100vh - 130px);
+    }
+    .catalog-slide {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 120px;
+      opacity: 0;
+      transform: translateX(60px);
+      transition: opacity 0.45s ease, transform 0.45s ease;
+      pointer-events: none;
+    }
+    .catalog-slide.active {
+      opacity: 1;
+      transform: translateX(0);
+      pointer-events: auto;
+    }
+    .catalog-slide.exit-left {
+      opacity: 0;
+      transform: translateX(-60px);
+    }
+    .catalog-slide.exit-right {
+      opacity: 0;
+      transform: translateX(60px);
+    }
+    .catalog-slide img {
+      max-height: calc(100vh - 200px);
+      max-width: 100%;
+      object-fit: contain;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.7);
+      display: block;
+    }
+    .catalog-nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #fff;
+      width: 52px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 18px;
+      transition: border-color 0.2s, background 0.2s;
+      z-index: 10;
+    }
+    .catalog-nav-btn:hover { border-color: #fff; background: rgba(255,255,255,0.08); }
+    .catalog-nav-btn.prev { left: 32px; }
+    .catalog-nav-btn.next { right: 32px; }
+    .catalog-nav-btn:disabled { opacity: 0.2; cursor: default; }
+    .catalog-dots {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      padding: 20px 0 28px;
+    }
+    .catalog-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.2);
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .catalog-dot.active { background: #fff; transform: scale(1.4); }
+    .catalog-caption {
+      text-align: center;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      color: rgba(255,255,255,0.3);
+      text-transform: uppercase;
+      padding-bottom: 4px;
+    }
+
+    /* ═══════════════════════════
        RESPONSIVE
     ═══════════════════════════ */
     @media (max-width: 768px) {
+      .catalog-stage { padding: 24px 72px; }
+      .catalog-nav-btn { width: 40px; height: 40px; font-size: 14px; }
+      .catalog-nav-btn.prev { left: 16px; }
+      .catalog-nav-btn.next { right: 16px; }
+      .catalog-header { padding: 20px 24px; }
       .editorial-grid { grid-template-columns: repeat(1, 1fr); }
       .editorial-grid .ed-cell { border-right: none; border-bottom: 1px solid #e8e8e8; }
       .products { grid-template-columns: 1fr; }
@@ -1169,6 +1294,7 @@
       </div>
     </div>
     <button class="nav-item" onclick="go('about')">About</button>
+    <button class="nav-item" onclick="go('catalog')">Catalog</button>
     <button class="nav-item" onclick="go('contact')">Contact</button>
     <div class="nav-item" style="cursor:pointer;">
       <span onclick="go('faq')">FAQ</span>
@@ -1530,6 +1656,47 @@
 
 </div>
 
+<!-- ════════════════════════
+     CATALOG
+════════════════════════ -->
+<div id="catalog" class="page">
+  <div class="catalog-header">
+    <span class="catalog-header-title">Drop 001 — SS '26 Lookbook</span>
+    <span class="catalog-counter"><span id="cat-cur">1</span> / <span id="cat-tot">7</span></span>
+  </div>
+
+  <div class="catalog-stage" id="catalogStage">
+    <button class="catalog-nav-btn prev" id="catPrev" onclick="catalogNav(-1)">←</button>
+
+    <div class="catalog-slide active" data-cap="001 Patriot — On The Bike">
+      <img src="assets/images/catalog/01.jpg" alt="Drop 001 - 01">
+    </div>
+    <div class="catalog-slide" data-cap="001 Patriot — Golden Hour">
+      <img src="assets/images/catalog/02.jpg" alt="Drop 001 - 02">
+    </div>
+    <div class="catalog-slide" data-cap="001 Patriot Gloves — Detail">
+      <img src="assets/images/catalog/03.jpg" alt="Drop 001 - 03">
+    </div>
+    <div class="catalog-slide" data-cap="001 Blackout — In The Field">
+      <img src="assets/images/catalog/04.jpg" alt="Drop 001 - 04">
+    </div>
+    <div class="catalog-slide" data-cap="Two Riders — Night Session">
+      <img src="assets/images/catalog/05.jpg" alt="Drop 001 - 05">
+    </div>
+    <div class="catalog-slide" data-cap="001 Patriot — Motion">
+      <img src="assets/images/catalog/06.jpg" alt="Drop 001 - 06">
+    </div>
+    <div class="catalog-slide" data-cap="001 Gloves — Product">
+      <img src="assets/images/catalog/07.jpg" alt="Drop 001 - 07">
+    </div>
+
+    <button class="catalog-nav-btn next" id="catNext" onclick="catalogNav(1)">→</button>
+  </div>
+
+  <div class="catalog-dots" id="catDots"></div>
+  <div class="catalog-caption" id="catCaption">001 Patriot — On The Bike</div>
+</div>
+
 <footer>
   <div class="ft-contact">
     <div class="ft-contact-item">
@@ -1591,6 +1758,65 @@
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.getElementById(page).classList.add('active');
     window.scrollTo({ top: 0, behavior: 'instant' });
+    if (page === 'catalog') initCatalog();
+  }
+
+  /* CATALOG LOOKBOOK */
+  let catIndex = 0;
+  let catSlides = [];
+  let catInitialized = false;
+
+  function initCatalog() {
+    if (catInitialized) return;
+    catInitialized = true;
+    catSlides = Array.from(document.querySelectorAll('.catalog-slide'));
+    const dotsEl = document.getElementById('catDots');
+    catSlides.forEach((_, i) => {
+      const d = document.createElement('span');
+      d.className = 'catalog-dot' + (i === 0 ? ' active' : '');
+      d.onclick = () => catalogGo(i);
+      dotsEl.appendChild(d);
+    });
+    document.getElementById('cat-tot').textContent = catSlides.length;
+    updateCatalog();
+
+    document.addEventListener('keydown', function(e) {
+      if (!document.getElementById('catalog').classList.contains('active')) return;
+      if (e.key === 'ArrowRight') catalogNav(1);
+      if (e.key === 'ArrowLeft') catalogNav(-1);
+    });
+
+    // Swipe support
+    let touchStartX = 0;
+    document.getElementById('catalogStage').addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+    document.getElementById('catalogStage').addEventListener('touchend', e => {
+      const dx = e.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(dx) > 50) catalogNav(dx < 0 ? 1 : -1);
+    });
+  }
+
+  function catalogNav(dir) {
+    catalogGo(catIndex + dir);
+  }
+
+  function catalogGo(idx) {
+    if (idx < 0 || idx >= catSlides.length) return;
+    const prev = catSlides[catIndex];
+    prev.classList.add(idx > catIndex ? 'exit-left' : 'exit-right');
+    prev.classList.remove('active');
+    setTimeout(() => prev.classList.remove('exit-left', 'exit-right'), 450);
+    catIndex = idx;
+    catSlides[catIndex].style.transform = idx > catIndex - 1 ? '' : '';
+    catSlides[catIndex].classList.add('active');
+    updateCatalog();
+  }
+
+  function updateCatalog() {
+    document.getElementById('cat-cur').textContent = catIndex + 1;
+    document.getElementById('catPrev').disabled = catIndex === 0;
+    document.getElementById('catNext').disabled = catIndex === catSlides.length - 1;
+    document.querySelectorAll('.catalog-dot').forEach((d, i) => d.classList.toggle('active', i === catIndex));
+    document.getElementById('catCaption').textContent = catSlides[catIndex].dataset.cap || '';
   }
 
   /* CONTACT FORM */
