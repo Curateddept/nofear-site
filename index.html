@@ -1065,32 +1065,19 @@
        CATALOG / LOOKBOOK
     ═══════════════════════════ */
     #catalog {
-      background: #0a0a0a;
+      background: #fff;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-    }
-    .catalog-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 28px 40px;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-    }
-    .catalog-header-title {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 11px;
-      font-weight: 400;
-      letter-spacing: 0.2em;
-      color: rgba(255,255,255,0.5);
-      text-transform: uppercase;
     }
     .catalog-counter {
       font-family: 'IBM Plex Mono', monospace;
       font-size: 11px;
       font-weight: 400;
       letter-spacing: 0.12em;
-      color: rgba(255,255,255,0.4);
+      color: #999;
+      text-align: center;
+      padding: 28px 0 0;
     }
     .catalog-stage {
       flex: 1;
@@ -1139,8 +1126,8 @@
       top: 50%;
       transform: translateY(-50%);
       background: none;
-      border: 1px solid rgba(255,255,255,0.2);
-      color: #fff;
+      border: 1px solid rgba(0,0,0,0.2);
+      color: #000;
       width: 52px;
       height: 52px;
       display: flex;
@@ -1152,10 +1139,10 @@
       transition: border-color 0.2s, background 0.2s;
       z-index: 10;
     }
-    .catalog-nav-btn:hover { border-color: #fff; background: rgba(255,255,255,0.08); }
+    .catalog-nav-btn:hover { border-color: #000; background: rgba(0,0,0,0.05); }
     .catalog-nav-btn.prev { left: 32px; }
     .catalog-nav-btn.next { right: 32px; }
-    .catalog-nav-btn:disabled { opacity: 0.2; cursor: default; }
+    .catalog-nav-btn:disabled { opacity: 0.15; cursor: default; }
     .catalog-dots {
       display: flex;
       gap: 8px;
@@ -1166,17 +1153,17 @@
       width: 5px;
       height: 5px;
       border-radius: 50%;
-      background: rgba(255,255,255,0.2);
+      background: rgba(0,0,0,0.15);
       cursor: pointer;
       transition: background 0.2s, transform 0.2s;
     }
-    .catalog-dot.active { background: #fff; transform: scale(1.4); }
+    .catalog-dot.active { background: #000; transform: scale(1.4); }
     .catalog-caption {
       text-align: center;
       font-family: 'IBM Plex Mono', monospace;
       font-size: 11px;
       letter-spacing: 0.16em;
-      color: rgba(255,255,255,0.3);
+      color: #aaa;
       text-transform: uppercase;
       padding-bottom: 4px;
     }
@@ -1189,7 +1176,6 @@
       .catalog-nav-btn { width: 40px; height: 40px; font-size: 14px; }
       .catalog-nav-btn.prev { left: 16px; }
       .catalog-nav-btn.next { right: 16px; }
-      .catalog-header { padding: 20px 24px; }
       .editorial-grid { grid-template-columns: repeat(1, 1fr); }
       .editorial-grid .ed-cell { border-right: none; border-bottom: 1px solid #e8e8e8; }
       .products { grid-template-columns: 1fr; }
@@ -1294,7 +1280,6 @@
       </div>
     </div>
     <button class="nav-item" onclick="go('about')">About</button>
-    <button class="nav-item" onclick="go('catalog')">Catalog</button>
     <button class="nav-item" onclick="go('contact')">Contact</button>
     <div class="nav-item" style="cursor:pointer;">
       <span onclick="go('faq')">FAQ</span>
@@ -1304,6 +1289,7 @@
         </div>
       </div>
     </div>
+    <button class="nav-item" onclick="go('catalog')">NoFear 001 Lookbook</button>
   </div>
 
   <div class="nav-logo-center" onclick="go('home')">
@@ -1660,10 +1646,7 @@
      CATALOG
 ════════════════════════ -->
 <div id="catalog" class="page">
-  <div class="catalog-header">
-    <span class="catalog-header-title">Drop 001 — SS '26 Lookbook</span>
-    <span class="catalog-counter"><span id="cat-cur">1</span> / <span id="cat-tot">7</span></span>
-  </div>
+  <div class="catalog-counter"><span id="cat-cur">1</span> / <span id="cat-tot">7</span></div>
 
   <div class="catalog-stage" id="catalogStage">
     <button class="catalog-nav-btn prev" id="catPrev" onclick="catalogNav(-1)">←</button>
