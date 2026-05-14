@@ -159,9 +159,7 @@
       display: none;
     }
 
-    html { scroll-behavior: smooth; }
-
-    html { overflow-x: hidden; }
+    html { scroll-behavior: smooth; overflow: hidden; }
     body {
       background: #fff;
       color: #000;
@@ -169,8 +167,18 @@
       font-weight: 300;
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
+      overflow-y: auto;
       max-width: 100vw;
+      width: 100%;
+      position: relative;
     }
+    #page-wrap {
+      overflow-x: hidden;
+      width: 100%;
+      max-width: 100vw;
+      position: relative;
+    }
+    .strip { width: 100%; overflow: hidden; position: relative; }
 
     img { display: block; max-width: 100%; }
     a   { text-decoration: none; color: inherit; }
@@ -1011,7 +1019,8 @@
     /* ═══════════════════════════
        CONTACT PAGE
     ═══════════════════════════ */
-    #contact {
+    #contact { display: block; }
+    .contact-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       border-top: 1px solid #e8e8e8;
@@ -1193,8 +1202,9 @@
       .prod { border-right: none; }
       .about-stats { grid-template-columns: 1fr; }
       .stat { border-right: none; border-bottom: 1px solid #e8e8e8; }
-      #contact { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
       .contact-left { border-right: none; border-bottom: 1px solid #e8e8e8; }
+      .contact-right { padding: 32px 24px; }
       footer { grid-template-columns: 1fr; gap: 16px; }
       .ft-links { justify-content: flex-start; }
     }
@@ -1296,6 +1306,7 @@
   </style>
 </head>
 <body>
+<div id="page-wrap">
 
 <!-- ── PASSWORD GATE ── -->
 <div id="gate">
@@ -1737,7 +1748,7 @@
   <div style="width:100%;height:70vh;overflow:hidden;">
     <img src="assets/images/contact-hero.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;">
   </div>
-  <div style="display:grid;grid-template-columns:1fr 1fr;border-top:1px solid #e8e8e8;">
+  <div class="contact-grid">
     <div class="contact-left">
       <h1>Get In<br>Touch.</h1>
       <div class="c-row"><div class="c-lbl">General & Wholesale</div><div class="c-val">support@nofearmotocross.com</div></div>
@@ -2078,6 +2089,21 @@
       btn.disabled = false;
     }
   }
+  // Block horizontal touch scrolling
+  (function() {
+    var startX, startY;
+    document.addEventListener('touchstart', function(e) {
+      startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
+    }, { passive: true });
+    document.addEventListener('touchmove', function(e) {
+      if (!startX || !startY) return;
+      var dx = Math.abs(e.touches[0].clientX - startX);
+      var dy = Math.abs(e.touches[0].clientY - startY);
+      if (dx > dy && dx > 8) e.preventDefault();
+    }, { passive: false });
+  })();
 </script>
+</div><!-- end page-wrap -->
 </body>
 </html>
