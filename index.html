@@ -1744,8 +1744,13 @@
 
   /* NAVIGATION */
   function go(page) {
-    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    document.getElementById(page).classList.add('active');
+    document.querySelectorAll('.page').forEach(p => {
+      p.classList.remove('active');
+      p.style.display = 'none';
+    });
+    const el = document.getElementById(page);
+    el.classList.add('active');
+    el.style.display = page === 'catalog' ? 'flex' : 'block';
     window.scrollTo({ top: 0, behavior: 'instant' });
     if (page === 'catalog') initCatalog();
   }
