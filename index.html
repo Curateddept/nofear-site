@@ -920,7 +920,12 @@
     /* ═══════════════════════════
        ABOUT PAGE
     ═══════════════════════════ */
-    .about-hero { display: none; }
+    .about-hero {
+      width: 100%;
+      height: clamp(320px, 55vw, 680px);
+      background: url('assets/images/about-hero.jpg') center 30% / cover no-repeat;
+      display: block;
+    }
 
     .about-content {
       max-width: 680px;
