@@ -927,8 +927,11 @@
     }
 
     .about-content {
+      padding: 0;
+    }
+    .about-intro {
       max-width: 680px;
-      padding: 64px 24px 80px;
+      padding: 64px 24px 48px;
     }
 
     .about-label {
@@ -949,7 +952,27 @@
       margin-bottom: 48px;
     }
 
-    .about-block { margin-bottom: 48px; }
+    .about-block {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-top: 1px solid #e8e8e8;
+      margin-bottom: 0;
+    }
+    .about-block-text {
+      padding: 48px 40px 48px 24px;
+    }
+    .about-block-img {
+      overflow: hidden;
+      min-height: 420px;
+      border-left: 1px solid #e8e8e8;
+    }
+    .about-block-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
     .about-block h3 {
       font-family: 'IBM Plex Mono', monospace;
       font-size: 14px;
@@ -1201,6 +1224,9 @@
       .editorial-grid .ed-cell { border-right: none; border-bottom: 1px solid #e8e8e8; }
       .products { grid-template-columns: 1fr; }
       .prod { border-right: none; }
+      .about-block { grid-template-columns: 1fr; }
+      .about-block-img { min-height: 260px; border-left: none; border-top: 1px solid #e8e8e8; }
+      .about-block-text { padding: 32px 24px; }
       .about-stats { grid-template-columns: 1fr; }
       .stat { border-right: none; border-bottom: 1px solid #e8e8e8; }
       .contact-grid { grid-template-columns: 1fr; }
@@ -1506,8 +1532,8 @@
         </div>
       </div>
       <div class="ed-label">
-        <div class="ed-label-name">Clothing</div>
-        <a class="ed-label-link" href="#" onclick="go('clothing'); return false;">Soon</a>
+        <div class="ed-label-name">No Fear Clothing 001 — Coming Soon</div>
+        <a class="ed-label-link" href="#" onclick="go('clothing'); return false;">Learn More</a>
       </div>
     </div>
   </div>
@@ -1568,34 +1594,51 @@
   <div class="about-hero"></div>
 
   <div class="about-content">
-    <p class="about-label">About No Fear</p>
-    <h1 class="about-h1">Born From<br>The Dirt.</h1>
-
-    <div class="about-block">
-      <h3>01 — The Origin</h3>
-      <p>Founded in 1989 by the original visionaries who saw motocross differently, No Fear was built from the chaos of red clay tracks, desert lines, broken bones, and fearless mentality. It wasn't created in a boardroom — it was born at the track, inside garages, loading ramps, late nights, and starting gates across America.</p>
-      <p style="margin-top:20px;">No Fear quickly became more than a logo. It became a symbol for the riders who pushed too hard, lived too fast, and didn't care what anyone thought. The brand stood for rebellion, risk, and the culture surrounding motocross during one of its rawest eras. A time when style, attitude, and riding all collided into something unforgettable.</p>
-      <div class="about-rule"></div>
+    <div class="about-intro">
+      <p class="about-label">About No Fear</p>
+      <h1 class="about-h1">Born From<br>The Dirt.</h1>
     </div>
 
     <div class="about-block">
-      <h3>02 — The Void</h3>
-      <p>Then one day, it faded.</p>
-      <p style="margin-top:20px;">As the years passed, motocross lost a piece of its identity. The industry evolved, but something about it started feeling too polished, too safe, too corporate. The gritty edge that once defined the sport slowly disappeared, leaving an entire generation of riders and fans feeling like something was missing.</p>
-      <p style="margin-top:20px;">No Fear wasn't just another gear company that disappeared — it left behind a culture. A feeling. A movement people still talked about decades later.</p>
-      <p style="margin-top:20px;">From old race photos and worn-out jerseys to garage stickers and vintage graphics, the brand never truly died. The community kept it alive.</p>
-      <div class="about-rule"></div>
+      <div class="about-block-text">
+        <h3>01 — The Origin</h3>
+        <p>Founded in 1989 by the original visionaries who saw motocross differently, No Fear was built from the chaos of red clay tracks, desert lines, broken bones, and fearless mentality. It wasn't created in a boardroom — it was born at the track, inside garages, loading ramps, late nights, and starting gates across America.</p>
+        <p style="margin-top:20px;">No Fear quickly became more than a logo. It became a symbol for the riders who pushed too hard, lived too fast, and didn't care what anyone thought. The brand stood for rebellion, risk, and the culture surrounding motocross during one of its rawest eras. A time when style, attitude, and riding all collided into something unforgettable.</p>
+        <div class="about-rule"></div>
+      </div>
+      <div class="about-block-img">
+        <img src="assets/images/about-img-1.jpg" alt="No Fear — The Origin">
+      </div>
     </div>
 
     <div class="about-block">
-      <h3>03 — The Revival</h3>
-      <p>Now it returns.</p>
-      <p style="margin-top:20px;">Not reimagined. Not reinvented. Revived.</p>
-      <p style="margin-top:20px;">A team of lifelong fans and motocross culture obsessives found a way to bring No Fear back the right way — respecting everything the brand once stood for while introducing it to a new generation through a modern lens.</p>
-      <p style="margin-top:20px;">Our goal isn't to change No Fear. The goal is to preserve the feeling that made it iconic in the first place.</p>
-      <p style="margin-top:20px;">The bold graphics. The raw energy. The underground attitude. The culture that blended motocross, punk rock, racing, and streetwear into one world.</p>
-      <p style="margin-top:20px;">This revival is about nostalgia without feeling dated. Classic without feeling stuck in the past. Built for the riders who remember it — and for the next generation searching for something real again.</p>
-      <p style="margin-top:20px;">No Fear is back where it belongs.</p>
+      <div class="about-block-text">
+        <h3>02 — The Void</h3>
+        <p>Then one day, it faded.</p>
+        <p style="margin-top:20px;">As the years passed, motocross lost a piece of its identity. The industry evolved, but something about it started feeling too polished, too safe, too corporate. The gritty edge that once defined the sport slowly disappeared, leaving an entire generation of riders and fans feeling like something was missing.</p>
+        <p style="margin-top:20px;">No Fear wasn't just another gear company that disappeared — it left behind a culture. A feeling. A movement people still talked about decades later.</p>
+        <p style="margin-top:20px;">From old race photos and worn-out jerseys to garage stickers and vintage graphics, the brand never truly died. The community kept it alive.</p>
+        <div class="about-rule"></div>
+      </div>
+      <div class="about-block-img">
+        <img src="assets/images/about-img-2.jpg" alt="No Fear — The Void">
+      </div>
+    </div>
+
+    <div class="about-block">
+      <div class="about-block-text">
+        <h3>03 — The Revival</h3>
+        <p>Now it returns.</p>
+        <p style="margin-top:20px;">Not reimagined. Not reinvented. Revived.</p>
+        <p style="margin-top:20px;">A team of lifelong fans and motocross culture obsessives found a way to bring No Fear back the right way — respecting everything the brand once stood for while introducing it to a new generation through a modern lens.</p>
+        <p style="margin-top:20px;">Our goal isn't to change No Fear. The goal is to preserve the feeling that made it iconic in the first place.</p>
+        <p style="margin-top:20px;">The bold graphics. The raw energy. The underground attitude. The culture that blended motocross, punk rock, racing, and streetwear into one world.</p>
+        <p style="margin-top:20px;">This revival is about nostalgia without feeling dated. Classic without feeling stuck in the past. Built for the riders who remember it — and for the next generation searching for something real again.</p>
+        <p style="margin-top:20px;">No Fear is back where it belongs.</p>
+      </div>
+      <div class="about-block-img">
+        <img src="assets/images/about-img-3.jpg" alt="No Fear — The Revival">
+      </div>
     </div>
   </div>
 
@@ -1929,6 +1972,9 @@
     el.style.display = page === 'catalog' ? 'flex' : 'block';
     window.scrollTo({ top: 0, behavior: 'instant' });
     if (page === 'catalog') initCatalog();
+    // Hide footer contact section on the contact page (separate assets)
+    var ftContact = document.querySelector('.ft-contact');
+    if (ftContact) ftContact.style.display = page === 'contact' ? 'none' : '';
   }
 
   /* CATALOG LOOKBOOK */
