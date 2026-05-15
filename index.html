@@ -1299,8 +1299,8 @@
 
 <!-- ── PASSWORD GATE ── -->
 <div id="gate">
-  <video id="gate-video" autoplay muted loop playsinline>
-    <source src="assets/hero.mp4" type="video/mp4">
+  <video id="gate-video" autoplay muted loop playsinline preload="none" poster="assets/hero-poster.jpg">
+    <source src="assets/hero-opt.mp4" type="video/mp4">
   </video>
   <div id="gate-overlay"></div>
   <div id="gate-content">
@@ -1432,8 +1432,8 @@
 
   <!-- Video Hero -->
   <section class="hero">
-    <video autoplay muted loop playsinline>
-      <source src="assets/hero.mp4" type="video/mp4">
+    <video id="hero-video" muted loop playsinline preload="none" poster="assets/hero-poster.jpg">
+      <source src="assets/hero-opt.mp4" type="video/mp4">
     </video>
     <div class="hero-overlay">
       <div class="hero-logo">
@@ -2078,6 +2078,32 @@
       btn.disabled = false;
     }
   }
+  // Hero video — lazy load & mobile-friendly autoplay
+  (function() {
+    var heroVideo = document.getElementById('hero-video');
+    var gateVideo = document.getElementById('gate-video');
+    var isMobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent) || window.innerWidth < 768;
+
+    function startVideos() {
+      if (heroVideo) { heroVideo.load(); heroVideo.play().catch(function(){}); }
+      if (gateVideo) { gateVideo.load(); gateVideo.play().catch(function(){}); }
+    }
+
+    if (isMobile) {
+      // On mobile: defer until after page fully loads to not compete with content
+      window.addEventListener('load', function() {
+        setTimeout(startVideos, 300);
+      });
+    } else {
+      // On desktop: start as soon as DOM is ready
+      if (document.readyState === 'complete') {
+        startVideos();
+      } else {
+        window.addEventListener('load', startVideos);
+      }
+    }
+  })();
+
   // Block horizontal touch scrolling
   (function() {
     var startX, startY;
