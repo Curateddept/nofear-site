@@ -1336,16 +1336,6 @@
 
     <p id="gate-launch-label">Launching May 15, 2026 · 2PM PST</p>
 
-    <p id="gate-early-label">Get Early Access</p>
-    <form onsubmit="gateEarlySubmit(event)">
-      <input class="gate-input" type="email" name="email" placeholder="Your email address" required>
-      <input type="hidden" name="type" value="early_access">
-      <button type="submit" class="gate-btn">Notify Me</button>
-    </form>
-    <p id="gate-early-success">You're on the list. See you soon.</p>
-
-    <div class="gate-divider"></div>
-
     <p id="gate-pw-label">Have a password?</p>
     <input class="gate-input" type="password" id="gate-pw-input" placeholder="Enter password" onkeydown="if(event.key==='Enter')gateUnlock()">
     <button class="gate-btn dark" onclick="gateUnlock()">Enter Site</button>
