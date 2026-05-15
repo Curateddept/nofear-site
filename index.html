@@ -11,146 +11,6 @@
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-    /* ═══════════════════════════
-       PASSWORD GATE
-    ═══════════════════════════ */
-    #gate {
-      position: fixed;
-      inset: 0;
-      z-index: 10000;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      background: #fff;
-    }
-    #gate.hidden { display: none; }
-
-    #gate-video { display: none; }
-    #gate-overlay { display: none; }
-
-    #gate-content {
-      position: relative;
-      z-index: 2;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      padding: 24px;
-      width: 100%;
-      max-width: 480px;
-    }
-    #gate-logo { width: min(280px, 65vw); margin-bottom: 40px; }
-
-    #gate-countdown {
-      display: flex;
-      gap: 24px;
-      margin-bottom: 48px;
-    }
-    .gc-unit { display: flex; flex-direction: column; align-items: center; }
-    .gc-num {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: clamp(32px, 7vw, 52px);
-      font-weight: 400;
-      color: #000;
-      letter-spacing: -0.02em;
-      line-height: 1;
-    }
-    .gc-lbl {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 10px;
-      font-weight: 300;
-      color: rgba(0,0,0,0.4);
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      margin-top: 6px;
-    }
-    .gc-sep {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: clamp(28px, 6vw, 44px);
-      color: rgba(0,0,0,0.25);
-      line-height: 1;
-      align-self: flex-start;
-      padding-top: 4px;
-    }
-
-    #gate-launch-label {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 11px;
-      font-weight: 300;
-      color: rgba(0,0,0,0.4);
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      margin-bottom: 48px;
-    }
-
-    .gate-divider {
-      width: 100%;
-      height: 1px;
-      background: rgba(0,0,0,0.1);
-      margin: 32px 0;
-    }
-
-    #gate-early-label, #gate-pw-label {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 11px;
-      font-weight: 300;
-      color: rgba(0,0,0,0.45);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-bottom: 14px;
-    }
-
-    .gate-input {
-      width: 100%;
-      background: transparent;
-      border: 1px solid rgba(0,0,0,0.2);
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 13px;
-      font-weight: 300;
-      color: #000;
-      padding: 12px 16px;
-      outline: none;
-      transition: border-color 0.2s;
-      margin-bottom: 10px;
-    }
-    .gate-input::placeholder { color: rgba(0,0,0,0.3); }
-    .gate-input:focus { border-color: rgba(0,0,0,0.6); }
-
-    .gate-btn {
-      width: 100%;
-      padding: 13px 20px;
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 12px;
-      font-weight: 400;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: all 0.2s;
-      border: 1px solid #000;
-      background: transparent;
-      color: #000;
-    }
-    .gate-btn:hover { background: #000; color: #fff; }
-    .gate-btn.dark { background: #000; color: #fff; border-color: #000; }
-    .gate-btn.dark:hover { background: #333; }
-
-    #gate-pw-error {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 11px;
-      color: rgba(200,50,50,0.9);
-      margin-top: 8px;
-      display: none;
-    }
-    #gate-early-success {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 11px;
-      color: rgba(0,0,0,0.5);
-      margin-top: 8px;
-      display: none;
-    }
-
     html { scroll-behavior: smooth; }
     body {
       background: #fff;
@@ -1315,34 +1175,6 @@
 </head>
 <body>
 
-<!-- ── PASSWORD GATE ── -->
-<div id="gate">
-  <video id="gate-video" autoplay muted loop playsinline preload="none" poster="assets/hero-poster.jpg">
-    <source src="assets/hero-opt.mp4" type="video/mp4">
-  </video>
-  <div id="gate-overlay"></div>
-  <div id="gate-content">
-    <img id="gate-logo" src="assets/nofear-logo.png" alt="No Fear">
-
-    <div id="gate-countdown">
-      <div class="gc-unit"><span class="gc-num" id="gc-d">00</span><span class="gc-lbl">Days</span></div>
-      <span class="gc-sep">:</span>
-      <div class="gc-unit"><span class="gc-num" id="gc-h">00</span><span class="gc-lbl">Hours</span></div>
-      <span class="gc-sep">:</span>
-      <div class="gc-unit"><span class="gc-num" id="gc-m">00</span><span class="gc-lbl">Min</span></div>
-      <span class="gc-sep">:</span>
-      <div class="gc-unit"><span class="gc-num" id="gc-s">00</span><span class="gc-lbl">Sec</span></div>
-    </div>
-
-    <p id="gate-launch-label">Launching May 15, 2026 · 2PM PST</p>
-
-    <p id="gate-pw-label">Have a password?</p>
-    <input class="gate-input" type="password" id="gate-pw-input" placeholder="Enter password" onkeydown="if(event.key==='Enter')gateUnlock()">
-    <button class="gate-btn dark" onclick="gateUnlock()">Enter Site</button>
-    <p id="gate-pw-error">Incorrect password. Try again.</p>
-  </div>
-</div>
-
 <!-- ── LOADER ── -->
 <div id="loader">
   <div class="l-logo" id="lLogo">
@@ -2038,87 +1870,13 @@
   }
 
 
-  /* ── PASSWORD GATE ── */
-  (function() {
-    if (localStorage.getItem('nf_unlocked') === '1') {
-      document.getElementById('gate').classList.add('hidden');
-      return;
-    }
-
-    // Countdown to May 15, 2026 2PM PST (UTC-8) = 22:00 UTC
-    const launch = new Date('2026-05-15T22:00:00Z');
-    function updateCountdown() {
-      const now = new Date();
-      let diff = launch - now;
-      if (diff <= 0) {
-        document.getElementById('gc-d').textContent = '00';
-        document.getElementById('gc-h').textContent = '00';
-        document.getElementById('gc-m').textContent = '00';
-        document.getElementById('gc-s').textContent = '00';
-        return;
-      }
-      const d = Math.floor(diff / 86400000);
-      const h = Math.floor((diff % 86400000) / 3600000);
-      const m = Math.floor((diff % 3600000) / 60000);
-      const s = Math.floor((diff % 60000) / 1000);
-      document.getElementById('gc-d').textContent = String(d).padStart(2,'0');
-      document.getElementById('gc-h').textContent = String(h).padStart(2,'0');
-      document.getElementById('gc-m').textContent = String(m).padStart(2,'0');
-      document.getElementById('gc-s').textContent = String(s).padStart(2,'0');
-    }
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
-  })();
-
-  function gateUnlock() {
-    const pw = document.getElementById('gate-pw-input').value;
-    const err = document.getElementById('gate-pw-error');
-    if (pw === 'nofearisback') {
-      localStorage.setItem('nf_unlocked', '1');
-      const gate = document.getElementById('gate');
-      gate.style.transition = 'opacity 0.6s ease';
-      gate.style.opacity = '0';
-      setTimeout(() => gate.classList.add('hidden'), 600);
-      err.style.display = 'none';
-    } else {
-      err.style.display = 'block';
-      document.getElementById('gate-pw-input').value = '';
-    }
-  }
-
-  async function gateEarlySubmit(e) {
-    e.preventDefault();
-    const btn = e.target.querySelector('button');
-    const success = document.getElementById('gate-early-success');
-    btn.textContent = 'Submitting...';
-    btn.disabled = true;
-    try {
-      const res = await fetch('https://formspree.io/f/meendypv', {
-        method: 'POST',
-        body: new FormData(e.target),
-        headers: { 'Accept': 'application/json' }
-      });
-      if (res.ok) {
-        e.target.style.display = 'none';
-        success.style.display = 'block';
-      } else {
-        btn.textContent = 'Try again';
-        btn.disabled = false;
-      }
-    } catch {
-      btn.textContent = 'Try again';
-      btn.disabled = false;
-    }
-  }
   // Hero video — lazy load & mobile-friendly autoplay
   (function() {
     var heroVideo = document.getElementById('hero-video');
-    var gateVideo = document.getElementById('gate-video');
     var isMobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent) || window.innerWidth < 768;
 
     function startVideos() {
       if (heroVideo) { heroVideo.load(); heroVideo.play().catch(function(){}); }
-      if (gateVideo) { gateVideo.load(); gateVideo.play().catch(function(){}); }
     }
 
     if (isMobile) {
