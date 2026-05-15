@@ -278,6 +278,8 @@
       opacity: 1 !important;
     }
     .nav-lookbook-btn:hover { background: #000 !important; color: #fff !important; opacity: 1 !important; }
+    .nav-ig-btn { padding: 0 10px !important; color: #000; }
+    .nav-ig-btn:hover { opacity: 0.5; }
 
     /* Shop dropdown */
     .nav-dropdown {
@@ -1296,7 +1298,9 @@
     @media (max-width: 520px) {
       .nav-hamburger { display: flex; }
       .nav-left .nav-item { display: none; }
-      .nav-right { display: none; }
+      .nav-right { display: flex; }
+      .nav-right .nav-item:not(.nav-ig-btn) { display: none; }
+      .nav-ig-btn { display: flex !important; }
     }
   </style>
   <script defer src="/_vercel/insights/script.js"></script>
@@ -1408,6 +1412,9 @@
   <div class="nav-right">
     <span class="nav-item" style="color:#999;cursor:default;">United States</span>
     <a class="nav-item" href="https://nofearmotocross.myshopify.com/" target="_blank">Shop ↗</a>
+    <a class="nav-item nav-ig-btn" href="https://instagram.com/nofearmotocross" target="_blank" aria-label="Instagram" title="@nofearmotocross">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+    </a>
     <button class="nav-item nav-lookbook-btn" onclick="go('catalog')">NoFear 001 Lookbook</button>
   </div>
 </nav>
@@ -1746,9 +1753,9 @@
   <div class="contact-grid">
     <div class="contact-left">
       <h1>Get In<br>Touch.</h1>
-      <div class="c-row"><div class="c-lbl">General & Wholesale</div><div class="c-val">info@nofearmotocross.com</div></div>
-      <div class="c-row"><div class="c-lbl">Press & Collabs</div><div class="c-val">info@nofearmotocross.com</div></div>
-      <div class="c-row"><div class="c-lbl">Instagram</div><div class="c-val">@nofear</div></div>
+      <div class="c-row"><div class="c-lbl">General & Wholesale</div><div class="c-val">info@nofearmotocrossmotocross.com</div></div>
+      <div class="c-row"><div class="c-lbl">Press & Collabs</div><div class="c-val">info@nofearmotocrossmotocross.com</div></div>
+      <div class="c-row"><div class="c-lbl">Instagram</div><div class="c-val">@nofearmotocross</div></div>
     </div>
     <div class="contact-right">
       <form onsubmit="handleSubmit(event)">
@@ -1840,15 +1847,15 @@
   <div class="ft-contact">
     <div class="ft-contact-item">
       <div class="ft-contact-lbl">General & Wholesale</div>
-      <div class="ft-contact-val">info@nofearmotocross.com</div>
+      <div class="ft-contact-val">info@nofearmotocrossmotocross.com</div>
     </div>
     <div class="ft-contact-item">
       <div class="ft-contact-lbl">Press & Collabs</div>
-      <div class="ft-contact-val">info@nofearmotocross.com</div>
+      <div class="ft-contact-val">info@nofearmotocrossmotocross.com</div>
     </div>
     <div class="ft-contact-item">
       <div class="ft-contact-lbl">Instagram</div>
-      <div class="ft-contact-val">@nofear</div>
+      <div class="ft-contact-val">@nofearmotocross</div>
     </div>
   </div>
   <div class="ft-payments">
