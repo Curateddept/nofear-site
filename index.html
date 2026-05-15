@@ -732,10 +732,10 @@
        CTA BAND
     ═══════════════════════════ */
     .cta-band {
+      display: none;
       border-top: 1px solid #e8e8e8;
       border-bottom: 1px solid #e8e8e8;
       padding: 120px 24px;
-      display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
@@ -1397,7 +1397,7 @@
       </div>
     </div>
     <button class="nav-item" onclick="go('about')">About</button>
-    <button class="nav-item" onclick="go('contact', {showBanner:true})">Contact</button>
+    <button class="nav-item" onclick="go('contact')">Contact</button>
     <div class="nav-item" style="cursor:pointer;">
       <span onclick="go('faq')">FAQ</span>
       <div class="nav-dropdown" style="min-width:220px; grid-template-columns:1fr;" onclick="event.stopPropagation()">
@@ -1433,7 +1433,7 @@
     <a class="mobile-menu-link" href="https://nofearmotocross.myshopify.com/collections/gloves" target="_blank" onclick="closeMobileMenu()">Gloves</a>
     <button class="mobile-menu-link" onclick="go('clothing'); closeMobileMenu()">Clothing — Coming Soon</button>
     <button class="mobile-menu-link" onclick="go('about'); closeMobileMenu()">About</button>
-    <button class="mobile-menu-link" onclick="go('contact', {showBanner:true}); closeMobileMenu()">Contact</button>
+    <button class="mobile-menu-link" onclick="go('contact'); closeMobileMenu()">Contact</button>
     <button class="mobile-menu-link" onclick="go('catalog'); closeMobileMenu()">NoFear 001 Lookbook</button>
     <button class="mobile-menu-link" onclick="go('faq'); closeMobileMenu()">FAQ</button>
     <button class="mobile-menu-link" onclick="go('distributors'); closeMobileMenu()">International Distributors</button>
@@ -1919,7 +1919,7 @@
     document.body.style.overflow = '';
   }
 
-  function go(page, opts) {
+  function go(page) {
     document.querySelectorAll('.page').forEach(p => {
       p.classList.remove('active');
       p.style.display = 'none';
@@ -1932,9 +1932,6 @@
     // Hide footer contact section on the contact page (separate assets)
     var ftContact = document.querySelector('.ft-contact');
     if (ftContact) ftContact.style.display = page === 'contact' ? 'none' : '';
-    // Show contact banner only when navigating via the Contact nav button
-    var banner = document.querySelector('.contact-banner');
-    if (banner) banner.style.display = (page === 'contact' && opts && opts.showBanner) ? 'block' : 'none';
   }
 
   /* CATALOG LOOKBOOK */
