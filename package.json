@@ -1,0 +1,12 @@
+{
+  "name": "nofear-site",
+  "version": "1.0.0",
+  "description": "NO FEAR website",
+  "type": "module",
+  "scripts": {
+    "dev": "python3 server.py"
+  },
+  "dependencies": {
+    "@vercel/speed-insights": "^1.0.14"
+  }
+}
