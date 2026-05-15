@@ -1008,6 +1008,19 @@
        CONTACT PAGE
     ═══════════════════════════ */
     #contact { display: block; }
+    .contact-banner {
+      width: 100%;
+      height: clamp(240px, 38vw, 520px);
+      overflow: hidden;
+      display: block;
+    }
+    .contact-banner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 20%;
+      display: block;
+    }
     .contact-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -1741,6 +1754,9 @@
 </div>
 
 <div id="contact" class="page">
+  <div class="contact-banner">
+    <img src="assets/images/contact-banner.jpg" alt="No Fear Motocross">
+  </div>
   <div class="contact-grid">
     <div class="contact-left">
       <h1>Get In<br>Touch.</h1>
