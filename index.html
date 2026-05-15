@@ -252,7 +252,7 @@
       justify-content: center;
       cursor: pointer;
     }
-    .nav-logo-center img { height: 24px; width: auto; }
+    .nav-logo-center img { height: 28px; width: auto; max-width: 140px; object-fit: contain; }
 
     .nav-right {
       display: flex;
@@ -1325,10 +1325,9 @@
     }
     .mobile-menu-sub a:hover { color: #fff; }
 
-    @media (max-width: 520px) {
+    @media (max-width: 768px) {
       .nav-hamburger { display: flex; }
       .nav-left .nav-item { display: none; }
-      .nav-right { display: flex; }
       .nav-right .nav-item:not(.nav-ig-btn) { display: none; }
       .nav-ig-btn { display: flex !important; }
     }
@@ -1387,10 +1386,10 @@
 
 <!-- ── NAV ── -->
 <nav id="nav">
-  <button class="nav-hamburger" id="navHamburger" onclick="toggleMobileMenu()" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
   <div class="nav-left">
+    <button class="nav-hamburger" id="navHamburger" onclick="toggleMobileMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
     <a class="nav-item" href="https://www.nofearmotocross.com/" style="padding-left:0;">Home</a>
     <div class="nav-item">
       SHOP
@@ -1437,7 +1436,7 @@
   </div>
 
   <div class="nav-logo-center" onclick="go('home')">
-    <img src="assets/nofear-logo.png" alt="No Fear">
+    <img src="assets/NoFearWebsiteLogoHeader.jpeg" alt="No Fear">
   </div>
 
   <div class="nav-right">
@@ -1459,9 +1458,11 @@
     <a class="mobile-menu-link" href="https://nofearmotocross.myshopify.com/collections/frontpage" target="_blank" onclick="closeMobileMenu()">Shop</a>
     <a class="mobile-menu-link" href="https://nofearmotocross.myshopify.com/collections/seta" target="_blank" onclick="closeMobileMenu()">Gear Sets</a>
     <a class="mobile-menu-link" href="https://nofearmotocross.myshopify.com/collections/gloves" target="_blank" onclick="closeMobileMenu()">Gloves</a>
+    <button class="mobile-menu-link" onclick="go('clothing'); closeMobileMenu()">Clothing — Coming Soon</button>
     <button class="mobile-menu-link" onclick="go('about'); closeMobileMenu()">About</button>
     <button class="mobile-menu-link" onclick="go('contact'); closeMobileMenu()">Contact</button>
     <button class="mobile-menu-link" onclick="go('catalog'); closeMobileMenu()">NoFear 001 Lookbook</button>
+    <button class="mobile-menu-link" onclick="go('faq'); closeMobileMenu()">FAQ</button>
     <button class="mobile-menu-link" onclick="go('distributors'); closeMobileMenu()">International Distributors</button>
   </div>
   <div class="mobile-menu-sub">
