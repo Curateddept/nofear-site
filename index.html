@@ -6,7 +6,8 @@
   <title>NO FEAR</title>
   <link rel="icon" type="image/png" href="assets/strip-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=Helvetica+Neue:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -1006,7 +1007,7 @@
     /* ═══════════════════════════
        CONTACT PAGE
     ═══════════════════════════ */
-    #contact { display: block; }
+    /* #contact display is controlled exclusively by go() routing — no CSS override needed */
     .contact-banner {
       width: 100%;
       height: clamp(240px, 38vw, 520px);
@@ -1483,7 +1484,7 @@
   <!-- Categories editorial grid -->
   <div class="editorial-grid">
     <div class="ed-cell">
-      <a href="https://nofearmotocross.myshopify.com/collections/seta" target="_blank"><img src="assets/images/gearsets-cover.jpg" alt="Motocross Gear Sets" style="object-position:center center;"></a>
+      <a href="https://nofearmotocross.myshopify.com/collections/seta" target="_blank"><img src="assets/images/gearsets-cover.jpg" alt="Motocross Gear Sets" loading="lazy" style="object-position:center center;"></a>
       <div class="ed-label">
         <div class="ed-label-name">No Fear Motocross Gear Sets</div>
         <span class="ed-label-sub">Pant & Jersey sold as a set — Gloves sold separately</span>
@@ -1491,14 +1492,14 @@
       </div>
     </div>
     <div class="ed-cell">
-      <a href="https://nofearmotocross.myshopify.com/collections/gloves" target="_blank"><img src="assets/images/gloves-cover.jpg" alt="Gloves" style="object-position:center center;"></a>
+      <a href="https://nofearmotocross.myshopify.com/collections/gloves" target="_blank"><img src="assets/images/gloves-cover.jpg" alt="Gloves" loading="lazy" style="object-position:center center;"></a>
       <div class="ed-label">
         <div class="ed-label-name">No Fear Motocross Gloves</div>
         <span class="ed-label-sub">Single Gloves</span>
         <a class="ed-label-link" href="https://nofearmotocross.myshopify.com/collections/gloves" target="_blank">Shop Now</a>
       </div>
     </div>
-    <div class="ed-cell" style="border-right:none;" onclick="go('clothing')" style="cursor:pointer;">
+    <div class="ed-cell" style="border-right:none; cursor:pointer;" onclick="go('clothing')">
       <div class="ed-coming-soon">
         <div class="ed-coming-soon-inner">
           <span>COMING<br>SOON</span>
@@ -1515,7 +1516,7 @@
   <!-- McGrath Banner -->
   <a href="https://nofearmotocross.myshopify.com/collections/seta" target="_blank" style="display:block;">
   <div class="mcgrath-banner">
-    <img class="banner-bg" src="assets/images/mcgrath-banner.jpg" alt="Jeremy McGrath">
+    <img class="banner-bg" src="assets/images/mcgrath-banner.jpg" alt="Jeremy McGrath" loading="lazy">
     <div class="banner-icon-strip">
       <div class="banner-icon-inner">
         <img src="assets/strip-icon.png" alt=""><img src="assets/strip-icon.png" alt=""><img src="assets/strip-icon.png" alt=""><img src="assets/strip-icon.png" alt=""><img src="assets/strip-icon.png" alt=""><img src="assets/strip-icon.png" alt=""><img src="assets/strip-icon.png" alt=""><img src="assets/strip-icon.png" alt=""><img src="assets/strip-icon.png" alt=""><img src="assets/strip-icon.png" alt=""><img src="assets/strip-icon.png" alt=""><img src="assets/strip-icon.png" alt=""><img src="assets/strip-icon.png" alt=""><img src="assets/strip-icon.png" alt=""><img src="assets/strip-icon.png" alt=""><img src="assets/strip-icon.png" alt=""><img src="assets/strip-icon.png" alt=""><img src="assets/strip-icon.png" alt=""><img src="assets/strip-icon.png" alt=""><img src="assets/strip-icon.png" alt=""><img src="assets/strip-icon.png" alt=""><img src="assets/strip-icon.png" alt=""><img src="assets/strip-icon.png" alt=""><img src="assets/strip-icon.png" alt=""><img src="assets/strip-icon.png" alt=""><img src="assets/strip-icon.png" alt=""><img src="assets/strip-icon.png" alt=""><img src="assets/strip-icon.png" alt=""><img src="assets/strip-icon.png" alt=""><img src="assets/strip-icon.png" alt="">
@@ -1533,7 +1534,7 @@
   <div class="collections-grid">
     <a class="collection-cell" href="https://nofearmotocross.myshopify.com/products/no-fear-001-elektron-blackout-set" target="_blank">
       <div class="collection-img-wrap">
-        <img src="assets/images/blackout-001.png" alt="001 Black Out">
+        <img src="assets/images/blackout-001.png" alt="001 Black Out" loading="lazy">
       </div>
       <div class="collection-label">
         <span class="collection-name">No Fear 001 — Elektron Blackout Set</span>
@@ -1542,7 +1543,7 @@
     </a>
     <a class="collection-cell" href="https://nofearmotocross.myshopify.com/products/no-fear-001-elektron-patriot-set" target="_blank" style="border-right:none;">
       <div class="collection-img-wrap">
-        <img src="assets/images/patriot-001.png" alt="001 Patriot">
+        <img src="assets/images/patriot-001.png" alt="001 Patriot" loading="lazy">
       </div>
       <div class="collection-label">
         <span class="collection-name">No Fear 001 — Elektron Patriot Set</span>
@@ -1766,7 +1767,7 @@
 
 <div id="contact" class="page">
   <div class="contact-banner">
-    <img src="assets/images/contact-banner.jpg" alt="No Fear Motocross">
+    <img src="assets/images/contact-banner.jpg" alt="No Fear Motocross" loading="lazy">
   </div>
   <div class="contact-grid">
     <div class="contact-left">
@@ -1806,52 +1807,52 @@
     <button class="catalog-nav-btn prev" id="catPrev" onclick="catalogNav(-1)">←</button>
 
     <div class="catalog-slide active" data-cap="001 Patriot — On The Bike">
-      <img src="assets/images/catalog/01.jpg" alt="Drop 001 - 01">
+      <img src="assets/images/catalog/01.jpg" alt="Drop 001 - 01" loading="lazy">
     </div>
     <div class="catalog-slide" data-cap="001 Patriot — Golden Hour">
-      <img src="assets/images/catalog/02.jpg" alt="Drop 001 - 02">
+      <img src="assets/images/catalog/02.jpg" alt="Drop 001 - 02" loading="lazy">
     </div>
     <div class="catalog-slide" data-cap="001 Patriot Gloves — Detail">
-      <img src="assets/images/catalog/03.jpg" alt="Drop 001 - 03">
+      <img src="assets/images/catalog/03.jpg" alt="Drop 001 - 03" loading="lazy">
     </div>
     <div class="catalog-slide" data-cap="001 Blackout — In The Field">
-      <img src="assets/images/catalog/04.jpg" alt="Drop 001 - 04">
+      <img src="assets/images/catalog/04.jpg" alt="Drop 001 - 04" loading="lazy">
     </div>
     <div class="catalog-slide" data-cap="Two Riders — Night Session">
-      <img src="assets/images/catalog/05.jpg" alt="Drop 001 - 05">
+      <img src="assets/images/catalog/05.jpg" alt="Drop 001 - 05" loading="lazy">
     </div>
     <div class="catalog-slide" data-cap="001 Patriot — Motion">
-      <img src="assets/images/catalog/06.jpg" alt="Drop 001 - 06">
+      <img src="assets/images/catalog/06.jpg" alt="Drop 001 - 06" loading="lazy">
     </div>
     <div class="catalog-slide" data-cap="Whip — Palm Springs">
-      <img src="assets/images/catalog/08.jpg" alt="Drop 001 - 08">
+      <img src="assets/images/catalog/08.jpg" alt="Drop 001 - 08" loading="lazy">
     </div>
     <div class="catalog-slide" data-cap="001 Patriot — On The Hill">
-      <img src="assets/images/catalog/09.jpg" alt="Drop 001 - 09">
+      <img src="assets/images/catalog/09.jpg" alt="Drop 001 - 09" loading="lazy">
     </div>
     <div class="catalog-slide" data-cap="Both Colorways — The Hill">
-      <img src="assets/images/catalog/10.jpg" alt="Drop 001 - 10">
+      <img src="assets/images/catalog/10.jpg" alt="Drop 001 - 10" loading="lazy">
     </div>
     <div class="catalog-slide" data-cap="001 Patriot — Full Send">
-      <img src="assets/images/catalog/11.jpg" alt="Drop 001 - 11">
+      <img src="assets/images/catalog/11.jpg" alt="Drop 001 - 11" loading="lazy">
     </div>
     <div class="catalog-slide" data-cap="001 Patriot — Honda CRF">
-      <img src="assets/images/catalog/12.jpg" alt="Drop 001 - 12">
+      <img src="assets/images/catalog/12.jpg" alt="Drop 001 - 12" loading="lazy">
     </div>
     <div class="catalog-slide" data-cap="001 Blackout — Low & Fast">
-      <img src="assets/images/catalog/13.jpg" alt="Drop 001 - 13">
+      <img src="assets/images/catalog/13.jpg" alt="Drop 001 - 13" loading="lazy">
     </div>
     <div class="catalog-slide" data-cap="001 Blackout — Berm">
-      <img src="assets/images/catalog/14.jpg" alt="Drop 001 - 14">
+      <img src="assets/images/catalog/14.jpg" alt="Drop 001 - 14" loading="lazy">
     </div>
     <div class="catalog-slide" data-cap="Both Colorways — Head On">
-      <img src="assets/images/catalog/15.jpg" alt="Drop 001 - 15">
+      <img src="assets/images/catalog/15.jpg" alt="Drop 001 - 15" loading="lazy">
     </div>
     <div class="catalog-slide" data-cap="001 Patriot & Blackout — Golden Hour">
-      <img src="assets/images/catalog/16.jpg" alt="Drop 001 - 16">
+      <img src="assets/images/catalog/16.jpg" alt="Drop 001 - 16" loading="lazy">
     </div>
     <div class="catalog-slide" data-cap="001 Patriot — Sunset Field">
-      <img src="assets/images/catalog/17.jpg" alt="Drop 001 - 17">
+      <img src="assets/images/catalog/17.jpg" alt="Drop 001 - 17" loading="lazy">
     </div>
 
     <button class="catalog-nav-btn next" id="catNext" onclick="catalogNav(1)">→</button>
@@ -1929,6 +1930,10 @@
     document.getElementById('navHamburger').classList.remove('open');
     document.body.style.overflow = '';
   }
+  // Auto-close mobile menu and release scroll lock if window is resized to desktop
+  window.addEventListener('resize', function() {
+    if (window.innerWidth > 768) closeMobileMenu();
+  });
 
   function go(page) {
     document.querySelectorAll('.page').forEach(p => {
@@ -1936,6 +1941,7 @@
       p.style.display = 'none';
     });
     const el = document.getElementById(page);
+    if (!el) { console.warn('go(): no page element with id "' + page + '"'); return; }
     el.classList.add('active');
     el.style.display = page === 'catalog' ? 'flex' : 'block';
     window.scrollTo({ top: 0, behavior: 'instant' });
@@ -2036,8 +2042,6 @@
     }
   }
 
-  /* SHOPIFY — replace with your store URL */
-  const SHOPIFY = 'https://yourstore.myshopify.com';
 
   /* ── PASSWORD GATE ── */
   (function() {
@@ -2148,7 +2152,8 @@
       if (!startX || !startY) return;
       var dx = Math.abs(e.touches[0].clientX - startX);
       var dy = Math.abs(e.touches[0].clientY - startY);
-      if (dx > dy && dx > 8) e.preventDefault();
+      // Only block horizontal swipes on catalog slides, not site-wide
+      if (dx > dy && dx > 8 && e.target.closest('.catalog-slides')) e.preventDefault();
     }, { passive: false });
   })();
 </script>
