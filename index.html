@@ -60,7 +60,12 @@
         "@id": "https://nofearmotocross.com/#organization",
         "name": "No Fear Motocross",
         "url": "https://nofearmotocross.com",
-        "logo": "https://nofearmotocross.com/assets/nofear-logo.png",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://nofearmotocross.com/assets/nofear-logo.png",
+          "width": 300,
+          "height": 100
+        },
         "sameAs": [
           "https://www.instagram.com/nofearmotocross",
           "https://nofearmotocross.myshopify.com"
@@ -68,7 +73,8 @@
         "contactPoint": {
           "@type": "ContactPoint",
           "email": "info@nofearmotocross.com",
-          "contactType": "customer service"
+          "contactType": "customer service",
+          "availableLanguage": "English"
         },
         "foundingDate": "1989",
         "description": "No Fear Motocross — the iconic motocross brand founded in 1989, revived for a new generation of riders. Official gear sets, gloves, and apparel."
@@ -78,7 +84,101 @@
         "@id": "https://nofearmotocross.com/#website",
         "url": "https://nofearmotocross.com",
         "name": "No Fear Motocross",
-        "publisher": { "@id": "https://nofearmotocross.com/#organization" }
+        "description": "Official No Fear Motocross gear, apparel, and accessories. Est. 1989.",
+        "publisher": { "@id": "https://nofearmotocross.com/#organization" },
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://nofearmotocross.myshopify.com/search?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://nofearmotocross.com/#home",
+        "url": "https://nofearmotocross.com/",
+        "name": "No Fear Motocross | Official Gear, Apparel & Accessories — Est. 1989",
+        "description": "No Fear Motocross is back. Shop the official No Fear Elektron motocross gear sets, gloves, and apparel. Born in 1989 — revived for a new generation of riders.",
+        "isPartOf": { "@id": "https://nofearmotocross.com/#website" },
+        "about": { "@id": "https://nofearmotocross.com/#organization" },
+        "primaryImageOfPage": {
+          "@type": "ImageObject",
+          "url": "https://nofearmotocross.com/assets/images/og-image.jpg"
+        }
+      },
+      {
+        "@type": "AboutPage",
+        "@id": "https://nofearmotocross.com/#about",
+        "url": "https://nofearmotocross.com/#about",
+        "name": "About No Fear Motocross | Born From The Dirt — Est. 1989",
+        "description": "The story of No Fear Motocross — founded in 1989, a brand that defined motocross culture for a generation. Now back and revived for the next era of riders.",
+        "isPartOf": { "@id": "https://nofearmotocross.com/#website" },
+        "about": { "@id": "https://nofearmotocross.com/#organization" }
+      },
+      {
+        "@type": "ContactPage",
+        "@id": "https://nofearmotocross.com/#contact",
+        "url": "https://nofearmotocross.com/#contact",
+        "name": "Contact No Fear Motocross | Get In Touch",
+        "description": "Contact No Fear Motocross for order inquiries, press, wholesale, and general questions. Email us at info@nofearmotocross.com.",
+        "isPartOf": { "@id": "https://nofearmotocross.com/#website" }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://nofearmotocross.com/#faq",
+        "url": "https://nofearmotocross.com/#faq",
+        "name": "FAQ | No Fear Motocross — Common Questions Answered",
+        "description": "Frequently asked questions about No Fear Motocross gear, shipping, sponsorships, international distribution, and more.",
+        "isPartOf": { "@id": "https://nofearmotocross.com/#website" },
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "When is my gear going to get here?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Orders are currently expected to ship within 7–10 business days unless otherwise stated on the product page. Once your order ships, you'll receive tracking information directly to your email."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Are you going to have t-shirts and merchandise available?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes! Clothing and merchandise are coming soon. T-shirts, hoodies, and accessories are in the works — stay tuned for announcements."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Are you accepting sponsorships at this time?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "As much as we appreciate the support and interest, we are currently not accepting sponsorship applications. In the near future, we will open that door and release more information when available."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Where can I get distribution information for outside the U.S.?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No Fear Motocross products are currently available direct to consumer within the United States only. To purchase outside of the USA, please contact one of our official global distributors."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I cancel my order?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "All sales are final. No refunds."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What email do I contact regarding my order?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "For any order-related questions, please reach out to us at info@nofearmotocross.com and we'll get back to you as soon as possible."
+            }
+          }
+        ]
       },
       {
         "@type": "Product",
@@ -88,10 +188,12 @@
         "url": "https://nofearmotocross.myshopify.com/products/no-fear-001-elektron-blackout-set",
         "image": "https://nofearmotocross.com/assets/images/blackout-001.png",
         "category": "Motocross Gear",
+        "sku": "NF001-BLACKOUT",
         "offers": {
           "@type": "Offer",
           "availability": "https://schema.org/InStock",
           "priceCurrency": "USD",
+          "url": "https://nofearmotocross.myshopify.com/products/no-fear-001-elektron-blackout-set",
           "seller": { "@id": "https://nofearmotocross.com/#organization" }
         }
       },
@@ -103,10 +205,12 @@
         "url": "https://nofearmotocross.myshopify.com/products/no-fear-001-elektron-patriot-set",
         "image": "https://nofearmotocross.com/assets/images/patriot-001.png",
         "category": "Motocross Gear",
+        "sku": "NF001-PATRIOT",
         "offers": {
           "@type": "Offer",
           "availability": "https://schema.org/InStock",
           "priceCurrency": "USD",
+          "url": "https://nofearmotocross.myshopify.com/products/no-fear-001-elektron-patriot-set",
           "seller": { "@id": "https://nofearmotocross.com/#organization" }
         }
       }
@@ -2092,6 +2196,45 @@
     if (window.innerWidth > 768) closeMobileMenu();
   });
 
+  /* ── Per-page SEO meta ── */
+  var pageMeta = {
+    home: {
+      title: 'No Fear Motocross | Official Gear, Apparel & Accessories — Est. 1989',
+      desc:  'No Fear Motocross is back. Shop the official No Fear Elektron motocross gear sets, gloves, and apparel. Born in 1989 — revived for a new generation of riders.',
+      canonical: 'https://nofearmotocross.com/'
+    },
+    catalog: {
+      title: 'NoFear 001 Lookbook | Official Motocross Gear Collection',
+      desc:  'View the No Fear 001 Lookbook — the first official drop featuring Elektron gear sets, gloves, and apparel from the iconic No Fear Motocross brand.',
+      canonical: 'https://nofearmotocross.com/#catalog'
+    },
+    clothing: {
+      title: 'No Fear Clothing | T-Shirts, Hoodies & Apparel — Coming Soon',
+      desc:  'No Fear Motocross clothing is coming soon. T-shirts, hoodies, and accessories — iconic No Fear apparel for riders and fans.',
+      canonical: 'https://nofearmotocross.com/#clothing'
+    },
+    about: {
+      title: 'About No Fear Motocross | Born From The Dirt — Est. 1989',
+      desc:  'The story of No Fear Motocross — founded in 1989, a brand that defined motocross culture for a generation. Now back and revived for the next era of riders.',
+      canonical: 'https://nofearmotocross.com/#about'
+    },
+    contact: {
+      title: 'Contact No Fear Motocross | Get In Touch',
+      desc:  'Contact No Fear Motocross for order inquiries, press, wholesale, and general questions. Email us at info@nofearmotocross.com.',
+      canonical: 'https://nofearmotocross.com/#contact'
+    },
+    faq: {
+      title: 'FAQ | No Fear Motocross — Common Questions Answered',
+      desc:  'Frequently asked questions about No Fear Motocross gear, shipping, sponsorships, international distribution, and order inquiries.',
+      canonical: 'https://nofearmotocross.com/#faq'
+    },
+    distributors: {
+      title: 'International Distributors | No Fear Motocross',
+      desc:  'Find official No Fear Motocross distributors outside the United States. Contact our global distribution partners for international orders.',
+      canonical: 'https://nofearmotocross.com/#distributors'
+    }
+  };
+
   function go(page) {
     document.querySelectorAll('.page').forEach(p => {
       p.classList.remove('active');
@@ -2106,6 +2249,23 @@
     // Hide footer contact section on the contact page (separate assets)
     var ftContact = document.querySelector('.ft-contact');
     if (ftContact) ftContact.style.display = page === 'contact' ? 'none' : '';
+    // ── Dynamic SEO: update title, description, canonical per page ──
+    var meta = pageMeta[page] || pageMeta['home'];
+    document.title = meta.title;
+    var descEl = document.querySelector('meta[name="description"]');
+    if (descEl) descEl.setAttribute('content', meta.desc);
+    var ogTitleEl = document.querySelector('meta[property="og:title"]');
+    if (ogTitleEl) ogTitleEl.setAttribute('content', meta.title);
+    var ogDescEl = document.querySelector('meta[property="og:description"]');
+    if (ogDescEl) ogDescEl.setAttribute('content', meta.desc);
+    var ogUrlEl = document.querySelector('meta[property="og:url"]');
+    if (ogUrlEl) ogUrlEl.setAttribute('content', meta.canonical);
+    var twTitleEl = document.querySelector('meta[name="twitter:title"]');
+    if (twTitleEl) twTitleEl.setAttribute('content', meta.title);
+    var twDescEl = document.querySelector('meta[name="twitter:description"]');
+    if (twDescEl) twDescEl.setAttribute('content', meta.desc);
+    var canonEl = document.querySelector('link[rel="canonical"]');
+    if (canonEl) canonEl.setAttribute('href', meta.canonical);
   }
 
   /* CATALOG LOOKBOOK */
