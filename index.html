@@ -1312,6 +1312,28 @@
     .f-ta { resize: none; height: 88px; }
     select.f-in { appearance: none; -webkit-appearance: none; cursor: pointer; }
 
+    /* BRAND + CONTACT SPLIT */
+    .brand-contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-top: 1px solid #e8e8e8;
+    }
+    .brand-contact-left {
+      padding: 72px 48px 80px 24px;
+      border-right: 1px solid #e8e8e8;
+    }
+    .brand-contact-right {
+      padding: 72px 24px 80px 48px;
+    }
+    .brand-contact-right h2 {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: clamp(22px, 2.5vw, 32px);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 28px;
+    }
+
     /* ═══════════════════════════
        CATALOG / LOOKBOOK
     ═══════════════════════════ */
@@ -1436,6 +1458,9 @@
       .contact-grid { grid-template-columns: 1fr; }
       .contact-left { border-right: none; border-bottom: 1px solid #e8e8e8; }
       .contact-right { padding: 32px 24px; }
+      .brand-contact-grid { grid-template-columns: 1fr; }
+      .brand-contact-left { border-right: none; border-bottom: 1px solid #e8e8e8; }
+      .brand-contact-right { padding: 48px 24px; }
       footer { grid-template-columns: 1fr; gap: 16px; }
       .ft-links { justify-content: flex-start; }
     }
@@ -1800,9 +1825,9 @@
     <a class="btn btn-light" href="https://nofearmotocross.myshopify.com/collections/frontpage" target="_blank" rel="noopener noreferrer">Shop Now</a>
   </div>
 
-  <!-- SEO Brand Copy -->
-  <section style="padding:72px 24px 80px; border-top:1px solid #e8e8e8;">
-    <div style="max-width:780px; margin:0 auto;">
+  <!-- SEO Brand Copy + Contact -->
+  <div class="brand-contact-grid">
+    <div class="brand-contact-left">
       <p style="font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:300; letter-spacing:0.14em; text-transform:uppercase; color:#999; margin-bottom:24px;">The No Fear Brand</p>
       <p style="font-family:'IBM Plex Mono',monospace; font-size:15px; font-weight:300; line-height:1.85; color:#444;">
         No Fear is the iconic American motocross brand founded in 1989. Born out of the raw, rebellious culture of professional motocross racing, No Fear became the defining name in MX gear, apparel, and attitude for an entire generation. The brand's signature graphics, bold identity, and fearless energy made No Fear apparel and motocross equipment instantly recognizable — on the track and off it.
@@ -1811,7 +1836,26 @@
         After years away, the No Fear brand is officially back. The No Fear 001 Drop introduces the Elektron motocross gear set — professional-grade MX jerseys, pants, and gloves built for the riders who haven't slowed down. No Fear clothing — including t-shirts, hoodies, and accessories — is arriving soon, bringing the same legendary No Fear style back to everyday wear. This is the original No Fear Motocross brand. Est. 1989.
       </p>
     </div>
-  </section>
+    <div class="brand-contact-right">
+      <h2>Get In Touch.</h2>
+      <form onsubmit="handleSubmit(event)">
+        <div class="f-row"><label class="f-lbl">Name</label><input class="f-in" type="text" name="name" required></div>
+        <div class="f-row"><label class="f-lbl">Email</label><input class="f-in" type="email" name="email" required></div>
+        <div class="f-row"><label class="f-lbl">Phone</label><input class="f-in" type="tel" name="phone"></div>
+        <div class="f-row"><label class="f-lbl">Reason</label>
+          <select class="f-in" name="reason" required>
+            <option value="" disabled selected>Select a reason</option>
+            <option value="Collaboration">Collaboration</option>
+            <option value="My Order">My Order</option>
+            <option value="Help with Order">Help with Order</option>
+            <option value="Customer Support">Customer Support</option>
+          </select>
+        </div>
+        <div class="f-row"><label class="f-lbl">Message</label><textarea class="f-ta" name="message" required></textarea></div>
+        <button type="submit" class="btn btn-dark" style="margin-top:8px;">Send Message</button>
+      </form>
+    </div>
+  </div>
 
 </div>
 
