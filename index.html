@@ -691,7 +691,7 @@
     ═══════════════════════════ */
     .editorial-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 0;
       border-top: 1px solid #e8e8e8;
     }
@@ -712,6 +712,13 @@
       transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
     .ed-cell:hover img { transform: scale(1.03); }
+    .ed-hat-img {
+      transform: scale(2.0);
+      transform-origin: center 30%;
+    }
+    .ed-cell:hover .ed-hat-img {
+      transform: scale(2.06);
+    }
 
     .ed-coming-soon {
       width: 100%;
@@ -1420,9 +1427,8 @@
       .catalog-nav-btn { width: 40px; height: 40px; font-size: 14px; }
       .catalog-nav-btn.prev { left: 16px; }
       .catalog-nav-btn.next { right: 16px; }
-      .editorial-grid { grid-template-columns: repeat(2, 1fr); }
-      .editorial-grid .ed-cell:nth-child(even) { border-right: none; }
-      .editorial-grid .ed-cell { border-bottom: 1px solid #e8e8e8; }
+      .editorial-grid { grid-template-columns: 1fr; }
+      .editorial-grid .ed-cell { border-right: none; border-bottom: 1px solid #e8e8e8; }
       .products { grid-template-columns: 1fr; }
       .prod { border-right: none; }
       .about-stats { grid-template-columns: 1fr; }
@@ -1699,43 +1705,23 @@
   <!-- Categories editorial grid -->
   <div class="editorial-grid">
     <div class="ed-cell" onclick="go('clothing')" style="cursor:pointer;">
-      <div class="ed-coming-soon">
-        <div class="ed-coming-soon-inner">
-          <span>COMING<br>SOON</span>
-          <span class="ed-coming-soon-sub">Very soon</span>
-        </div>
-      </div>
+      <img src="assets/images/apparel-cover.jpg" alt="No Fear Apparel — T-Shirts & Hoodies" loading="lazy" style="object-position:center top;">
       <div class="ed-label">
-        <div class="ed-label-name">T-Shirts</div>
+        <div class="ed-label-name">Apparel</div>
+        <span class="ed-label-sub">T-Shirts, Hoodies & More</span>
         <a class="ed-label-link" href="#" onclick="go('clothing'); return false;">Learn More</a>
       </div>
     </div>
     <div class="ed-cell" onclick="go('clothing')" style="cursor:pointer;">
-      <div class="ed-coming-soon">
-        <div class="ed-coming-soon-inner">
-          <span>COMING<br>SOON</span>
-          <span class="ed-coming-soon-sub">Very soon</span>
-        </div>
-      </div>
+      <img src="assets/images/hats-cover.jpg" alt="No Fear Hats & Accessories" loading="lazy" class="ed-hat-img">
       <div class="ed-label">
-        <div class="ed-label-name">Hoodies</div>
-        <a class="ed-label-link" href="#" onclick="go('clothing'); return false;">Learn More</a>
-      </div>
-    </div>
-    <div class="ed-cell" onclick="go('clothing')" style="cursor:pointer;">
-      <div class="ed-coming-soon">
-        <div class="ed-coming-soon-inner">
-          <span>COMING<br>SOON</span>
-          <span class="ed-coming-soon-sub">Very soon</span>
-        </div>
-      </div>
-      <div class="ed-label">
-        <div class="ed-label-name">Accessories</div>
+        <div class="ed-label-name">Hats & Accessories</div>
+        <span class="ed-label-sub">Caps, Gear & More</span>
         <a class="ed-label-link" href="#" onclick="go('clothing'); return false;">Learn More</a>
       </div>
     </div>
     <div class="ed-cell" style="border-right:none;">
-      <a href="https://nofearmotocross.myshopify.com/collections/seta" target="_blank" rel="noopener noreferrer"><img src="assets/images/gearsets-cover.jpg" alt="Motocross Gear" loading="lazy" style="object-position:center center;"></a>
+      <a href="https://nofearmotocross.myshopify.com/collections/seta" target="_blank" rel="noopener noreferrer"><img src="assets/images/gearsets-cover.jpg" alt="No Fear Motocross Gear" loading="lazy" style="object-position:center center;"></a>
       <div class="ed-label">
         <div class="ed-label-name">Motocross Gear</div>
         <span class="ed-label-sub">Gear sets, gloves & more</span>
