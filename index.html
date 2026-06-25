@@ -914,6 +914,38 @@
       transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
     .collection-cell:hover .collection-img-wrap img { transform: scale(1.04); }
+
+    /* Product image cycling on hover */
+    .collection-cycle { position: relative; }
+    .collection-cycle .cycle-img {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      object-fit: contain;
+      object-position: center center;
+      mix-blend-mode: multiply;
+      transition: none;
+    }
+    .collection-cycle .cycle-img:first-child { position: relative; }
+    .collection-cycle .cycle-img:not(:first-child) { opacity: 0; }
+    @keyframes cycle-1 {
+      0%, 28%  { opacity: 1; }
+      33%, 95% { opacity: 0; }
+      100%     { opacity: 1; }
+    }
+    @keyframes cycle-2 {
+      0%, 28%  { opacity: 0; }
+      33%, 61% { opacity: 1; }
+      66%, 100%{ opacity: 0; }
+    }
+    @keyframes cycle-3 {
+      0%, 61%  { opacity: 0; }
+      66%, 95% { opacity: 1; }
+      100%     { opacity: 0; }
+    }
+    .collection-cell:hover .collection-cycle .cycle-img:nth-child(1) { animation: cycle-1 2.4s step-end infinite; }
+    .collection-cell:hover .collection-cycle .cycle-img:nth-child(2) { animation: cycle-2 2.4s step-end infinite; }
+    .collection-cell:hover .collection-cycle .cycle-img:nth-child(3) { animation: cycle-3 2.4s step-end infinite; }
     .collection-over {
       position: absolute;
       inset: 0;
@@ -1797,8 +1829,10 @@
 
   <div class="collections-grid">
     <div class="collection-cell" onclick="go('clothing')" style="cursor:pointer;">
-      <div class="collection-img-wrap">
-        <img src="assets/images/tshirts-product.png" alt="No Fear T-Shirts & Hoodies" loading="lazy">
+      <div class="collection-img-wrap collection-cycle">
+        <img class="cycle-img" src="assets/images/tshirts-product.png" alt="No Fear T-Shirts — Nostalgia" loading="lazy">
+        <img class="cycle-img" src="assets/images/tshirts-product2.png" alt="No Fear T-Shirts — Carnage" loading="lazy">
+        <img class="cycle-img" src="assets/images/tshirts-product3.png" alt="No Fear T-Shirts — Dangerous Blue" loading="lazy">
       </div>
       <div class="collection-label">
         <span class="collection-name">No Fear T-Shirts & Hoodies</span>
@@ -1806,8 +1840,10 @@
       </div>
     </div>
     <div class="collection-cell" onclick="go('clothing')" style="cursor:pointer; border-right:none;">
-      <div class="collection-img-wrap">
-        <img src="assets/images/hat-product.png" alt="No Fear Hats & Accessories" loading="lazy">
+      <div class="collection-img-wrap collection-cycle">
+        <img class="cycle-img" src="assets/images/hat-product.png" alt="No Fear Flatbill Black" loading="lazy">
+        <img class="cycle-img" src="assets/images/hat-product2.png" alt="No Fear Flatbill Grey & Black" loading="lazy">
+        <img class="cycle-img" src="assets/images/hat-product3.png" alt="No Fear Trucker Black" loading="lazy">
       </div>
       <div class="collection-label">
         <span class="collection-name">No Fear Hats & Accessories</span>
