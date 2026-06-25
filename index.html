@@ -525,7 +525,7 @@
 
     .nav-drop-images {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(3, 1fr);
       gap: 2px;
       padding: 8px;
     }
@@ -1636,6 +1636,14 @@
           <a class="nav-drop-link" href="#" onclick="go('faq'); return false;">FAQ</a>
         </div>
         <div class="nav-drop-images">
+          <a class="nav-drop-img-item" href="#" onclick="go('clothing'); return false;">
+            <img src="assets/images/tshirts-cover.jpg" alt="T-Shirts & Hoodies" style="object-position:center top;">
+            <span class="nav-drop-label">T-SHIRTS & HOODIES</span>
+          </a>
+          <a class="nav-drop-img-item" href="#" onclick="go('clothing'); return false;">
+            <img src="assets/images/hats-accessories-cover.jpg" alt="Hats & Accessories" style="object-position:center top;">
+            <span class="nav-drop-label">HATS & ACCESSORIES</span>
+          </a>
           <a class="nav-drop-img-item" href="https://nofearmotocross.myshopify.com/collections/seta" target="_blank" rel="noopener noreferrer">
             <img src="assets/images/gearsets-cover.jpg" alt="Gear Sets">
             <span class="nav-drop-label">GEAR SETS</span>
@@ -1790,26 +1798,20 @@
 
   <div class="collections-grid">
     <div class="collection-cell" onclick="go('clothing')" style="cursor:pointer;">
-      <div class="collection-img-wrap" style="background:#0a0a0a; display:flex; align-items:center; justify-content:center;">
-        <div style="text-align:center; color:#fff;">
-          <div style="font-family:'IBM Plex Mono',monospace; font-size:clamp(22px,3vw,36px); font-weight:400; letter-spacing:-0.01em; line-height:1.1; margin-bottom:12px;">T-Shirts</div>
-          <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:300; letter-spacing:0.14em; text-transform:uppercase; color:rgba(255,255,255,0.45);">Coming Soon</div>
-        </div>
+      <div class="collection-img-wrap">
+        <img src="assets/images/tshirts-cover.jpg" alt="No Fear T-Shirts & Hoodies" loading="lazy" style="object-position:center top;">
       </div>
       <div class="collection-label">
-        <span class="collection-name">No Fear T-Shirts — Coming Soon</span>
+        <span class="collection-name">No Fear T-Shirts & Hoodies</span>
         <span class="collection-shop-label" onclick="go('clothing'); return false;">Learn More</span>
       </div>
     </div>
     <div class="collection-cell" onclick="go('clothing')" style="cursor:pointer; border-right:none;">
-      <div class="collection-img-wrap" style="background:#0a0a0a; display:flex; align-items:center; justify-content:center;">
-        <div style="text-align:center; color:#fff;">
-          <div style="font-family:'IBM Plex Mono',monospace; font-size:clamp(22px,3vw,36px); font-weight:400; letter-spacing:-0.01em; line-height:1.1; margin-bottom:12px;">Hoodies</div>
-          <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:300; letter-spacing:0.14em; text-transform:uppercase; color:rgba(255,255,255,0.45);">Coming Soon</div>
-        </div>
+      <div class="collection-img-wrap">
+        <img src="assets/images/hats-accessories-cover.jpg" alt="No Fear Hats & Accessories" loading="lazy" style="object-position:center top;">
       </div>
       <div class="collection-label">
-        <span class="collection-name">No Fear Hoodies — Coming Soon</span>
+        <span class="collection-name">No Fear Hats & Accessories</span>
         <span class="collection-shop-label" onclick="go('clothing'); return false;">Learn More</span>
       </div>
     </div>
