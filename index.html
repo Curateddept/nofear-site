@@ -946,6 +946,14 @@
     .collection-cell:hover .collection-cycle .cycle-img:nth-child(1) { animation: cycle-1 2.4s step-end infinite; }
     .collection-cell:hover .collection-cycle .cycle-img:nth-child(2) { animation: cycle-2 2.4s step-end infinite; }
     .collection-cell:hover .collection-cycle .cycle-img:nth-child(3) { animation: cycle-3 2.4s step-end infinite; }
+    @keyframes cycle-4a { 0%, 23% { opacity: 1; } 25%, 100% { opacity: 0; } }
+    @keyframes cycle-4b { 0%, 24% { opacity: 0; } 25%, 48% { opacity: 1; } 50%, 100% { opacity: 0; } }
+    @keyframes cycle-4c { 0%, 49% { opacity: 0; } 50%, 73% { opacity: 1; } 75%, 100% { opacity: 0; } }
+    @keyframes cycle-4d { 0%, 74% { opacity: 0; } 75%, 98% { opacity: 1; } 100% { opacity: 0; } }
+    .collection-cell:hover .collection-cycle.collection-cycle-4 .cycle-img:nth-child(1) { animation: cycle-4a 2.4s step-end infinite; }
+    .collection-cell:hover .collection-cycle.collection-cycle-4 .cycle-img:nth-child(2) { animation: cycle-4b 2.4s step-end infinite; }
+    .collection-cell:hover .collection-cycle.collection-cycle-4 .cycle-img:nth-child(3) { animation: cycle-4c 2.4s step-end infinite; }
+    .collection-cell:hover .collection-cycle.collection-cycle-4 .cycle-img:nth-child(4) { animation: cycle-4d 2.4s step-end infinite; }
     .collection-over {
       position: absolute;
       inset: 0;
@@ -1660,15 +1668,14 @@
       <div class="nav-dropdown">
         <div class="nav-drop-links">
           <a class="nav-drop-link" href="https://nofearmotocross.myshopify.com/collections/frontpage" target="_blank" rel="noopener noreferrer" style="font-weight:500;">All Products</a>
-          <div style="height:1px;background:#e8e8e8;margin:8px 0;"></div>
-          <a class="nav-drop-link" href="#" onclick="go('clothing'); return false;">Apparel</a>
           <a class="nav-drop-link" href="https://nofearmotocross.myshopify.com/collections/seta" target="_blank" rel="noopener noreferrer">Motocross Gear Sets</a>
           <a class="nav-drop-link" href="https://nofearmotocross.myshopify.com/collections/gloves" target="_blank" rel="noopener noreferrer">Gloves</a>
-          <div style="height:1px;background:#e8e8e8;margin:8px 0;"></div>
-          <a class="nav-drop-link" href="#" onclick="go('faq'); return false;">FAQ</a>
+          <a class="nav-drop-link" href="https://nofearmotocross.myshopify.com/collections/apparel" target="_blank" rel="noopener noreferrer">T Shirts & Hoodies</a>
+          <a class="nav-drop-link" href="https://nofearmotocross.myshopify.com/collections/hats" target="_blank" rel="noopener noreferrer">Hats & Stickers</a>
+          <a class="nav-drop-link" href="https://www.nofearmotocross.com/">Home</a>
         </div>
         <div class="nav-drop-images">
-          <a class="nav-drop-img-item" href="#" onclick="go('clothing'); return false;">
+          <a class="nav-drop-img-item" href="https://nofearmotocross.myshopify.com/collections/apparel" target="_blank" rel="noopener noreferrer">
             <img src="assets/images/tshirts-cover.jpg" alt="T-Shirts & Hoodies" style="object-position:center top;">
             <span class="nav-drop-label">T-SHIRTS & HOODIES</span>
           </a>
@@ -1829,15 +1836,16 @@
   </div>
 
   <div class="collections-grid">
-    <div class="collection-cell" onclick="go('clothing')" style="cursor:pointer;">
-      <div class="collection-img-wrap collection-cycle">
+    <div class="collection-cell" onclick="window.open('https://nofearmotocross.myshopify.com/collections/apparel','_blank'); return false;" style="cursor:pointer;">
+      <div class="collection-img-wrap collection-cycle collection-cycle-4">
         <img class="cycle-img" src="assets/images/tshirts-product.png" alt="No Fear T-Shirts — Nostalgia" loading="lazy">
         <img class="cycle-img" src="assets/images/tshirts-product2.png" alt="No Fear T-Shirts — Carnage" loading="lazy">
         <img class="cycle-img" src="assets/images/tshirts-product3.png" alt="No Fear T-Shirts — Dangerous Blue" loading="lazy">
+        <img class="cycle-img" src="assets/images/hoodie-product.png" alt="No Fear Hoodie — Black" loading="lazy">
       </div>
       <div class="collection-label">
         <span class="collection-name">No Fear T-Shirts & Hoodies</span>
-        <span class="collection-shop-label" onclick="go('clothing'); return false;">Learn More</span>
+        <a class="collection-shop-label" href="https://nofearmotocross.myshopify.com/collections/apparel" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();">Learn More</a>
       </div>
     </div>
     <div class="collection-cell" onclick="window.open('https://nofearmotocross.myshopify.com/collections/hats','_blank'); return false;" style="cursor:pointer; border-right:none;">
