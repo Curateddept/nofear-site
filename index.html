@@ -550,7 +550,23 @@
     /* ═══════════════════════════
        PAGES
     ═══════════════════════════ */
-    .page { display: none; padding-top: 52px; }
+    .page { display: none; padding-top: 80px; }
+    #announce-bar {
+      position: fixed;
+      top: 52px; left: 0; right: 0;
+      z-index: 490;
+      background: #111;
+      color: #fff;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
     .page.active { display: block; animation: fadeUp 0.4s ease; }
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(8px); }
@@ -1655,6 +1671,9 @@
     <div class="l-bar-fill" id="lFill"></div>
   </div>
 </div>
+
+<!-- ── ANNOUNCE BAR ── -->
+<div id="announce-bar">Oh by the way — Youth sizing available in clothing now</div>
 
 <!-- ── NAV ── -->
 <nav id="nav">
