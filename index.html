@@ -236,7 +236,7 @@
       position: fixed;
       inset: 0;
       z-index: 10000;
-      display: flex;
+      display: none; /* password gate disabled — site is publicly accessible */
       flex-direction: column;
       align-items: center;
       justify-content: center;
@@ -490,6 +490,8 @@
     .nav-lookbook-btn:hover { background: #000 !important; color: #fff !important; opacity: 1 !important; }
     .nav-ig-btn { padding: 0 10px !important; color: #000; }
     .nav-ig-btn:hover { opacity: 0.5; }
+    .nav-availability { color: #555; font-size: 10px !important; letter-spacing: 0.04em; white-space: nowrap; }
+    .nav-avail-text { font-size: 10px; }
 
     /* Shop dropdown */
     .nav-dropdown {
@@ -1744,7 +1746,7 @@
   </div>
 
   <div class="nav-right">
-    <span class="nav-item" style="color:#999;cursor:default;">United States</span>
+    <span class="nav-item nav-availability" style="cursor:default;">🇬🇧 🇺🇸 <span class="nav-avail-text">UK &amp; USA — Online Only</span></span>
     <a class="nav-item" href="https://nofearmotocross.myshopify.com/collections/frontpage" target="_blank" rel="noopener noreferrer">Shop ↗</a>
     <a class="nav-item nav-ig-btn" href="https://instagram.com/nofearmotocross" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="@nofearmotocross">
       <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
@@ -1762,7 +1764,7 @@
     <a class="mobile-menu-link" href="https://nofearmotocross.myshopify.com/collections/frontpage" target="_blank" rel="noopener noreferrer" onclick="closeMobileMenu()">Shop</a>
     <a class="mobile-menu-link" href="https://nofearmotocross.myshopify.com/collections/seta" target="_blank" rel="noopener noreferrer" onclick="closeMobileMenu()">Gear Sets</a>
     <a class="mobile-menu-link" href="https://nofearmotocross.myshopify.com/collections/gloves" target="_blank" rel="noopener noreferrer" onclick="closeMobileMenu()">Gloves</a>
-    <button class="mobile-menu-link" onclick="go('clothing'); closeMobileMenu()">Clothing — Coming Soon</button>
+
     <button class="mobile-menu-link" onclick="go('about'); closeMobileMenu()">About</button>
     <button class="mobile-menu-link" onclick="go('contact'); closeMobileMenu()">Contact</button>
     <button class="mobile-menu-link" onclick="go('catalog'); closeMobileMenu()">NoFear 001 Lookbook</button>
@@ -2139,26 +2141,6 @@
   </div>
 </div>
 
-<div id="clothing" class="page">
-  <div style="min-height: calc(100vh - 52px); display:flex; flex-direction:column; align-items:center; justify-content:center; padding: 80px 24px; text-align:center; border-top:1px solid #e8e8e8;">
-    <div style="max-width: 560px;">
-      <p style="font-family:'IBM Plex Mono',monospace; font-size:13px; font-weight:300; color:#999; letter-spacing:0.06em; margin-bottom:40px;">COMING SOON</p>
-      <div style="font-family:'IBM Plex Mono',monospace; font-size:15px; font-weight:300; line-height:2; color:#000;">
-        <p>We know… we know.</p>
-        <p style="margin-top:24px;">You want the clothing.</p>
-        <p style="margin-top:24px;">And trust us — it's coming.</p>
-        <p style="margin-top:24px;">The same rad graphics, rebellious energy, and nostalgic No Fear feeling you grew up on is making its way back veryyyy soon. This first launch is our way of telling the No Fear story in two parts.</p>
-        <p style="margin-top:40px; font-weight:400;">Part One:<br>Motocross gear &amp; accessories.</p>
-        <p style="margin-top:24px; font-weight:400;">Part Two:<br>Merchandise &amp; accessories.</p>
-        <p style="margin-top:40px;">To divide those two paths in our story, this is how you'll continue seeing future No Fear drops moving forward — two sectors of the same culture, built from the same roots.</p>
-        <p style="margin-top:24px;">No Fear was always bigger than just motocross gear. It was a style, an attitude, and a movement that lived far beyond the track.</p>
-        <p style="margin-top:24px;">So hang tight just a little longer. The merch is almost here and we can't wait to see No Fear back out in the world where it belongs.</p>
-        <p style="margin-top:40px;">Thanks for all the support.<br>The revival is just getting started.</p>
-      </div>
-      <img src="assets/strip-icon.png" alt="" style="width:32px; height:32px; object-fit:contain; margin: 56px auto 0; opacity:0.5;">
-    </div>
-  </div>
-</div>
 
 <div id="contact" class="page">
   <div class="contact-banner">
@@ -2363,11 +2345,6 @@
       title: 'NoFear 001 Lookbook | Official Motocross Gear Collection',
       desc:  'View the No Fear 001 Lookbook — the first official drop featuring Elektron gear sets, gloves, and apparel from the iconic No Fear Motocross brand.',
       canonical: 'https://nofearmotocross.com/#catalog'
-    },
-    clothing: {
-      title: 'No Fear Clothing | T-Shirts, Hoodies & Apparel — Coming Soon',
-      desc:  'No Fear Motocross clothing is coming soon. T-shirts, hoodies, and accessories — iconic No Fear apparel for riders and fans.',
-      canonical: 'https://nofearmotocross.com/#clothing'
     },
     about: {
       title: 'About No Fear Motocross | Born From The Dirt — Est. 1989',
