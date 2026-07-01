@@ -1731,7 +1731,6 @@
     </div>
     <button class="nav-item" onclick="go('about')">About</button>
     <button class="nav-item" onclick="go('contact')">Contact</button>
-    <button class="nav-item" onclick="go('ambassador')">Ambassadors</button>
     <div class="nav-item" style="cursor:pointer;">
       <span onclick="go('faq')">FAQ</span>
       <div class="nav-dropdown" style="min-width:220px; grid-template-columns:1fr;" onclick="event.stopPropagation()">
@@ -1768,7 +1767,7 @@
 
     <button class="mobile-menu-link" onclick="go('about'); closeMobileMenu()">About</button>
     <button class="mobile-menu-link" onclick="go('contact'); closeMobileMenu()">Contact</button>
-    <button class="mobile-menu-link" onclick="go('ambassador'); closeMobileMenu()">Ambassadors</button>
+
     <button class="mobile-menu-link" onclick="go('catalog'); closeMobileMenu()">NoFear 001 Lookbook</button>
     <button class="mobile-menu-link" onclick="go('faq'); closeMobileMenu()">FAQ</button>
     <button class="mobile-menu-link" onclick="go('distributors'); closeMobileMenu()">International Distributors</button>
@@ -2338,7 +2337,7 @@
     setTimeout(() => logo.classList.add('in'), 100);
     setTimeout(() => fill.classList.add('go'), 300);
     // Determine page from URL path, then navigate just before loader fades
-    var knownPages = ['about','contact','ambassador','faq','distributors','catalog'];
+    var knownPages = ['about','contact','faq','distributors','catalog'];
     var pathSlug = window.location.pathname.replace(/^\//, '').split('/')[0];
     var initialPage = (pathSlug && knownPages.includes(pathSlug)) ? pathSlug : 'home';
     setTimeout(() => {
