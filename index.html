@@ -1731,6 +1731,7 @@
     </div>
     <button class="nav-item" onclick="go('about')">About</button>
     <button class="nav-item" onclick="go('contact')">Contact</button>
+    <button class="nav-item" onclick="go('ambassador')">Ambassadors</button>
     <div class="nav-item" style="cursor:pointer;">
       <span onclick="go('faq')">FAQ</span>
       <div class="nav-dropdown" style="min-width:220px; grid-template-columns:1fr;" onclick="event.stopPropagation()">
@@ -1767,6 +1768,7 @@
 
     <button class="mobile-menu-link" onclick="go('about'); closeMobileMenu()">About</button>
     <button class="mobile-menu-link" onclick="go('contact'); closeMobileMenu()">Contact</button>
+    <button class="mobile-menu-link" onclick="go('ambassador'); closeMobileMenu()">Ambassadors</button>
     <button class="mobile-menu-link" onclick="go('catalog'); closeMobileMenu()">NoFear 001 Lookbook</button>
     <button class="mobile-menu-link" onclick="go('faq'); closeMobileMenu()">FAQ</button>
     <button class="mobile-menu-link" onclick="go('distributors'); closeMobileMenu()">International Distributors</button>
@@ -2111,6 +2113,31 @@
   </div>
 </div>
 
+<div id="ambassador" class="page">
+  <div style="border-top:1px solid #e8e8e8; padding: 80px 48px 100px; max-width: 760px;">
+    <p style="font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:300; color:#999; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:24px;">No Fear Brand Ambassador</p>
+    <h1 style="font-family:'IBM Plex Mono',monospace; font-size:clamp(28px,4vw,48px); font-weight:300; letter-spacing:-0.02em; line-height:1.15; margin-bottom:32px;">Be Part Of<br>The Revival.</h1>
+    <p style="font-family:'IBM Plex Mono',monospace; font-size:14px; font-weight:300; line-height:1.9; color:#333; margin-bottom:20px;">We are now opening our Brand Ambassador Program. If you're someone living the No Fear lifestyle — action sports, dirt bikes, motocross, streetwear, clothing, or content creation as an influencer — we want to hear from you.</p>
+    <p style="font-family:'IBM Plex Mono',monospace; font-size:14px; font-weight:300; line-height:1.9; color:#333; margin-bottom:20px;">To be clear: this is not a sponsorship program and not a percentage-off discount program. No Fear has its own unique brand ambassador program — one we will share the full details of with you directly if you're the right fit.</p>
+    <p style="font-family:'IBM Plex Mono',monospace; font-size:14px; font-weight:300; line-height:1.9; color:#333; margin-bottom:56px;">Fill out the form below to get in contact with us and learn more. We review every submission personally.</p>
+
+    <form onsubmit="handleAmbassadorSubmit(event)" style="display:flex; flex-direction:column; gap:32px; max-width:560px;">
+      <div class="f-row"><label class="f-lbl">Full Name</label><input class="f-in" type="text" name="name" required placeholder="Your name"></div>
+      <div class="f-row"><label class="f-lbl">Phone Number</label><input class="f-in" type="tel" name="phone" required placeholder="Your number"></div>
+      <div class="f-row"><label class="f-lbl">Email</label><input class="f-in" type="email" name="email" required placeholder="your@email.com"></div>
+      <div class="f-row"><label class="f-lbl">Instagram</label><input class="f-in" type="text" name="instagram" placeholder="@yourhandle"></div>
+      <div class="f-row">
+        <label class="f-lbl">Why are you a good fit?</label>
+        <textarea class="f-in" name="message" required rows="5" placeholder="Tell us about yourself, your following, your lifestyle, and why No Fear is a fit for you..." style="resize:vertical; font-family:'IBM Plex Mono',monospace; font-size:13px; padding-top:10px;"></textarea>
+      </div>
+      <div>
+        <button type="submit" class="f-submit" style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; background:#000; color:#fff; border:none; padding:16px 40px; cursor:pointer;">Submit Application</button>
+        <p id="amb-success" style="display:none; margin-top:16px; font-family:'IBM Plex Mono',monospace; font-size:13px; color:#555;">Thanks — we'll be in touch.</p>
+      </div>
+    </form>
+  </div>
+</div>
+
 <div id="distributors" class="page">
   <div style="border-top:1px solid #e8e8e8; padding: 80px 48px 100px; max-width: 800px;">
     <p style="font-family:'IBM Plex Mono',monospace; font-size:12px; font-weight:300; color:#999; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:32px;">Global Retail</p>
@@ -2365,6 +2392,11 @@
       title: 'International Distributors | No Fear Motocross',
       desc:  'Find official No Fear Motocross distributors outside the United States. Contact our global distribution partners for international orders.',
       canonical: 'https://nofearmotocross.com/#distributors'
+    },
+    ambassador: {
+      title: 'Brand Ambassador Program | No Fear Motocross',
+      desc:  'Apply to become a No Fear Motocross Brand Ambassador. We are looking for action sports athletes, influencers, and lifestyle creators who live the No Fear way.',
+      canonical: 'https://nofearmotocross.com/#ambassador'
     }
   };
 
@@ -2474,6 +2506,32 @@
     const isOpen = item.classList.contains('open');
     document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
     if (!isOpen) item.classList.add('open');
+  }
+
+  async function handleAmbassadorSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('button[type="submit"]');
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+    try {
+      const res = await fetch('https://formspree.io/f/meendypv', {
+        method: 'POST',
+        body: new FormData(e.target),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        btn.textContent = 'Submitted ✓';
+        e.target.reset();
+        document.getElementById('amb-success').style.display = 'block';
+        setTimeout(() => { btn.textContent = 'Submit Application'; btn.disabled = false; }, 4000);
+      } else {
+        btn.textContent = 'Error — try again';
+        btn.disabled = false;
+      }
+    } catch {
+      btn.textContent = 'Error — try again';
+      btn.disabled = false;
+    }
   }
 
   async function handleSubmit(e) {
