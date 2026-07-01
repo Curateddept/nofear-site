@@ -10,5 +10,8 @@
     { "source": "/orders/:rest*", "destination": "https://nofearmotocross.myshopify.com/orders/:rest*", "permanent": false },
     { "source": "/policies/:rest*", "destination": "https://nofearmotocross.myshopify.com/policies/:rest*", "permanent": false },
     { "source": "/checkouts/:rest*", "destination": "https://nofearmotocross.myshopify.com/checkouts/:rest*", "permanent": false }
+  ],
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
   ]
 }

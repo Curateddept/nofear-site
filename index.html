@@ -2341,6 +2341,12 @@
       loader.classList.add('out');
       setTimeout(() => loader.style.display = 'none', 650);
     }, 2600);
+    // Route to the correct page based on the URL path on direct load/refresh
+    var knownPages = ['about','contact','ambassador','faq','distributors','catalog','clothing'];
+    var pathPage = window.location.pathname.replace(/^\//, '').split('/')[0];
+    if (pathPage && knownPages.includes(pathPage)) {
+      go(pathPage);
+    }
   });
 
   /* NAVIGATION */
