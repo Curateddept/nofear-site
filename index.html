@@ -1712,24 +1712,24 @@
     .nf-region-btn:not(.active):hover { background:#ddd; color:#000; }
     /* ── Staples swipe ── */
     .nf-staples { overflow:hidden; }
-    .nf-staples-header { padding:48px 40px 24px; border-top:1px solid #e8e8e8; display:flex; align-items:baseline; justify-content:space-between; }
+    .nf-staples-header { padding:28px 40px 16px; border-top:1px solid #e8e8e8; display:flex; align-items:baseline; justify-content:space-between; }
     .nf-staples-label { font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.14em; }
     .nf-staples-sub { font-family:'IBM Plex Mono',monospace; font-size:10px; color:#999; letter-spacing:0.08em; text-transform:uppercase; }
     .nf-staples-track { display:flex; gap:1px; overflow-x:auto; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; scrollbar-width:none; }
     .nf-staples-track::-webkit-scrollbar { display:none; }
-    .nf-feat-card { flex:0 0 calc(20% - 1px); min-width:220px; scroll-snap-align:start; cursor:pointer; background:#fff; position:relative; transition:background 0.2s; }
+    .nf-feat-card { flex:0 0 calc(20% - 1px); min-width:160px; scroll-snap-align:start; cursor:pointer; background:#fff; position:relative; transition:background 0.2s; }
     .nf-feat-card:hover { background:#fafafa; }
-    .nf-feat-img-wrap { aspect-ratio:3/4; overflow:hidden; background:#f0f0f0; }
-    .nf-feat-img-wrap img { width:100%; height:100%; object-fit:cover; transition:transform 0.5s ease; display:block; }
+    .nf-feat-img-wrap { aspect-ratio:1/1; overflow:hidden; background:#f0f0f0; }
+    .nf-feat-img-wrap img { width:100%; height:100%; object-fit:cover; object-position:center top; transition:transform 0.5s ease; display:block; }
     .nf-feat-card:hover .nf-feat-img-wrap img { transform:scale(1.04); }
-    .nf-feat-info { padding:14px 18px 6px; }
-    .nf-feat-title { font-family:'IBM Plex Mono',monospace; font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; line-height:1.4; margin-bottom:4px; }
-    .nf-feat-price { font-family:'IBM Plex Mono',monospace; font-size:10px; color:#666; }
-    .nf-feat-atc { display:block; width:calc(100% - 36px); margin:10px 18px 18px; background:#000; color:#fff; border:none; font-family:'IBM Plex Mono',monospace; font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:0.12em; padding:11px 8px; cursor:pointer; transition:opacity 0.2s; }
+    .nf-feat-info { padding:10px 14px 4px; }
+    .nf-feat-title { font-family:'IBM Plex Mono',monospace; font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:0.07em; line-height:1.4; margin-bottom:3px; }
+    .nf-feat-price { font-family:'IBM Plex Mono',monospace; font-size:9px; color:#666; }
+    .nf-feat-atc { display:block; width:calc(100% - 28px); margin:8px 14px 14px; background:#000; color:#fff; border:none; font-family:'IBM Plex Mono',monospace; font-size:8px; font-weight:700; text-transform:uppercase; letter-spacing:0.12em; padding:9px 6px; cursor:pointer; transition:opacity 0.2s; }
     .nf-feat-atc:hover { opacity:0.75; }
     .nf-staples-loading { font-family:'IBM Plex Mono',monospace; font-size:11px; color:#aaa; padding:40px; }
-    @media (max-width:900px) { .nf-feat-card { flex:0 0 42vw; min-width:0; } }
-    @media (max-width:600px) { .nf-feat-card { flex:0 0 78vw; } .nf-staples-header { padding:36px 20px 18px; } }
+    @media (max-width:900px) { .nf-feat-card { flex:0 0 38vw; min-width:0; } }
+    @media (max-width:600px) { .nf-feat-card { flex:0 0 72vw; } .nf-staples-header { padding:24px 20px 14px; } }
   </style>
   <script defer src="/_vercel/insights/script.js"></script>
 </head>
@@ -1966,6 +1966,17 @@
   </div>
   </a>
 
+  <!-- Staples Swipe -->
+  <div class="nf-staples">
+    <div class="nf-staples-header">
+      <span class="nf-staples-label">The Staples</span>
+      <span class="nf-staples-sub">Shop the essentials</span>
+    </div>
+    <div class="nf-staples-track" id="nfStaplesTrack">
+      <div class="nf-staples-loading">Loading…</div>
+    </div>
+  </div>
+
   <!-- 4th of July Capsule -->
   <div class="sec-header">
     <span class="sec-title">Shop 4th of July Capsule</span>
@@ -1990,17 +2001,6 @@
         <span class="collection-name">4th of July Capsule</span>
         <button class="collection-shop-label" onclick="nfNavCol('apparel')">Shop Now</button>
       </div>
-    </div>
-  </div>
-
-  <!-- Staples Swipe -->
-  <div class="nf-staples">
-    <div class="nf-staples-header">
-      <span class="nf-staples-label">The Staples</span>
-      <span class="nf-staples-sub">Shop the essentials</span>
-    </div>
-    <div class="nf-staples-track" id="nfStaplesTrack">
-      <div class="nf-staples-loading">Loading…</div>
     </div>
   </div>
 
