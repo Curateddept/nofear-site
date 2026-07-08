@@ -1701,8 +1701,10 @@
     #nf-cart-toast.show { transform:translateX(-50%) translateY(0); pointer-events:all; }
     #nf-cart-toast a { color:#fff; text-decoration:underline; cursor:pointer; }
     /* ── Cart badge on nav Shop button ── */
-    .nf-cart-nav-wrap { position:relative; display:inline-flex; }
-    #nf-cart-badge { position:absolute; top:-7px; right:-10px; background:#000; color:#fff; font-family:'IBM Plex Mono',monospace; font-size:8px; font-weight:700; min-width:16px; height:16px; border-radius:8px; display:none; align-items:center; justify-content:center; padding:0 4px; pointer-events:none; border:2px solid #fff; }
+    .nf-cart-nav-wrap { position:relative; display:inline-flex; align-items:center; }
+    .nav-cart-btn { background:none; border:none; cursor:pointer; padding:4px 6px; display:flex; align-items:center; justify-content:center; color:#000; opacity:0.85; }
+    .nav-cart-btn:hover { opacity:1; }
+    #nf-cart-badge { position:absolute; top:-5px; right:-4px; background:#000; color:#fff; font-family:'IBM Plex Mono',monospace; font-size:8px; font-weight:700; min-width:16px; height:16px; border-radius:8px; display:none; align-items:center; justify-content:center; padding:0 4px; pointer-events:none; border:2px solid #fff; }
   </style>
   <script defer src="/_vercel/insights/script.js"></script>
 </head>
@@ -1812,7 +1814,13 @@
 
   <div class="nav-right">
     <span class="nav-item nav-availability" style="cursor:default;">🇬🇧 🇺🇸 <span class="nav-avail-text">UK &amp; USA — Online Only</span></span>
-    <span class="nf-cart-nav-wrap"><button class="nav-item" onclick="go('shop')">Shop</button><span id="nf-cart-badge"></span></span>
+    <button class="nav-item" onclick="go('shop')">Shop</button>
+    <span class="nf-cart-nav-wrap">
+      <button class="nav-cart-btn" onclick="nfGoCheckout()" aria-label="Cart">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+      </button>
+      <span id="nf-cart-badge"></span>
+    </span>
     <a class="nav-item nav-ig-btn" href="https://instagram.com/nofearmotocross" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="@nofearmotocross">
       <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
     </a>
