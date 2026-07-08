@@ -3025,16 +3025,15 @@ function nfRenderGrid(products) {
       var key = 'option' + (optIdx + 1);
       var label = nfShortOptName(opt.name);
       if (p.options.length === 1) {
-        // Single option: store variant ID as value for fast lookup
         return '<select class="nfpc-sel" id="nfpc-sel-' + p.handle + '-0">' +
+          '<option value="">— ' + label + ' —</option>' +
           opt.values.map(function(v) {
             var vt = p.variants.find(function(vv){ return vv[key] === v; });
             var unavail = vt && vt.available === false;
-            return '<option value="' + (vt ? vt.id : '') + '"' + (unavail ? ' disabled' : '') + '>' + v + (unavail ? ' — Sold Out' : '') + '</option>';
+            return '<option value="' + v + '"' + (unavail ? ' disabled' : '') + '>' + v + (unavail ? ' — Sold Out' : '') + '</option>';
           }).join('') +
         '</select>';
       } else {
-        // Multiple options: store option value, resolve variant in nfCardAtc
         return '<select class="nfpc-sel" id="nfpc-sel-' + p.handle + '-' + optIdx + '">' +
           '<option value="">— ' + label + ' —</option>' +
           opt.values.map(function(v) { return '<option value="' + v + '">' + v + '</option>'; }).join('') +
@@ -3059,25 +3058,17 @@ function nfCardAtc(handle) {
     if (!p) p = nfProductsCache[k].find(function(x){ return x.handle === handle; });
   });
   if (!p) return;
-  var variantId;
-  if (p.options.length === 1) {
-    var sel0 = document.getElementById('nfpc-sel-' + handle + '-0');
-    variantId = sel0 ? String(sel0.value) : String(p.variants[0].id);
-  } else {
-    var selVals = p.options.map(function(opt, i) {
-      var s = document.getElementById('nfpc-sel-' + handle + '-' + i);
-      return s ? s.value : '';
-    });
-    var match = p.variants.find(function(v) {
-      return p.options.every(function(opt, i) { return !selVals[i] || v['option' + (i+1)] === selVals[i]; });
-    }) || p.variants[0];
-    variantId = String(match.id);
-  }
-  var vt = p.variants.find(function(v){ return String(v.id) === variantId; });
+  var selVals = p.options.map(function(opt, i) {
+    var s = document.getElementById('nfpc-sel-' + handle + '-' + i);
+    return s ? s.value : '';
+  });
+  var vt = p.variants.find(function(v) {
+    return p.options.every(function(opt, i) { return !selVals[i] || v['option' + (i+1)] === selVals[i]; });
+  });
   if (!vt) return;
   var btn = document.querySelector('[data-handle="' + handle + '"] .nfpc-atc');
   if (btn) { btn.textContent = 'Adding…'; btn.disabled = true; }
-  nfCartAdd(variantId, 1, p.title, vt.price);
+  nfCartAdd(String(vt.id), 1, p.title, vt.price);
   if (btn) { setTimeout(function(){ btn.textContent = 'Add to cart'; btn.disabled = false; }, 400); }
 }
 
