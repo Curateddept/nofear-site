@@ -3234,12 +3234,25 @@ async function nfLoadStaples() {
   track.innerHTML = valid.map(function(p) {
     var img = p.images[0] ? p.images[0].src : '';
     var price = nfFormatPrice(p.variants[0].price);
+    var selHtml = p.options.map(function(opt, optIdx) {
+      var key = 'option' + (optIdx + 1);
+      var label = nfShortOptName(opt.name);
+      return '<select class="nfpc-sel" id="nfst-sel-' + p.handle + '-' + optIdx + '" onclick="event.stopPropagation()" style="width:100%;">' +
+        '<option value="">— ' + label + ' —</option>' +
+        opt.values.map(function(v) {
+          var vt = p.variants.find(function(vv){ return vv[key] === v; });
+          var unavail = vt && vt.available === false;
+          return '<option value="' + v + '"' + (unavail ? ' disabled' : '') + '>' + v + (unavail ? ' — Sold Out' : '') + '</option>';
+        }).join('') +
+      '</select>';
+    }).join('');
     return '<div class="nf-feat-card" onclick="goProduct(\'' + p.handle + '\')">' +
       (img ? '<div class="nf-feat-img-wrap"><img src="' + img + '" alt="' + p.title.replace(/"/g,'&quot;') + '" loading="lazy"></div>' : '') +
       '<div class="nf-feat-info">' +
         '<div class="nf-feat-title">' + p.title.replace(/</g,'&lt;') + '</div>' +
         '<div class="nf-feat-price">' + price + '</div>' +
       '</div>' +
+      '<div style="padding:0 14px 2px;">' + selHtml + '</div>' +
       '<button class="nf-feat-atc" onclick="event.stopPropagation();nfFeatATC(\'' + p.handle + '\')">Add to cart</button>' +
     '</div>';
   }).join('');
@@ -3247,8 +3260,16 @@ async function nfLoadStaples() {
 
 function nfFeatATC(handle) {
   var p = nfProdCache[handle];
-  if (!p || !p.variants[0]) return;
-  nfCartAdd(String(p.variants[0].id), 1, p.title, p.variants[0].price);
+  if (!p) return;
+  var selVals = p.options.map(function(opt, i) {
+    var s = document.getElementById('nfst-sel-' + handle + '-' + i);
+    return s ? s.value : '';
+  });
+  var match = p.variants.find(function(v) {
+    return p.options.every(function(opt, i) { return !selVals[i] || v['option'+(i+1)] === selVals[i]; });
+  }) || p.variants[0];
+  if (!match || match.available === false) return;
+  nfCartAdd(String(match.id), 1, p.title, match.price);
 }
 
 // Init badge on load
