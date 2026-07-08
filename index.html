@@ -1637,6 +1637,72 @@
       .nav-right .nav-item:not(.nav-ig-btn) { display: none; }
       .nav-ig-btn { display: flex !important; }
     }
+
+    /* ── Custom Shop Grid ── */
+    #shop .nfshop-inner { max-width:1200px; margin:0 auto; padding:40px 24px 80px; }
+    .nfshop-hdr { border-bottom:1px solid #e8e8e8; padding-bottom:20px; margin-bottom:0; display:flex; align-items:baseline; gap:16px; }
+    .nfshop-hdr-main { font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:#000; font-weight:500; }
+    .nfshop-hdr-sub { font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.08em; text-transform:uppercase; color:#999; }
+    /* ── Collection Tabs ── */
+    .nfshop-tabs { display:flex; gap:0; margin-bottom:32px; border-bottom:1px solid #e8e8e8; overflow-x:auto; -webkit-overflow-scrolling:touch; scrollbar-width:none; }
+    .nfshop-tabs::-webkit-scrollbar { display:none; }
+    .nfshop-tab { font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:#999; background:none; border:none; border-bottom:2px solid transparent; padding:14px 20px; cursor:pointer; white-space:nowrap; transition:color 0.15s; margin-bottom:-1px; }
+    .nfshop-tab:hover { color:#000; }
+    .nfshop-tab.active { color:#000; border-bottom-color:#000; }
+    /* button reset for nav drop links */
+    button.nav-drop-link { background:none; border:none; text-align:left; width:100%; font-family:inherit; }
+    button.nav-drop-img-item { background:none; border:none; padding:0; width:100%; }
+    #nfshop-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:32px; }
+    .nfshop-loading { font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:#999; text-align:center; padding:60px 0; }
+    @media (max-width:900px) { #nfshop-grid { grid-template-columns:repeat(2,1fr); } }
+    @media (max-width:480px) { #nfshop-grid { grid-template-columns:1fr; } }
+    .nfpc-img { aspect-ratio:1; overflow:hidden; background:#f5f5f5; cursor:pointer; margin-bottom:10px; display:block; }
+    .nfpc-img img { width:100%; height:100%; object-fit:cover; transition:transform 0.4s ease; display:block; }
+    .nfpc-img:hover img { transform:scale(1.04); }
+    .nfpc-name { font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:#000; margin-bottom:4px; cursor:pointer; line-height:1.4; background:none; border:none; padding:0; text-align:left; width:100%; }
+    .nfpc-name:hover { text-decoration:underline; }
+    .nfpc-price { font-family:'IBM Plex Mono',monospace; font-size:11px; color:#555; margin-bottom:10px; }
+    .nfpc-sel { width:100%; border:1px solid #ccc; padding:8px 10px; font-family:'IBM Plex Mono',monospace; font-size:10px; text-transform:uppercase; letter-spacing:0.06em; background:#fff; margin-bottom:8px; appearance:none; -webkit-appearance:none; cursor:pointer; border-radius:0; }
+    .nfpc-atc { width:100%; background:#000; color:#fff; border:none; padding:12px 16px; font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.12em; text-transform:uppercase; cursor:pointer; transition:background 0.15s; }
+    .nfpc-atc:hover { background:#333; }
+    .nfpc-atc:disabled { background:#999; cursor:not-allowed; }
+    /* ── Product Detail Page ── */
+    #product-page .nfprod-inner { max-width:1200px; margin:0 auto; padding:40px 24px 80px; }
+    .nfprod-back { background:none; border:none; font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; cursor:pointer; color:#000; padding:0; margin-bottom:32px; display:inline-block; }
+    .nfprod-back:hover { text-decoration:underline; }
+    .nfprod-layout { display:grid; grid-template-columns:1fr 1fr; gap:60px; }
+    @media (max-width:768px) { .nfprod-layout { grid-template-columns:1fr; gap:32px; } }
+    .nfprod-main-img { aspect-ratio:1; overflow:hidden; background:#f5f5f5; margin-bottom:8px; }
+    .nfprod-main-img img { width:100%; height:100%; object-fit:cover; display:block; }
+    .nfprod-thumbs { display:flex; gap:6px; flex-wrap:wrap; }
+    .nfprod-thumb { width:72px; height:72px; overflow:hidden; background:#f5f5f5; cursor:pointer; border:1px solid transparent; flex-shrink:0; }
+    .nfprod-thumb.active { border-color:#000; }
+    .nfprod-thumb img { width:100%; height:100%; object-fit:cover; display:block; }
+    .nfprod-title { font-family:'IBM Plex Mono',monospace; font-size:20px; font-weight:normal; text-transform:uppercase; letter-spacing:0.06em; color:#000; margin:0 0 8px; line-height:1.3; }
+    .nfprod-price { font-family:'IBM Plex Mono',monospace; font-size:16px; color:#000; margin-bottom:24px; }
+    .nfprod-opt-label { font-family:'IBM Plex Mono',monospace; font-size:10px; text-transform:uppercase; letter-spacing:0.1em; color:#888; margin-bottom:8px; }
+    .nfprod-opt-val { color:#000; }
+    .nfprod-opt-btns { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:16px; }
+    .nfprod-opt-btn { border:1px solid #ccc; background:#fff; padding:8px 14px; font-family:'IBM Plex Mono',monospace; font-size:10px; text-transform:uppercase; letter-spacing:0.08em; cursor:pointer; transition:all 0.15s; }
+    .nfprod-opt-btn:hover:not(.sold-out) { border-color:#000; }
+    .nfprod-opt-btn.selected { background:#000; color:#fff; border-color:#000; }
+    .nfprod-opt-btn.sold-out { opacity:0.35; text-decoration:line-through; cursor:not-allowed; }
+    .nfprod-qty-row { display:flex; gap:12px; align-items:stretch; margin-top:20px; }
+    .nfprod-qty { border:1px solid #000; padding:0 12px; font-family:'IBM Plex Mono',monospace; font-size:11px; width:72px; background:#fff; appearance:none; -webkit-appearance:none; text-align:center; cursor:pointer; border-radius:0; }
+    .nfprod-atc-btn { flex:1; background:#000; color:#fff; border:none; padding:14px 24px; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; cursor:pointer; transition:background 0.15s; }
+    .nfprod-atc-btn:hover { background:#333; }
+    .nfprod-atc-btn:disabled { background:#999; cursor:not-allowed; }
+    .nfprod-desc { margin-top:32px; border-top:1px solid #e8e8e8; padding-top:24px; }
+    .nfprod-desc-label { font-family:'IBM Plex Mono',monospace; font-size:10px; text-transform:uppercase; letter-spacing:0.1em; color:#888; margin-bottom:12px; }
+    .nfprod-desc-content { font-family:'IBM Plex Mono',monospace; font-size:11px; line-height:1.9; color:#444; }
+    .nfprod-desc-content p { margin:0 0 10px; }
+    /* ── Cart toast ── */
+    #nf-cart-toast { position:fixed; bottom:24px; left:50%; transform:translateX(-50%) translateY(100px); background:#000; color:#fff; font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; padding:14px 28px; z-index:9999; transition:transform 0.3s ease; white-space:nowrap; pointer-events:none; display:flex; align-items:center; gap:16px; }
+    #nf-cart-toast.show { transform:translateX(-50%) translateY(0); pointer-events:all; }
+    #nf-cart-toast a { color:#fff; text-decoration:underline; cursor:pointer; }
+    /* ── Cart badge on nav Shop button ── */
+    .nf-cart-nav-wrap { position:relative; display:inline-flex; }
+    #nf-cart-badge { position:absolute; top:-7px; right:-10px; background:#000; color:#fff; font-family:'IBM Plex Mono',monospace; font-size:8px; font-weight:700; min-width:16px; height:16px; border-radius:8px; display:none; align-items:center; justify-content:center; padding:0 4px; pointer-events:none; border:2px solid #fff; }
   </style>
   <script defer src="/_vercel/insights/script.js"></script>
 </head>
@@ -1694,38 +1760,37 @@
       SHOP
       <div class="nav-dropdown">
         <div class="nav-drop-links">
-          <a class="nav-drop-link" href="https://nofearmotocross.myshopify.com/collections/frontpage" target="_blank" rel="noopener noreferrer" style="font-weight:500;">All Products</a>
-          <a class="nav-drop-link" href="https://nofearmotocross.myshopify.com/collections/seta" target="_blank" rel="noopener noreferrer">Motocross Gear Sets</a>
-          <a class="nav-drop-link" href="https://nofearmotocross.myshopify.com/collections/gloves" target="_blank" rel="noopener noreferrer">Gloves</a>
-          <a class="nav-drop-link" href="https://nofearmotocross.myshopify.com/collections/apparel" target="_blank" rel="noopener noreferrer">T Shirts & Hoodies</a>
-          <a class="nav-drop-link" href="https://nofearmotocross.myshopify.com/collections/hats" target="_blank" rel="noopener noreferrer">Hats & Stickers</a>
-          <a class="nav-drop-link" href="https://www.nofearmotocross.com/">Home</a>
+          <button class="nav-drop-link" onclick="nfNavCol('frontpage')" style="font-weight:500;">All Products</button>
+          <button class="nav-drop-link" onclick="nfNavCol('seta')">Motocross Gear Sets</button>
+          <button class="nav-drop-link" onclick="nfNavCol('gloves')">Gloves</button>
+          <button class="nav-drop-link" onclick="nfNavCol('apparel')">T-Shirts &amp; Hoodies</button>
+          <button class="nav-drop-link" onclick="nfNavCol('hats')">Hats &amp; Stickers</button>
         </div>
         <div class="nav-drop-images">
-          <a class="nav-drop-img-item" href="https://nofearmotocross.myshopify.com/collections/apparel" target="_blank" rel="noopener noreferrer">
+          <button class="nav-drop-img-item" onclick="nfNavCol('apparel')">
             <img src="assets/images/tshirts-cover.jpg" alt="T-Shirts & Hoodies" style="object-position:center top;">
             <span class="nav-drop-label">T-SHIRTS & HOODIES</span>
-          </a>
-          <a class="nav-drop-img-item" href="https://nofearmotocross.myshopify.com/collections/hats" target="_blank" rel="noopener noreferrer">
+          </button>
+          <button class="nav-drop-img-item" onclick="nfNavCol('hats')">
             <img src="assets/images/hats-accessories-cover.jpg" alt="Hats & Stickers" style="object-position:center top;">
             <span class="nav-drop-label">HATS & STICKERS</span>
-          </a>
-          <a class="nav-drop-img-item" href="https://nofearmotocross.myshopify.com/collections/seta" target="_blank" rel="noopener noreferrer">
+          </button>
+          <button class="nav-drop-img-item" onclick="nfNavCol('seta')">
             <img src="assets/images/gearsets-cover.jpg" alt="Gear Sets">
             <span class="nav-drop-label">GEAR SETS</span>
-          </a>
-          <a class="nav-drop-img-item" href="https://nofearmotocross.myshopify.com/collections/gloves" target="_blank" rel="noopener noreferrer">
+          </button>
+          <button class="nav-drop-img-item" onclick="nfNavCol('gloves')">
             <img src="assets/images/gloves-cover.jpg" alt="Gloves">
             <span class="nav-drop-label">GLOVES</span>
-          </a>
-          <a class="nav-drop-img-item" href="https://nofearmotocross.myshopify.com/products/no-fear-001-elektron-blackout-set" target="_blank" rel="noopener noreferrer">
+          </button>
+          <button class="nav-drop-img-item" onclick="goProduct('no-fear-001-elektron-blackout-set')">
             <img src="assets/images/blackout-001.png" alt="Blackout Set">
             <span class="nav-drop-label">BLACKOUT</span>
-          </a>
-          <a class="nav-drop-img-item" href="https://nofearmotocross.myshopify.com/products/no-fear-001-elektron-patriot-set" target="_blank" rel="noopener noreferrer">
+          </button>
+          <button class="nav-drop-img-item" onclick="goProduct('no-fear-001-elektron-patriot-set')">
             <img src="assets/images/patriot-001.png" alt="Patriot Set">
             <span class="nav-drop-label">PATRIOT</span>
-          </a>
+          </button>
         </div>
       </div>
     </div>
@@ -1747,7 +1812,7 @@
 
   <div class="nav-right">
     <span class="nav-item nav-availability" style="cursor:default;">🇬🇧 🇺🇸 <span class="nav-avail-text">UK &amp; USA — Online Only</span></span>
-    <a class="nav-item" href="https://nofearmotocross.myshopify.com/collections/frontpage" target="_blank" rel="noopener noreferrer">Shop ↗</a>
+    <span class="nf-cart-nav-wrap"><button class="nav-item" onclick="go('shop')">Shop</button><span id="nf-cart-badge"></span></span>
     <a class="nav-item nav-ig-btn" href="https://instagram.com/nofearmotocross" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="@nofearmotocross">
       <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
     </a>
@@ -1761,9 +1826,11 @@
   <div class="mobile-menu-label">Menu</div>
   <div class="mobile-menu-links">
     <a class="mobile-menu-link" href="https://www.nofearmotocross.com/" onclick="closeMobileMenu()">Home</a>
-    <a class="mobile-menu-link" href="https://nofearmotocross.myshopify.com/collections/frontpage" target="_blank" rel="noopener noreferrer" onclick="closeMobileMenu()">Shop</a>
-    <a class="mobile-menu-link" href="https://nofearmotocross.myshopify.com/collections/seta" target="_blank" rel="noopener noreferrer" onclick="closeMobileMenu()">Gear Sets</a>
-    <a class="mobile-menu-link" href="https://nofearmotocross.myshopify.com/collections/gloves" target="_blank" rel="noopener noreferrer" onclick="closeMobileMenu()">Gloves</a>
+    <button class="mobile-menu-link" onclick="nfNavCol('frontpage'); closeMobileMenu()">Shop — All</button>
+    <button class="mobile-menu-link" onclick="nfNavCol('seta'); closeMobileMenu()">Gear Sets</button>
+    <button class="mobile-menu-link" onclick="nfNavCol('gloves'); closeMobileMenu()">Gloves</button>
+    <button class="mobile-menu-link" onclick="nfNavCol('apparel'); closeMobileMenu()">T-Shirts &amp; Hoodies</button>
+    <button class="mobile-menu-link" onclick="nfNavCol('hats'); closeMobileMenu()">Hats &amp; Stickers</button>
 
     <button class="mobile-menu-link" onclick="go('about'); closeMobileMenu()">About</button>
     <button class="mobile-menu-link" onclick="go('contact'); closeMobileMenu()">Contact</button>
@@ -1817,36 +1884,36 @@
 
   <!-- Categories editorial grid -->
   <div class="editorial-grid">
-    <div class="ed-cell" onclick="go('clothing')" style="cursor:pointer;">
+    <div class="ed-cell" onclick="nfNavCol('apparel')" style="cursor:pointer;">
       <img src="assets/images/apparel-cover.jpg" alt="No Fear Apparel — T-Shirts & Hoodies" loading="lazy" style="object-position:center top;">
       <div class="ed-label">
         <div class="ed-label-name">Apparel</div>
         <span class="ed-label-sub">T-Shirts, Hoodies & More</span>
-        <a class="ed-label-link" href="https://nofearmotocross.myshopify.com/collections/apparel" target="_blank" rel="noopener noreferrer">Shop Now</a>
+        <button class="ed-label-link" onclick="nfNavCol('apparel')">Shop Now</button>
       </div>
     </div>
-    <div class="ed-cell" onclick="window.open('https://nofearmotocross.myshopify.com/collections/hats','_blank'); return false;" style="cursor:pointer;">
+    <div class="ed-cell" onclick="nfNavCol('hats')" style="cursor:pointer;">
       <div class="ed-img-clip">
         <img src="assets/images/hats-cover.jpg" alt="No Fear Hats & Stickers" loading="lazy" class="ed-hat-img">
       </div>
       <div class="ed-label">
         <div class="ed-label-name">Hats & Stickers</div>
         <span class="ed-label-sub">Caps, Gear & More</span>
-        <a class="ed-label-link" href="https://nofearmotocross.myshopify.com/collections/hats" target="_blank" rel="noopener noreferrer">Shop Now</a>
+        <button class="ed-label-link" onclick="nfNavCol('hats')">Shop Now</button>
       </div>
     </div>
-    <div class="ed-cell" style="border-right:none;">
-      <a href="https://nofearmotocross.myshopify.com/collections/seta" target="_blank" rel="noopener noreferrer"><img src="assets/images/gearsets-cover.jpg" alt="No Fear Motocross Gear" loading="lazy" style="object-position:center center;"></a>
+    <div class="ed-cell" onclick="nfNavCol('seta')" style="cursor:pointer; border-right:none;">
+      <img src="assets/images/gearsets-cover.jpg" alt="No Fear Motocross Gear" loading="lazy" style="object-position:center center;">
       <div class="ed-label">
         <div class="ed-label-name">Motocross Gear</div>
         <span class="ed-label-sub">Gear sets, gloves & more</span>
-        <a class="ed-label-link" href="https://nofearmotocross.myshopify.com/collections/seta" target="_blank" rel="noopener noreferrer">Shop Now</a>
+        <button class="ed-label-link" onclick="nfNavCol('seta')">Shop Now</button>
       </div>
     </div>
   </div>
 
   <!-- McGrath Banner -->
-  <a href="https://nofearmotocross.myshopify.com/collections/seta" target="_blank" rel="noopener noreferrer" style="display:block;">
+  <a href="#" onclick="nfNavCol('seta'); return false;" style="display:block;">
   <div class="mcgrath-banner">
     <img class="banner-bg" src="assets/images/mcgrath-banner.jpg" alt="Jeremy McGrath" loading="lazy">
     <div class="banner-icon-strip">
@@ -1864,22 +1931,22 @@
   </div>
 
   <div class="collections-grid">
-    <div class="collection-cell" onclick="window.open('https://nofearmotocross.myshopify.com/collections/apparel','_blank'); return false;" style="cursor:pointer;">
+    <div class="collection-cell" onclick="nfNavCol('apparel')" style="cursor:pointer;">
       <div class="collection-img-wrap">
         <img src="assets/images/4july-cell1.jpg" alt="No Fear 4th of July Capsule" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;">
       </div>
       <div class="collection-label">
         <span class="collection-name">These Colors Don't Run</span>
-        <a class="collection-shop-label" href="https://nofearmotocross.myshopify.com/collections/apparel" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();">Shop Now</a>
+        <button class="collection-shop-label" onclick="nfNavCol('apparel')">Shop Now</button>
       </div>
     </div>
-    <div class="collection-cell" onclick="window.open('https://nofearmotocross.myshopify.com/collections/apparel','_blank'); return false;" style="cursor:pointer; border-right:none;">
+    <div class="collection-cell" onclick="nfNavCol('apparel')" style="cursor:pointer; border-right:none;">
       <div class="collection-img-wrap">
         <img src="assets/images/4july-cell2.jpg" alt="No Fear 4th of July Capsule" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;">
       </div>
       <div class="collection-label">
         <span class="collection-name">4th of July Capsule</span>
-        <a class="collection-shop-label" href="https://nofearmotocross.myshopify.com/collections/apparel" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();">Shop Now</a>
+        <button class="collection-shop-label" onclick="nfNavCol('apparel')">Shop Now</button>
       </div>
     </div>
   </div>
@@ -1891,7 +1958,7 @@
   </div>
 
   <div class="collections-grid">
-    <div class="collection-cell" onclick="window.open('https://nofearmotocross.myshopify.com/collections/apparel','_blank'); return false;" style="cursor:pointer;">
+    <div class="collection-cell" onclick="nfNavCol('apparel')" style="cursor:pointer;">
       <div class="collection-img-wrap collection-cycle collection-cycle-4">
         <img class="cycle-img" src="assets/images/tshirts-product.png" alt="No Fear T-Shirts — Nostalgia" loading="lazy">
         <img class="cycle-img" src="assets/images/tshirts-product2.png" alt="No Fear T-Shirts — Carnage" loading="lazy">
@@ -1900,10 +1967,10 @@
       </div>
       <div class="collection-label">
         <span class="collection-name">No Fear T-Shirts & Hoodies</span>
-        <a class="collection-shop-label" href="https://nofearmotocross.myshopify.com/collections/apparel" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();">Shop Now</a>
+        <button class="collection-shop-label" onclick="nfNavCol('apparel')">Shop Now</button>
       </div>
     </div>
-    <div class="collection-cell" onclick="window.open('https://nofearmotocross.myshopify.com/collections/hats','_blank'); return false;" style="cursor:pointer; border-right:none;">
+    <div class="collection-cell" onclick="nfNavCol('hats')" style="cursor:pointer; border-right:none;">
       <div class="collection-img-wrap collection-cycle">
         <img class="cycle-img" src="assets/images/hat-product.png" alt="No Fear Flatbill Black" loading="lazy">
         <img class="cycle-img" src="assets/images/hat-product2.png" alt="No Fear Flatbill Grey & Black" loading="lazy">
@@ -1911,34 +1978,34 @@
       </div>
       <div class="collection-label">
         <span class="collection-name">No Fear Hats & Stickers</span>
-        <a class="collection-shop-label" href="https://nofearmotocross.myshopify.com/collections/hats" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();">Shop Now</a>
+        <button class="collection-shop-label" onclick="nfNavCol('hats')">Shop Now</button>
       </div>
     </div>
-    <a class="collection-cell" href="https://nofearmotocross.myshopify.com/products/no-fear-001-elektron-blackout-set" target="_blank" rel="noopener noreferrer">
+    <div class="collection-cell" onclick="goProduct('no-fear-001-elektron-blackout-set')" style="cursor:pointer;">
       <div class="collection-img-wrap">
         <img src="assets/images/blackout-001.png" alt="No Fear 001 Elektron Blackout Motocross Gear Set — Jersey and Pant" loading="lazy">
       </div>
       <div class="collection-label">
         <span class="collection-name">No Fear 001 — Elektron Blackout Set</span>
-        <span class="collection-shop-label">Shop Now</span>
+        <button class="collection-shop-label" onclick="goProduct('no-fear-001-elektron-blackout-set')">Shop Now</button>
       </div>
-    </a>
-    <a class="collection-cell" href="https://nofearmotocross.myshopify.com/products/no-fear-001-elektron-patriot-set" target="_blank" rel="noopener noreferrer" style="border-right:none;">
+    </div>
+    <div class="collection-cell" onclick="goProduct('no-fear-001-elektron-patriot-set')" style="cursor:pointer; border-right:none;">
       <div class="collection-img-wrap">
         <img src="assets/images/patriot-001.png" alt="No Fear 001 Elektron Patriot Motocross Gear Set — Jersey and Pant" loading="lazy">
       </div>
       <div class="collection-label">
         <span class="collection-name">No Fear 001 — Elektron Patriot Set</span>
-        <span class="collection-shop-label">Shop Now</span>
+        <button class="collection-shop-label" onclick="goProduct('no-fear-001-elektron-patriot-set')">Shop Now</button>
       </div>
-    </a>
+    </div>
   </div>
 
   <!-- CTA -->
   <div class="cta-band">
     <span class="cta-eyebrow">Now Available to live with No Fear</span>
     <div class="cta-title">Be Everything.<br>Fear Nothing.</div>
-    <a class="btn btn-light" href="https://nofearmotocross.myshopify.com/collections/frontpage" target="_blank" rel="noopener noreferrer">Shop Now</a>
+    <button class="btn btn-light" onclick="nfNavCol('frontpage')">Shop Now</button>
   </div>
 
   <!-- SEO Brand Copy + Contact -->
@@ -2314,6 +2381,34 @@
   <div class="catalog-caption" id="catCaption">001 Patriot — On The Bike</div>
 </div>
 
+<!-- ════════════════════════
+     SHOP
+════════════════════════ -->
+<div id="shop" class="page">
+  <div class="nfshop-inner">
+    <div class="nfshop-hdr">
+      <span class="nfshop-hdr-main">Shop No Fear</span>
+      <span class="nfshop-hdr-sub" id="nfshop-hdr-sub">All Products</span>
+    </div>
+    <div class="nfshop-tabs">
+      <button class="nfshop-tab active" data-col="frontpage" onclick="nfNavCol('frontpage')">All</button>
+      <button class="nfshop-tab" data-col="seta" onclick="nfNavCol('seta')">Gear Sets</button>
+      <button class="nfshop-tab" data-col="gloves" onclick="nfNavCol('gloves')">Gloves</button>
+      <button class="nfshop-tab" data-col="apparel" onclick="nfNavCol('apparel')">T-Shirts &amp; Hoodies</button>
+      <button class="nfshop-tab" data-col="hats" onclick="nfNavCol('hats')">Hats &amp; Stickers</button>
+    </div>
+    <div id="nfshop-grid"><div class="nfshop-loading">Loading...</div></div>
+  </div>
+</div>
+
+<!-- ════════════════════════
+     PRODUCT PAGE
+════════════════════════ -->
+<div id="product-page" class="page">
+  <div class="nfprod-inner" id="nfprod-content">
+  </div>
+</div>
+
 <footer>
   <div class="ft-contact">
     <div class="ft-contact-item">
@@ -2364,11 +2459,18 @@
     setTimeout(() => logo.classList.add('in'), 100);
     setTimeout(() => fill.classList.add('go'), 300);
     // Determine page from URL path, then navigate just before loader fades
-    var knownPages = ['about','contact','faq','distributors','catalog'];
-    var pathSlug = window.location.pathname.replace(/^\//, '').split('/')[0];
+    var knownPages = ['about','contact','faq','distributors','catalog','shop','product-page'];
+    var pathParts = window.location.pathname.replace(/^\//, '').split('/');
+    var pathSlug = pathParts[0];
     var initialPage = (pathSlug && knownPages.includes(pathSlug)) ? pathSlug : 'home';
+    var initialHandle = '';
+    var initialCollection = '';
+    if (pathSlug === 'product' && pathParts[1]) { initialPage = 'product-page'; initialHandle = pathParts[1]; }
+    if (pathSlug === 'collection' && pathParts[1]) { initialPage = 'shop'; initialCollection = pathParts[1]; }
     setTimeout(() => {
-      go(initialPage);
+      if (initialHandle) { goProduct(initialHandle); }
+      else if (initialCollection) { nfNavCol(initialCollection); }
+      else { go(initialPage); }
       loader.classList.add('out');
       setTimeout(() => loader.style.display = 'none', 650);
     }, 2600);
@@ -2428,6 +2530,16 @@
       title: 'Brand Ambassador Program | No Fear Motocross',
       desc:  'Apply to become a No Fear Motocross Brand Ambassador. We are looking for action sports athletes, influencers, and lifestyle creators who live the No Fear way.',
       canonical: 'https://nofearmotocross.com/#ambassador'
+    },
+    shop: {
+      title: 'Shop No Fear Motocross | Gear, Apparel & Accessories',
+      desc:  'Shop the full No Fear Motocross collection. Motocross gear sets, gloves, t-shirts, hoodies, hats and accessories. Add to cart and checkout securely.',
+      canonical: 'https://nofearmotocross.com/shop'
+    },
+    'product-page': {
+      title: 'No Fear Motocross | Shop',
+      desc:  'Shop official No Fear Motocross gear, apparel, and accessories.',
+      canonical: 'https://nofearmotocross.com/shop'
     }
   };
 
@@ -2442,6 +2554,7 @@
     el.style.display = page === 'catalog' ? 'flex' : 'block';
     window.scrollTo({ top: 0, behavior: 'instant' });
     if (page === 'catalog') initCatalog();
+    if (page === 'shop' && !window._nfShopLoaded) { window._nfShopLoaded = true; nfShopInit('frontpage'); }
     // Hide footer contact section on the contact page (separate assets)
     var ftContact = document.querySelector('.ft-contact');
     if (ftContact) ftContact.style.display = page === 'contact' ? 'none' : '';
@@ -2462,19 +2575,27 @@
     if (twDescEl) twDescEl.setAttribute('content', meta.desc);
     var canonEl = document.querySelector('link[rel="canonical"]');
     if (canonEl) canonEl.setAttribute('href', meta.canonical);
-    // Update URL — replaceState on initial load, pushState for in-session nav
-    var slug = page === 'home' ? '/' : '/' + page;
-    if (!history.state) {
-      history.replaceState({ page: page }, meta.title, slug);
-    } else {
-      history.pushState({ page: page }, meta.title, slug);
+    // Update URL — skip for product-page (goProduct manages its own URL)
+    if (page !== 'product-page') {
+      var slug = page === 'home' ? '/' : '/' + page;
+      if (!history.state) {
+        history.replaceState({ page: page }, meta.title, slug);
+      } else {
+        history.pushState({ page: page }, meta.title, slug);
+      }
     }
   }
 
   // Handle browser back/forward navigation
   window.addEventListener('popstate', function(e) {
-    var page = (e.state && e.state.page) ? e.state.page : 'home';
-    go(page);
+    var pg = (e.state && e.state.page) ? e.state.page : 'home';
+    if (pg === 'product-page' && e.state && e.state.handle) {
+      goProduct(e.state.handle);
+    } else if (pg === 'shop' && e.state && e.state.collection) {
+      nfNavCol(e.state.collection);
+    } else {
+      go(pg);
+    }
   });
 
   /* CATALOG LOOKBOOK */
@@ -2702,5 +2823,310 @@
     <p><a href="https://www.instagram.com/nofearmotocross">@nofearmotocross on Instagram</a></p>
   </div>
 </noscript>
+
+<!-- Cart toast notification -->
+<div id="nf-cart-toast">
+  <span id="nf-cart-toast-msg">Added to cart</span>
+  <span style="opacity:0.4">|</span>
+  <a onclick="nfGoCheckout()">Checkout</a>
+</div>
+
+<script>
+// ── No Fear Storefront API Shop ──
+var NF_STORE = 'https://nofearmotocross.myshopify.com';
+var NF_COL_LABELS = { frontpage:'All Products', seta:'Gear Sets', gloves:'Gloves', apparel:'T-Shirts & Hoodies', hats:'Hats & Stickers' };
+
+// ── Cart (localStorage + Shopify permalink checkout) ──
+var nfCart = JSON.parse(localStorage.getItem('nf_cart') || '[]');
+
+function nfCartSave() { localStorage.setItem('nf_cart', JSON.stringify(nfCart)); }
+
+function nfCartAdd(variantId, qty, title, price) {
+  variantId = String(variantId);
+  var item = nfCart.find(function(i){ return i.id === variantId; });
+  if (item) { item.qty += qty; } else { nfCart.push({ id: variantId, qty: qty, title: title, price: price }); }
+  nfCartSave();
+  nfBadgeUpdate(nfCart.reduce(function(s, i){ return s + i.qty; }, 0));
+  nfToast('Added to cart');
+}
+
+function nfBadgeUpdate(count) {
+  var el = document.getElementById('nf-cart-badge');
+  if (!el) return;
+  el.textContent = count;
+  el.style.display = count > 0 ? 'flex' : 'none';
+}
+
+function nfToast(msg) {
+  var toast = document.getElementById('nf-cart-toast');
+  var msgEl = document.getElementById('nf-cart-toast-msg');
+  if (!toast) return;
+  if (msgEl) msgEl.textContent = msg;
+  toast.classList.add('show');
+  clearTimeout(window._nfToastT);
+  window._nfToastT = setTimeout(function() { toast.classList.remove('show'); }, 3000);
+}
+
+function nfGoCheckout() {
+  if (!nfCart.length) return;
+  var items = nfCart.map(function(i){ return i.id + ':' + i.qty; }).join(',');
+  window.location.href = NF_STORE + '/cart/' + items;
+}
+
+// ── Product Fetch (public REST API — no token required) ──
+var nfProductsCache = {};
+var nfProdCache = {};
+
+async function nfFetchCollection(handle) {
+  var url = handle === 'frontpage'
+    ? NF_STORE + '/products.json?limit=50'
+    : NF_STORE + '/collections/' + handle + '/products.json?limit=50';
+  try { var r = await fetch(url); var d = await r.json(); return d.products || []; }
+  catch(e) { return []; }
+}
+
+async function nfFetchProduct(handle) {
+  try { var r = await fetch(NF_STORE + '/products/' + handle + '.json'); var d = await r.json(); return d.product || null; }
+  catch(e) { return null; }
+}
+
+// ── Collection / Shop Page ──
+function nfNavCol(handle) {
+  handle = handle || 'frontpage';
+  document.querySelectorAll('.nfshop-tab').forEach(function(t){ t.classList.toggle('active', t.dataset.col === handle); });
+  var sub = document.getElementById('nfshop-hdr-sub');
+  if (sub) sub.textContent = NF_COL_LABELS[handle] || 'All Products';
+  window._nfShopLoaded = true;
+  go('shop');
+  nfShopInit(handle);
+  var slug = handle === 'frontpage' ? '/shop' : '/collection/' + handle;
+  history.pushState({ page: 'shop', collection: handle }, document.title, slug);
+}
+
+async function nfShopInit(handle) {
+  handle = handle || 'frontpage';
+  var grid = document.getElementById('nfshop-grid');
+  if (!grid) return;
+  grid.innerHTML = '<div class="nfshop-loading">Loading...</div>';
+  if (!nfProductsCache[handle]) { nfProductsCache[handle] = await nfFetchCollection(handle); }
+  nfRenderGrid(nfProductsCache[handle]);
+}
+
+function nfShortOptName(name) {
+  var m = name.match(/(\w+)\s*\(Size\)$/i);
+  if (m) return m[1].charAt(0).toUpperCase() + m[1].slice(1).toLowerCase() + ' Size';
+  return name;
+}
+
+function nfRenderGrid(products) {
+  var grid = document.getElementById('nfshop-grid');
+  if (!grid) return;
+  if (!products || !products.length) { grid.innerHTML = '<div class="nfshop-loading">No products found.</div>'; return; }
+  grid.innerHTML = products.map(function(p) {
+    var img = p.images[0] ? p.images[0].src : '';
+    var alt = (p.images[0] && p.images[0].alt) ? p.images[0].alt : p.title;
+    var price = '$' + parseFloat(p.variants[0].price).toFixed(2);
+    var selHtml = p.options.map(function(opt, optIdx) {
+      var key = 'option' + (optIdx + 1);
+      var label = nfShortOptName(opt.name);
+      if (p.options.length === 1) {
+        // Single option: store variant ID as value for fast lookup
+        return '<select class="nfpc-sel" id="nfpc-sel-' + p.handle + '-0">' +
+          opt.values.map(function(v) {
+            var vt = p.variants.find(function(vv){ return vv[key] === v; });
+            var unavail = vt && vt.available === false;
+            return '<option value="' + (vt ? vt.id : '') + '"' + (unavail ? ' disabled' : '') + '>' + v + (unavail ? ' — Sold Out' : '') + '</option>';
+          }).join('') +
+        '</select>';
+      } else {
+        // Multiple options: store option value, resolve variant in nfCardAtc
+        return '<select class="nfpc-sel" id="nfpc-sel-' + p.handle + '-' + optIdx + '">' +
+          '<option value="">— ' + label + ' —</option>' +
+          opt.values.map(function(v) { return '<option value="' + v + '">' + v + '</option>'; }).join('') +
+        '</select>';
+      }
+    }).join('');
+    return '<div class="nfpc" data-handle="' + p.handle + '">' +
+      '<div class="nfpc-img" onclick="goProduct(\'' + p.handle + '\')">' +
+        '<img src="' + img + '" alt="' + alt.replace(/"/g,'&quot;') + '" loading="lazy">' +
+      '</div>' +
+      '<button class="nfpc-name" onclick="goProduct(\'' + p.handle + '\')">' + p.title + '</button>' +
+      '<div class="nfpc-price">' + price + '</div>' +
+      selHtml +
+      '<button class="nfpc-atc" onclick="nfCardAtc(\'' + p.handle + '\')">Add to cart</button>' +
+    '</div>';
+  }).join('');
+}
+
+function nfCardAtc(handle) {
+  var p = null;
+  Object.keys(nfProductsCache).forEach(function(k) {
+    if (!p) p = nfProductsCache[k].find(function(x){ return x.handle === handle; });
+  });
+  if (!p) return;
+  var variantId;
+  if (p.options.length === 1) {
+    var sel0 = document.getElementById('nfpc-sel-' + handle + '-0');
+    variantId = sel0 ? String(sel0.value) : String(p.variants[0].id);
+  } else {
+    var selVals = p.options.map(function(opt, i) {
+      var s = document.getElementById('nfpc-sel-' + handle + '-' + i);
+      return s ? s.value : '';
+    });
+    var match = p.variants.find(function(v) {
+      return p.options.every(function(opt, i) { return !selVals[i] || v['option' + (i+1)] === selVals[i]; });
+    }) || p.variants[0];
+    variantId = String(match.id);
+  }
+  var vt = p.variants.find(function(v){ return String(v.id) === variantId; });
+  if (!vt) return;
+  var btn = document.querySelector('[data-handle="' + handle + '"] .nfpc-atc');
+  if (btn) { btn.textContent = 'Adding…'; btn.disabled = true; }
+  nfCartAdd(variantId, 1, p.title, vt.price);
+  if (btn) { setTimeout(function(){ btn.textContent = 'Add to cart'; btn.disabled = false; }, 400); }
+}
+
+// ── Product Detail Page ──
+var nfProdHandle = '';
+var nfProdSel = {};
+
+async function goProduct(handle) {
+  go('product-page');
+  nfProdHandle = handle;
+  nfProdSel = {};
+  var el = document.getElementById('nfprod-content');
+  if (el) el.innerHTML = '<div class="nfshop-loading" style="padding:80px 0;">Loading…</div>';
+  window.scrollTo({ top: 0, behavior: 'instant' });
+  if (!nfProdCache[handle]) { nfProdCache[handle] = await nfFetchProduct(handle); }
+  var p = nfProdCache[handle];
+  if (!p) { if (el) el.innerHTML = '<div class="nfshop-loading" style="padding:80px 0;">Product not found.</div>'; return; }
+  var ptitle = p.title + ' | No Fear Motocross';
+  document.title = ptitle;
+  history.pushState({ page: 'product-page', handle: handle }, ptitle, '/product/' + handle);
+  nfRenderProduct(p);
+}
+
+function nfRenderProduct(p) {
+  var el = document.getElementById('nfprod-content');
+  if (!el) return;
+  var images = p.images;
+  var variants = p.variants;
+  var price = '$' + parseFloat(variants[0].price).toFixed(2);
+
+  var galleryHtml = '<div class="nfprod-main-img">' +
+    '<img id="nfprod-main-img" src="' + (images[0] ? images[0].src : '') + '" alt="' + ((images[0] && images[0].alt ? images[0].alt : p.title) || '').replace(/"/g,'&quot;') + '">' +
+  '</div>';
+  if (images.length > 1) {
+    galleryHtml += '<div class="nfprod-thumbs">' +
+      images.map(function(img, i) {
+        return '<div class="nfprod-thumb' + (i === 0 ? ' active' : '') + '" onclick="nfProdThumb(\'' + img.src + '\',this)">' +
+          '<img src="' + img.src + '" alt="' + (img.alt || p.title).replace(/"/g,'&quot;') + '">' +
+        '</div>';
+      }).join('') +
+    '</div>';
+  }
+
+  var optsHtml = p.options.map(function(opt, optIdx) {
+    var key = 'option' + (optIdx + 1);
+    return '<div class="nfprod-opt-wrap" data-opt="' + opt.name + '">' +
+      '<div class="nfprod-opt-label">' + opt.name + ': <span class="nfprod-opt-val" id="nfprodval-' + opt.name + '"></span></div>' +
+      '<div class="nfprod-opt-btns">' +
+        opt.values.map(function(v) {
+          var vt = variants.find(function(vv){ return vv[key] === v; });
+          var sold = vt && vt.available === false;
+          return '<button class="nfprod-opt-btn' + (sold ? ' sold-out' : '') + '" data-opt="' + opt.name + '" data-val="' + v + '" onclick="nfProdSelOpt(this)">' + v + '</button>';
+        }).join('') +
+      '</div>' +
+    '</div>';
+  }).join('');
+
+  var descHtml = p.body_html
+    ? '<div class="nfprod-desc"><div class="nfprod-desc-label">Description</div><div class="nfprod-desc-content">' + p.body_html + '</div></div>'
+    : '';
+
+  el.innerHTML =
+    '<button class="nfprod-back" onclick="go(\'shop\')">&#8592; Back to Shop</button>' +
+    '<div class="nfprod-layout">' +
+      '<div>' + galleryHtml + '</div>' +
+      '<div>' +
+        '<div class="nfprod-title">' + p.title + '</div>' +
+        '<div class="nfprod-price" id="nfprod-price">' + price + '</div>' +
+        optsHtml +
+        '<div class="nfprod-qty-row">' +
+          '<select class="nfprod-qty" id="nfprod-qty">' +
+            [1,2,3,4,5].map(function(n){ return '<option value="' + n + '">' + n + '</option>'; }).join('') +
+          '</select>' +
+          '<button class="nfprod-atc-btn" id="nfprod-atc-btn" onclick="nfProdAtc()">Add to cart</button>' +
+        '</div>' +
+        descHtml +
+      '</div>' +
+    '</div>';
+
+  p.options.forEach(function(opt) {
+    var first = el.querySelector('[data-opt="' + opt.name + '"]:not(.sold-out)') ||
+                el.querySelector('[data-opt="' + opt.name + '"]');
+    if (first) nfProdSelOpt(first, true);
+  });
+}
+
+function nfProdThumb(url, el) {
+  var img = document.getElementById('nfprod-main-img');
+  if (img) img.src = url;
+  document.querySelectorAll('.nfprod-thumb').forEach(function(t){ t.classList.remove('active'); });
+  el.classList.add('active');
+}
+
+function nfProdSelOpt(btn, silent) {
+  var opt = btn.dataset.opt;
+  var val = btn.dataset.val;
+  document.querySelectorAll('[data-opt="' + opt + '"].nfprod-opt-btn').forEach(function(b){ b.classList.remove('selected'); });
+  btn.classList.add('selected');
+  nfProdSel[opt] = val;
+  var lbl = document.getElementById('nfprodval-' + opt);
+  if (lbl) lbl.textContent = val;
+  if (!silent) nfProdSyncVariant();
+}
+
+function nfProdSyncVariant() {
+  var p = nfProdCache[nfProdHandle];
+  if (!p) return;
+  var match = p.variants.find(function(v) {
+    return p.options.every(function(opt, i) {
+      var key = 'option' + (i + 1);
+      return !nfProdSel[opt.name] || v[key] === nfProdSel[opt.name];
+    });
+  });
+  if (!match) return;
+  var priceEl = document.getElementById('nfprod-price');
+  if (priceEl) priceEl.textContent = '$' + parseFloat(match.price).toFixed(2);
+  var btn = document.getElementById('nfprod-atc-btn');
+  if (btn) { btn.disabled = match.available === false; btn.textContent = match.available === false ? 'Sold Out' : 'Add to cart'; }
+  if (match.featured_image && match.featured_image.src) {
+    var img = document.getElementById('nfprod-main-img');
+    if (img) img.src = match.featured_image.src;
+  }
+}
+
+function nfProdAtc() {
+  var p = nfProdCache[nfProdHandle];
+  if (!p) return;
+  var match = p.variants.find(function(v) {
+    return p.options.every(function(opt, i) {
+      var key = 'option' + (i + 1);
+      return !nfProdSel[opt.name] || v[key] === nfProdSel[opt.name];
+    });
+  }) || p.variants[0];
+  if (!match || match.available === false) return;
+  var qty = parseInt((document.getElementById('nfprod-qty') || {}).value) || 1;
+  var btn = document.getElementById('nfprod-atc-btn');
+  if (btn) { btn.textContent = 'Adding…'; btn.disabled = true; }
+  nfCartAdd(String(match.id), qty, p.title, match.price);
+  if (btn) { setTimeout(function(){ btn.textContent = 'Add to cart'; btn.disabled = false; }, 400); }
+}
+
+// Init badge on load
+(function(){ var c = nfCart.reduce(function(s,i){ return s+i.qty; },0); if(c>0) nfBadgeUpdate(c); })();
+</script>
+
 </body>
 </html>
