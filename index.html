@@ -3123,9 +3123,7 @@ var nfProductsCache = {};
 var nfProdCache = {};
 
 async function nfFetchCollection(handle) {
-  var url = handle === 'frontpage'
-    ? NF_STORE + '/products.json?limit=50'
-    : NF_STORE + '/collections/' + handle + '/products.json?limit=50';
+  var url = NF_STORE + '/collections/' + handle + '/products.json?limit=50';
   try { var r = await fetch(url); var d = await r.json(); return d.products || []; }
   catch(e) { return []; }
 }
