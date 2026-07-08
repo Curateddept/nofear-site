@@ -220,8 +220,8 @@
   </script>
 
   <meta name="theme-color" content="#ffffff">
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/strip-icon.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="assets/strip-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/strip-icon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/strip-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -1043,7 +1043,7 @@
       align-items: center;
       text-align: center;
       gap: 24px;
-      background: url('assets/images/cta-bg.jpg') center center / cover no-repeat;
+      background: url('/assets/images/cta-bg.jpg') center center / cover no-repeat;
       position: relative;
     }
     .cta-band::before {
@@ -1225,7 +1225,7 @@
     .about-hero {
       width: 100%;
       height: clamp(320px, 55vw, 680px);
-      background: url('assets/images/about-hero.jpg') center 30% / cover no-repeat;
+      background: url('/assets/images/about-hero.jpg') center 30% / cover no-repeat;
       display: block;
     }
 
@@ -1712,12 +1712,12 @@
 
 <!-- ── PASSWORD GATE ── -->
 <div id="gate">
-  <video id="gate-video" autoplay muted loop playsinline preload="none" poster="assets/hero-poster.jpg">
-    <source src="assets/hero-opt.mp4" type="video/mp4">
+  <video id="gate-video" autoplay muted loop playsinline preload="none" poster="/assets/hero-poster.jpg">
+    <source src="/assets/hero-opt.mp4" type="video/mp4">
   </video>
   <div id="gate-overlay"></div>
   <div id="gate-content">
-    <img id="gate-logo" src="assets/nofear-logo.png" alt="No Fear Motocross">
+    <img id="gate-logo" src="/assets/nofear-logo.png" alt="No Fear Motocross">
 
     <p style="font-family:'IBM Plex Mono',monospace; font-size:clamp(18px,3vw,28px); font-weight:300; color:rgba(0,0,0,0.7); letter-spacing:0.02em; margin-bottom:40px;">Clothing — Coming Soon.</p>
 
@@ -1741,7 +1741,7 @@
 <!-- ── LOADER ── -->
 <div id="loader">
   <div class="l-logo" id="lLogo">
-    <img src="assets/nofear-logo.png" alt="No Fear Motocross">
+    <img src="/assets/nofear-logo.png" alt="No Fear Motocross">
   </div>
   <div class="l-bar-wrap">
     <div class="l-bar-fill" id="lFill"></div>
@@ -1770,27 +1770,27 @@
         </div>
         <div class="nav-drop-images">
           <button class="nav-drop-img-item" onclick="nfNavCol('apparel')">
-            <img src="assets/images/tshirts-cover.jpg" alt="T-Shirts & Hoodies" style="object-position:center top;">
+            <img src="/assets/images/tshirts-cover.jpg" alt="T-Shirts & Hoodies" style="object-position:center top;">
             <span class="nav-drop-label">T-SHIRTS & HOODIES</span>
           </button>
           <button class="nav-drop-img-item" onclick="nfNavCol('hats')">
-            <img src="assets/images/hats-accessories-cover.jpg" alt="Hats & Stickers" style="object-position:center top;">
+            <img src="/assets/images/hats-accessories-cover.jpg" alt="Hats & Stickers" style="object-position:center top;">
             <span class="nav-drop-label">HATS & STICKERS</span>
           </button>
           <button class="nav-drop-img-item" onclick="nfNavCol('seta')">
-            <img src="assets/images/gearsets-cover.jpg" alt="Gear Sets">
+            <img src="/assets/images/gearsets-cover.jpg" alt="Gear Sets">
             <span class="nav-drop-label">GEAR SETS</span>
           </button>
           <button class="nav-drop-img-item" onclick="nfNavCol('gloves')">
-            <img src="assets/images/gloves-cover.jpg" alt="Gloves">
+            <img src="/assets/images/gloves-cover.jpg" alt="Gloves">
             <span class="nav-drop-label">GLOVES</span>
           </button>
           <button class="nav-drop-img-item" onclick="goProduct('no-fear-001-elektron-blackout-set')">
-            <img src="assets/images/blackout-001.png" alt="Blackout Set">
+            <img src="/assets/images/blackout-001.png" alt="Blackout Set">
             <span class="nav-drop-label">BLACKOUT</span>
           </button>
           <button class="nav-drop-img-item" onclick="goProduct('no-fear-001-elektron-patriot-set')">
-            <img src="assets/images/patriot-001.png" alt="Patriot Set">
+            <img src="/assets/images/patriot-001.png" alt="Patriot Set">
             <span class="nav-drop-label">PATRIOT</span>
           </button>
         </div>
@@ -1809,7 +1809,7 @@
   </div>
 
   <div class="nav-logo-center" onclick="go('home')">
-    <img src="assets/NoFearWebsiteLogoHeader.jpeg" alt="No Fear Motocross">
+    <img src="/assets/NoFearWebsiteLogoHeader.jpeg" alt="No Fear Motocross">
   </div>
 
   <div class="nav-right">
@@ -1861,12 +1861,12 @@
 
   <!-- Video Hero -->
   <section class="hero">
-    <video id="hero-video" muted loop playsinline preload="none" poster="assets/hero-poster.jpg">
-      <source src="assets/hero-opt.mp4" type="video/mp4">
+    <video id="hero-video" muted loop playsinline preload="none" poster="/assets/hero-poster.jpg">
+      <source src="/assets/hero-opt.mp4" type="video/mp4">
     </video>
     <div class="hero-overlay">
       <div class="hero-logo">
-        <img src="assets/nofear-logo.png" alt="No Fear Motocross">
+        <img src="/assets/nofear-logo.png" alt="No Fear Motocross">
       </div>
       <p class="hero-sub">Motocross — Est. 1989</p>
     </div>
@@ -1875,25 +1875,25 @@
   <!-- Strip -->
   <div class="strip">
     <div class="strip-inner">
-      <span>No Fear</span><span class="strip-icon"><img src="assets/strip-icon.png" alt=""></span>
-      <span>Motocross</span><span class="strip-icon"><img src="assets/strip-icon.png" alt=""></span>
-      <span>Gear Sets</span><span class="strip-icon"><img src="assets/strip-icon.png" alt=""></span>
-      <span>Gloves</span><span class="strip-icon"><img src="assets/strip-icon.png" alt=""></span>
-      <span>Apparel</span><span class="strip-icon"><img src="assets/strip-icon.png" alt=""></span>
-      <span>Est. 1989</span><span class="strip-icon"><img src="assets/strip-icon.png" alt=""></span>
-      <span>No Fear</span><span class="strip-icon"><img src="assets/strip-icon.png" alt=""></span>
-      <span>Motocross</span><span class="strip-icon"><img src="assets/strip-icon.png" alt=""></span>
-      <span>Gear Sets</span><span class="strip-icon"><img src="assets/strip-icon.png" alt=""></span>
-      <span>Gloves</span><span class="strip-icon"><img src="assets/strip-icon.png" alt=""></span>
-      <span>Apparel</span><span class="strip-icon"><img src="assets/strip-icon.png" alt=""></span>
-      <span>Est. 1989</span><span class="strip-icon"><img src="assets/strip-icon.png" alt=""></span>
+      <span>No Fear</span><span class="strip-icon"><img src="/assets/strip-icon.png" alt=""></span>
+      <span>Motocross</span><span class="strip-icon"><img src="/assets/strip-icon.png" alt=""></span>
+      <span>Gear Sets</span><span class="strip-icon"><img src="/assets/strip-icon.png" alt=""></span>
+      <span>Gloves</span><span class="strip-icon"><img src="/assets/strip-icon.png" alt=""></span>
+      <span>Apparel</span><span class="strip-icon"><img src="/assets/strip-icon.png" alt=""></span>
+      <span>Est. 1989</span><span class="strip-icon"><img src="/assets/strip-icon.png" alt=""></span>
+      <span>No Fear</span><span class="strip-icon"><img src="/assets/strip-icon.png" alt=""></span>
+      <span>Motocross</span><span class="strip-icon"><img src="/assets/strip-icon.png" alt=""></span>
+      <span>Gear Sets</span><span class="strip-icon"><img src="/assets/strip-icon.png" alt=""></span>
+      <span>Gloves</span><span class="strip-icon"><img src="/assets/strip-icon.png" alt=""></span>
+      <span>Apparel</span><span class="strip-icon"><img src="/assets/strip-icon.png" alt=""></span>
+      <span>Est. 1989</span><span class="strip-icon"><img src="/assets/strip-icon.png" alt=""></span>
     </div>
   </div>
 
   <!-- Categories editorial grid -->
   <div class="editorial-grid">
     <div class="ed-cell" onclick="nfNavCol('apparel')" style="cursor:pointer;">
-      <img src="assets/images/apparel-cover.jpg" alt="No Fear Apparel — T-Shirts & Hoodies" loading="lazy" style="object-position:center top;">
+      <img src="/assets/images/apparel-cover.jpg" alt="No Fear Apparel — T-Shirts & Hoodies" loading="lazy" style="object-position:center top;">
       <div class="ed-label">
         <div class="ed-label-name">Apparel</div>
         <span class="ed-label-sub">T-Shirts, Hoodies & More</span>
@@ -1902,7 +1902,7 @@
     </div>
     <div class="ed-cell" onclick="nfNavCol('hats')" style="cursor:pointer;">
       <div class="ed-img-clip">
-        <img src="assets/images/hats-cover.jpg" alt="No Fear Hats & Stickers" loading="lazy" class="ed-hat-img">
+        <img src="/assets/images/hats-cover.jpg" alt="No Fear Hats & Stickers" loading="lazy" class="ed-hat-img">
       </div>
       <div class="ed-label">
         <div class="ed-label-name">Hats & Stickers</div>
@@ -1911,7 +1911,7 @@
       </div>
     </div>
     <div class="ed-cell" onclick="nfNavCol('seta')" style="cursor:pointer; border-right:none;">
-      <img src="assets/images/gearsets-cover.jpg" alt="No Fear Motocross Gear" loading="lazy" style="object-position:center center;">
+      <img src="/assets/images/gearsets-cover.jpg" alt="No Fear Motocross Gear" loading="lazy" style="object-position:center center;">
       <div class="ed-label">
         <div class="ed-label-name">Motocross Gear</div>
         <span class="ed-label-sub">Gear sets, gloves & more</span>
@@ -1923,10 +1923,10 @@
   <!-- McGrath Banner -->
   <a href="#" onclick="nfNavCol('seta'); return false;" style="display:block;">
   <div class="mcgrath-banner">
-    <img class="banner-bg" src="assets/images/mcgrath-banner.jpg" alt="Jeremy McGrath" loading="lazy">
+    <img class="banner-bg" src="/assets/images/mcgrath-banner.jpg" alt="Jeremy McGrath" loading="lazy">
     <div class="banner-icon-strip">
       <div class="banner-icon-inner">
-        <img src="assets/strip-icon.png" alt=""><img src="assets/strip-icon.png" alt=""><img src="assets/strip-icon.png" alt=""><img src="assets/strip-icon.png" alt=""><img src="assets/strip-icon.png" alt=""><img src="assets/strip-icon.png" alt=""><img src="assets/strip-icon.png" alt=""><img src="assets/strip-icon.png" alt=""><img src="assets/strip-icon.png" alt=""><img src="assets/strip-icon.png" alt=""><img src="assets/strip-icon.png" alt=""><img src="assets/strip-icon.png" alt=""><img src="assets/strip-icon.png" alt=""><img src="assets/strip-icon.png" alt=""><img src="assets/strip-icon.png" alt=""><img src="assets/strip-icon.png" alt=""><img src="assets/strip-icon.png" alt=""><img src="assets/strip-icon.png" alt=""><img src="assets/strip-icon.png" alt=""><img src="assets/strip-icon.png" alt=""><img src="assets/strip-icon.png" alt=""><img src="assets/strip-icon.png" alt=""><img src="assets/strip-icon.png" alt=""><img src="assets/strip-icon.png" alt=""><img src="assets/strip-icon.png" alt=""><img src="assets/strip-icon.png" alt=""><img src="assets/strip-icon.png" alt=""><img src="assets/strip-icon.png" alt=""><img src="assets/strip-icon.png" alt=""><img src="assets/strip-icon.png" alt="">
+        <img src="/assets/strip-icon.png" alt=""><img src="/assets/strip-icon.png" alt=""><img src="/assets/strip-icon.png" alt=""><img src="/assets/strip-icon.png" alt=""><img src="/assets/strip-icon.png" alt=""><img src="/assets/strip-icon.png" alt=""><img src="/assets/strip-icon.png" alt=""><img src="/assets/strip-icon.png" alt=""><img src="/assets/strip-icon.png" alt=""><img src="/assets/strip-icon.png" alt=""><img src="/assets/strip-icon.png" alt=""><img src="/assets/strip-icon.png" alt=""><img src="/assets/strip-icon.png" alt=""><img src="/assets/strip-icon.png" alt=""><img src="/assets/strip-icon.png" alt=""><img src="/assets/strip-icon.png" alt=""><img src="/assets/strip-icon.png" alt=""><img src="/assets/strip-icon.png" alt=""><img src="/assets/strip-icon.png" alt=""><img src="/assets/strip-icon.png" alt=""><img src="/assets/strip-icon.png" alt=""><img src="/assets/strip-icon.png" alt=""><img src="/assets/strip-icon.png" alt=""><img src="/assets/strip-icon.png" alt=""><img src="/assets/strip-icon.png" alt=""><img src="/assets/strip-icon.png" alt=""><img src="/assets/strip-icon.png" alt=""><img src="/assets/strip-icon.png" alt=""><img src="/assets/strip-icon.png" alt=""><img src="/assets/strip-icon.png" alt="">
       </div>
     </div>
   </div>
@@ -1941,7 +1941,7 @@
   <div class="collections-grid">
     <div class="collection-cell" onclick="nfNavCol('apparel')" style="cursor:pointer;">
       <div class="collection-img-wrap">
-        <img src="assets/images/4july-cell1.jpg" alt="No Fear 4th of July Capsule" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;">
+        <img src="/assets/images/4july-cell1.jpg" alt="No Fear 4th of July Capsule" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;">
       </div>
       <div class="collection-label">
         <span class="collection-name">These Colors Don't Run</span>
@@ -1950,7 +1950,7 @@
     </div>
     <div class="collection-cell" onclick="nfNavCol('apparel')" style="cursor:pointer; border-right:none;">
       <div class="collection-img-wrap">
-        <img src="assets/images/4july-cell2.jpg" alt="No Fear 4th of July Capsule" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;">
+        <img src="/assets/images/4july-cell2.jpg" alt="No Fear 4th of July Capsule" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;">
       </div>
       <div class="collection-label">
         <span class="collection-name">4th of July Capsule</span>
@@ -1968,10 +1968,10 @@
   <div class="collections-grid">
     <div class="collection-cell" onclick="nfNavCol('apparel')" style="cursor:pointer;">
       <div class="collection-img-wrap collection-cycle collection-cycle-4">
-        <img class="cycle-img" src="assets/images/tshirts-product.png" alt="No Fear T-Shirts — Nostalgia" loading="lazy">
-        <img class="cycle-img" src="assets/images/tshirts-product2.png" alt="No Fear T-Shirts — Carnage" loading="lazy">
-        <img class="cycle-img" src="assets/images/tshirts-product3.png" alt="No Fear T-Shirts — Dangerous Blue" loading="lazy">
-        <img class="cycle-img" src="assets/images/hoodie-product.png" alt="No Fear Hoodie — Black" loading="lazy">
+        <img class="cycle-img" src="/assets/images/tshirts-product.png" alt="No Fear T-Shirts — Nostalgia" loading="lazy">
+        <img class="cycle-img" src="/assets/images/tshirts-product2.png" alt="No Fear T-Shirts — Carnage" loading="lazy">
+        <img class="cycle-img" src="/assets/images/tshirts-product3.png" alt="No Fear T-Shirts — Dangerous Blue" loading="lazy">
+        <img class="cycle-img" src="/assets/images/hoodie-product.png" alt="No Fear Hoodie — Black" loading="lazy">
       </div>
       <div class="collection-label">
         <span class="collection-name">No Fear T-Shirts & Hoodies</span>
@@ -1980,9 +1980,9 @@
     </div>
     <div class="collection-cell" onclick="nfNavCol('hats')" style="cursor:pointer; border-right:none;">
       <div class="collection-img-wrap collection-cycle">
-        <img class="cycle-img" src="assets/images/hat-product.png" alt="No Fear Flatbill Black" loading="lazy">
-        <img class="cycle-img" src="assets/images/hat-product2.png" alt="No Fear Flatbill Grey & Black" loading="lazy">
-        <img class="cycle-img" src="assets/images/hat-product3.png" alt="No Fear Trucker Black" loading="lazy">
+        <img class="cycle-img" src="/assets/images/hat-product.png" alt="No Fear Flatbill Black" loading="lazy">
+        <img class="cycle-img" src="/assets/images/hat-product2.png" alt="No Fear Flatbill Grey & Black" loading="lazy">
+        <img class="cycle-img" src="/assets/images/hat-product3.png" alt="No Fear Trucker Black" loading="lazy">
       </div>
       <div class="collection-label">
         <span class="collection-name">No Fear Hats & Stickers</span>
@@ -1991,7 +1991,7 @@
     </div>
     <div class="collection-cell" onclick="goProduct('no-fear-001-elektron-blackout-set')" style="cursor:pointer;">
       <div class="collection-img-wrap">
-        <img src="assets/images/blackout-001.png" alt="No Fear 001 Elektron Blackout Motocross Gear Set — Jersey and Pant" loading="lazy">
+        <img src="/assets/images/blackout-001.png" alt="No Fear 001 Elektron Blackout Motocross Gear Set — Jersey and Pant" loading="lazy">
       </div>
       <div class="collection-label">
         <span class="collection-name">No Fear 001 — Elektron Blackout Set</span>
@@ -2000,7 +2000,7 @@
     </div>
     <div class="collection-cell" onclick="goProduct('no-fear-001-elektron-patriot-set')" style="cursor:pointer; border-right:none;">
       <div class="collection-img-wrap">
-        <img src="assets/images/patriot-001.png" alt="No Fear 001 Elektron Patriot Motocross Gear Set — Jersey and Pant" loading="lazy">
+        <img src="/assets/images/patriot-001.png" alt="No Fear 001 Elektron Patriot Motocross Gear Set — Jersey and Pant" loading="lazy">
       </div>
       <div class="collection-label">
         <span class="collection-name">No Fear 001 — Elektron Patriot Set</span>
@@ -2272,7 +2272,7 @@
 
 <div id="contact" class="page">
   <div class="contact-banner">
-    <img src="assets/images/contact-banner.jpg" alt="No Fear Motocross" loading="lazy">
+    <img src="/assets/images/contact-banner.jpg" alt="No Fear Motocross" loading="lazy">
   </div>
   <div class="contact-grid">
     <div class="contact-left">
@@ -2312,74 +2312,74 @@
     <button class="catalog-nav-btn prev" id="catPrev" onclick="catalogNav(-1)">←</button>
 
     <div class="catalog-slide active" data-cap="No Fear — The Rack">
-      <img src="assets/images/catalog/ls01.jpg" alt="No Fear lifestyle — apparel rack" loading="lazy">
+      <img src="/assets/images/catalog/ls01.jpg" alt="No Fear lifestyle — apparel rack" loading="lazy">
     </div>
     <div class="catalog-slide" data-cap="No Fear — Barn Session">
-      <img src="assets/images/catalog/ls02.jpg" alt="No Fear lifestyle — barn session" loading="lazy">
+      <img src="/assets/images/catalog/ls02.jpg" alt="No Fear lifestyle — barn session" loading="lazy">
     </div>
     <div class="catalog-slide" data-cap="No Fear — Does Not Play Well">
-      <img src="assets/images/catalog/ls03.jpg" alt="No Fear lifestyle — does not play well with others tee" loading="lazy">
+      <img src="/assets/images/catalog/ls03.jpg" alt="No Fear lifestyle — does not play well with others tee" loading="lazy">
     </div>
     <div class="catalog-slide" data-cap="No Fear — Two Up">
-      <img src="assets/images/catalog/ls04.jpg" alt="No Fear lifestyle — two up on the Honda" loading="lazy">
+      <img src="/assets/images/catalog/ls04.jpg" alt="No Fear lifestyle — two up on the Honda" loading="lazy">
     </div>
     <div class="catalog-slide" data-cap="No Fear — Wooden Structure">
-      <img src="assets/images/catalog/ls05.jpg" alt="No Fear lifestyle — black tee at wooden structure" loading="lazy">
+      <img src="/assets/images/catalog/ls05.jpg" alt="No Fear lifestyle — black tee at wooden structure" loading="lazy">
     </div>
     <div class="catalog-slide" data-cap="No Fear — Hats On The Bike">
-      <img src="assets/images/catalog/ls06.jpg" alt="No Fear lifestyle — hats on the bike" loading="lazy">
+      <img src="/assets/images/catalog/ls06.jpg" alt="No Fear lifestyle — hats on the bike" loading="lazy">
     </div>
     <div class="catalog-slide" data-cap="No Fear — Cap & Tee">
-      <img src="assets/images/catalog/ls07.jpg" alt="No Fear lifestyle — cap and tee portrait" loading="lazy">
+      <img src="/assets/images/catalog/ls07.jpg" alt="No Fear lifestyle — cap and tee portrait" loading="lazy">
     </div>
 
     <div class="catalog-slide" data-cap="001 Patriot — On The Bike">
-      <img src="assets/images/catalog/01.jpg" alt="No Fear 001 Patriot motocross gear set — on the bike" loading="lazy">
+      <img src="/assets/images/catalog/01.jpg" alt="No Fear 001 Patriot motocross gear set — on the bike" loading="lazy">
     </div>
     <div class="catalog-slide" data-cap="001 Patriot — Golden Hour">
-      <img src="assets/images/catalog/02.jpg" alt="No Fear 001 Patriot motocross jersey and pants — golden hour" loading="lazy">
+      <img src="/assets/images/catalog/02.jpg" alt="No Fear 001 Patriot motocross jersey and pants — golden hour" loading="lazy">
     </div>
     <div class="catalog-slide" data-cap="001 Patriot Gloves — Detail">
-      <img src="assets/images/catalog/03.jpg" alt="No Fear 001 Patriot motocross gloves — detail shot" loading="lazy">
+      <img src="/assets/images/catalog/03.jpg" alt="No Fear 001 Patriot motocross gloves — detail shot" loading="lazy">
     </div>
     <div class="catalog-slide" data-cap="001 Blackout — In The Field">
-      <img src="assets/images/catalog/04.jpg" alt="No Fear 001 Blackout motocross gear set — in the field" loading="lazy">
+      <img src="/assets/images/catalog/04.jpg" alt="No Fear 001 Blackout motocross gear set — in the field" loading="lazy">
     </div>
     <div class="catalog-slide" data-cap="Two Riders — Night Session">
-      <img src="assets/images/catalog/05.jpg" alt="Two riders in No Fear motocross gear — night session" loading="lazy">
+      <img src="/assets/images/catalog/05.jpg" alt="Two riders in No Fear motocross gear — night session" loading="lazy">
     </div>
     <div class="catalog-slide" data-cap="001 Patriot — Motion">
-      <img src="assets/images/catalog/06.jpg" alt="No Fear 001 Patriot motocross gear in motion" loading="lazy">
+      <img src="/assets/images/catalog/06.jpg" alt="No Fear 001 Patriot motocross gear in motion" loading="lazy">
     </div>
     <div class="catalog-slide" data-cap="Whip — Palm Springs">
-      <img src="assets/images/catalog/08.jpg" alt="Motocross whip in No Fear gear — Palm Springs" loading="lazy">
+      <img src="/assets/images/catalog/08.jpg" alt="Motocross whip in No Fear gear — Palm Springs" loading="lazy">
     </div>
     <div class="catalog-slide" data-cap="001 Patriot — On The Hill">
-      <img src="assets/images/catalog/09.jpg" alt="No Fear 001 Patriot rider on the hill" loading="lazy">
+      <img src="/assets/images/catalog/09.jpg" alt="No Fear 001 Patriot rider on the hill" loading="lazy">
     </div>
     <div class="catalog-slide" data-cap="Both Colorways — The Hill">
-      <img src="assets/images/catalog/10.jpg" alt="No Fear 001 Patriot and Blackout colorways on the hill" loading="lazy">
+      <img src="/assets/images/catalog/10.jpg" alt="No Fear 001 Patriot and Blackout colorways on the hill" loading="lazy">
     </div>
     <div class="catalog-slide" data-cap="001 Patriot — Full Send">
-      <img src="assets/images/catalog/11.jpg" alt="No Fear 001 Patriot motocross rider full send" loading="lazy">
+      <img src="/assets/images/catalog/11.jpg" alt="No Fear 001 Patriot motocross rider full send" loading="lazy">
     </div>
     <div class="catalog-slide" data-cap="001 Patriot — Honda CRF">
-      <img src="assets/images/catalog/12.jpg" alt="No Fear 001 Patriot rider on Honda CRF motocross bike" loading="lazy">
+      <img src="/assets/images/catalog/12.jpg" alt="No Fear 001 Patriot rider on Honda CRF motocross bike" loading="lazy">
     </div>
     <div class="catalog-slide" data-cap="001 Blackout — Low & Fast">
-      <img src="assets/images/catalog/13.jpg" alt="No Fear 001 Blackout motocross gear — low and fast" loading="lazy">
+      <img src="/assets/images/catalog/13.jpg" alt="No Fear 001 Blackout motocross gear — low and fast" loading="lazy">
     </div>
     <div class="catalog-slide" data-cap="001 Blackout — Berm">
-      <img src="assets/images/catalog/14.jpg" alt="No Fear 001 Blackout rider hitting a berm" loading="lazy">
+      <img src="/assets/images/catalog/14.jpg" alt="No Fear 001 Blackout rider hitting a berm" loading="lazy">
     </div>
     <div class="catalog-slide" data-cap="Both Colorways — Head On">
-      <img src="assets/images/catalog/15.jpg" alt="No Fear 001 Patriot and Blackout gear sets head on" loading="lazy">
+      <img src="/assets/images/catalog/15.jpg" alt="No Fear 001 Patriot and Blackout gear sets head on" loading="lazy">
     </div>
     <div class="catalog-slide" data-cap="001 Patriot & Blackout — Golden Hour">
-      <img src="assets/images/catalog/16.jpg" alt="No Fear 001 Patriot and Blackout motocross sets — golden hour" loading="lazy">
+      <img src="/assets/images/catalog/16.jpg" alt="No Fear 001 Patriot and Blackout motocross sets — golden hour" loading="lazy">
     </div>
     <div class="catalog-slide" data-cap="001 Patriot — Sunset Field">
-      <img src="assets/images/catalog/17.jpg" alt="No Fear 001 Patriot motocross rider in sunset field" loading="lazy">
+      <img src="/assets/images/catalog/17.jpg" alt="No Fear 001 Patriot motocross rider in sunset field" loading="lazy">
     </div>
 
     <button class="catalog-nav-btn next" id="catNext" onclick="catalogNav(1)">→</button>
