@@ -1705,6 +1705,11 @@
     .nav-cart-btn { background:none; border:none; cursor:pointer; padding:4px 6px; display:flex; align-items:center; justify-content:center; color:#000; opacity:0.85; }
     .nav-cart-btn:hover { opacity:1; }
     #nf-cart-badge { position:absolute; top:-5px; right:-4px; background:#000; color:#fff; font-family:'IBM Plex Mono',monospace; font-size:8px; font-weight:700; min-width:16px; height:16px; border-radius:8px; display:none; align-items:center; justify-content:center; padding:0 4px; pointer-events:none; border:2px solid #fff; }
+    /* ── Region toggle ── */
+    .nf-region-toggle { display:inline-flex; align-items:center; gap:2px; background:#f0f0f0; border-radius:4px; padding:2px; }
+    .nf-region-btn { background:none; border:none; cursor:pointer; font-family:'IBM Plex Mono',monospace; font-size:10px; font-weight:600; letter-spacing:0.05em; padding:4px 8px; border-radius:3px; color:#666; white-space:nowrap; transition:background 0.15s, color 0.15s; }
+    .nf-region-btn.active { background:#000; color:#fff; }
+    .nf-region-btn:not(.active):hover { background:#ddd; color:#000; }
   </style>
   <script defer src="/_vercel/insights/script.js"></script>
 </head>
@@ -1813,7 +1818,10 @@
   </div>
 
   <div class="nav-right">
-    <span class="nav-item nav-availability" style="cursor:default;">🇬🇧 🇺🇸 <span class="nav-avail-text">UK &amp; USA — Online Only</span></span>
+    <div class="nf-region-toggle nav-item" id="nfRegionToggle">
+      <button class="nf-region-btn" id="nfRegBtnUS" onclick="nfSetRegion('us')">🇺🇸 US</button>
+      <button class="nf-region-btn" id="nfRegBtnUK" onclick="nfSetRegion('uk')">🇬🇧 UK</button>
+    </div>
     <button class="nav-item" onclick="go('shop')">Shop</button>
     <span class="nf-cart-nav-wrap">
       <button class="nav-cart-btn" onclick="nfGoCheckout()" aria-label="Cart">
@@ -1846,6 +1854,12 @@
     <button class="mobile-menu-link" onclick="go('catalog'); closeMobileMenu()">NoFear 001 Lookbook</button>
     <button class="mobile-menu-link" onclick="go('faq'); closeMobileMenu()">FAQ</button>
     <button class="mobile-menu-link" onclick="go('distributors'); closeMobileMenu()">International Distributors</button>
+  </div>
+  <div style="padding:16px 0 8px; display:flex; justify-content:center;">
+    <div class="nf-region-toggle" id="nfRegionToggleMobile">
+      <button class="nf-region-btn" id="nfRegBtnUSM" onclick="nfSetRegion('us')">🇺🇸 US</button>
+      <button class="nf-region-btn" id="nfRegBtnUKM" onclick="nfSetRegion('uk')">🇬🇧 UK</button>
+    </div>
   </div>
   <div class="mobile-menu-sub">
     <a href="https://nofearmotocross.myshopify.com/policies/privacy-policy" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
@@ -2844,6 +2858,43 @@
 var NF_STORE = 'https://nofearmotocross.myshopify.com';
 var NF_COL_LABELS = { frontpage:'All Products', seta:'Gear Sets', gloves:'Gloves', apparel:'T-Shirts & Hoodies', hats:'Hats & Stickers' };
 
+// ── Region / Currency ──
+var NF_GBP_RATE = 0.79; // update when rate changes
+var nfRegion = localStorage.getItem('nf_region') || 'us';
+
+function nfFormatPrice(usdVal) {
+  var n = parseFloat(usdVal);
+  if (nfRegion === 'uk') return '£' + (n * NF_GBP_RATE).toFixed(2);
+  return '$' + n.toFixed(2);
+}
+
+function nfSetRegion(r) {
+  nfRegion = r;
+  localStorage.setItem('nf_region', r);
+  ['US','UK'].forEach(function(k) {
+    var btn  = document.getElementById('nfRegBtn' + k);
+    var btnM = document.getElementById('nfRegBtn' + k + 'M');
+    var active = k.toLowerCase() === r;
+    if (btn)  btn.classList.toggle('active', active);
+    if (btnM) btnM.classList.toggle('active', active);
+  });
+  // Re-render shop grid if visible
+  var grid = document.getElementById('nfshop-grid');
+  if (grid && grid.children.length) {
+    var cur = window._nfCurrentCollection || 'frontpage';
+    if (nfProductsCache[cur]) nfRenderGrid(nfProductsCache[cur]);
+  }
+  // Re-render product price if visible
+  var priceEl = document.getElementById('nfprod-price');
+  if (priceEl && nfProdHandle && nfProdCache[nfProdHandle]) {
+    var p = nfProdCache[nfProdHandle];
+    var match = p.variants.find(function(v) {
+      return p.options.every(function(opt, i) { return !nfProdSel[opt.name] || v['option'+(i+1)] === nfProdSel[opt.name]; });
+    }) || p.variants[0];
+    if (match) priceEl.textContent = nfFormatPrice(match.price);
+  }
+}
+
 // ── Cart (localStorage + Shopify permalink checkout) ──
 var nfCart = JSON.parse(localStorage.getItem('nf_cart') || '[]');
 
@@ -2878,7 +2929,9 @@ function nfToast(msg) {
 function nfGoCheckout() {
   if (!nfCart.length) return;
   var items = nfCart.map(function(i){ return i.id + ':' + i.qty; }).join(',');
-  window.location.href = NF_STORE + '/cart/' + items;
+  var url = NF_STORE + '/cart/' + items;
+  if (nfRegion === 'uk') url += '?currency=GBP';
+  window.location.href = url;
 }
 
 // ── Product Fetch (public REST API — no token required) ──
@@ -2913,6 +2966,7 @@ function nfNavCol(handle) {
 
 async function nfShopInit(handle) {
   handle = handle || 'frontpage';
+  window._nfCurrentCollection = handle;
   var grid = document.getElementById('nfshop-grid');
   if (!grid) return;
   grid.innerHTML = '<div class="nfshop-loading">Loading...</div>';
@@ -2933,7 +2987,7 @@ function nfRenderGrid(products) {
   grid.innerHTML = products.map(function(p) {
     var img = p.images[0] ? p.images[0].src : '';
     var alt = (p.images[0] && p.images[0].alt) ? p.images[0].alt : p.title;
-    var price = '$' + parseFloat(p.variants[0].price).toFixed(2);
+    var price = nfFormatPrice(p.variants[0].price);
     var selHtml = p.options.map(function(opt, optIdx) {
       var key = 'option' + (optIdx + 1);
       var label = nfShortOptName(opt.name);
@@ -3019,7 +3073,7 @@ function nfRenderProduct(p) {
   if (!el) return;
   var images = p.images;
   var variants = p.variants;
-  var price = '$' + parseFloat(variants[0].price).toFixed(2);
+  var price = nfFormatPrice(variants[0].price);
 
   var galleryHtml = '<div class="nfprod-main-img">' +
     '<img id="nfprod-main-img" src="' + (images[0] ? images[0].src : '') + '" alt="' + ((images[0] && images[0].alt ? images[0].alt : p.title) || '').replace(/"/g,'&quot;') + '">' +
@@ -3106,7 +3160,7 @@ function nfProdSyncVariant() {
   });
   if (!match) return;
   var priceEl = document.getElementById('nfprod-price');
-  if (priceEl) priceEl.textContent = '$' + parseFloat(match.price).toFixed(2);
+  if (priceEl) priceEl.textContent = nfFormatPrice(match.price);
   var btn = document.getElementById('nfprod-atc-btn');
   if (btn) { btn.disabled = match.available === false; btn.textContent = match.available === false ? 'Sold Out' : 'Add to cart'; }
   if (match.featured_image && match.featured_image.src) {
@@ -3134,6 +3188,8 @@ function nfProdAtc() {
 
 // Init badge on load
 (function(){ var c = nfCart.reduce(function(s,i){ return s+i.qty; },0); if(c>0) nfBadgeUpdate(c); })();
+// Init region toggle active state
+(function(){ nfSetRegion(nfRegion); })();
 </script>
 
 </body>
