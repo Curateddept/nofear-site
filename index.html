@@ -1397,6 +1397,25 @@
     .f-ta { resize: none; height: 88px; }
     select.f-in { appearance: none; -webkit-appearance: none; cursor: pointer; }
 
+    /* Dealer application — interest radio pills */
+    .dealer-int-opts { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+    .dealer-int-opt { cursor: pointer; }
+    .dealer-int-opt input { position: absolute; opacity: 0; pointer-events: none; }
+    .dealer-int-opt span {
+      display: inline-block;
+      border: 1px solid #ccc;
+      background: #fff;
+      padding: 10px 18px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #000;
+      transition: all 0.15s;
+    }
+    .dealer-int-opt:hover span { border-color: #000; }
+    .dealer-int-opt input:checked + span { background: #000; color: #fff; border-color: #000; }
+
     /* BRAND + CONTACT SPLIT */
     .brand-contact-grid {
       display: grid;
@@ -1870,6 +1889,7 @@
     </div>
     <button class="nav-item" onclick="go('about')">About</button>
     <button class="nav-item" onclick="go('contact')">Contact</button>
+    <button class="nav-item" onclick="go('dealers')">Dealers</button>
     <div class="nav-item" style="cursor:pointer;">
       <span onclick="go('faq')">FAQ</span>
       <div class="nav-dropdown" style="min-width:220px; grid-template-columns:1fr;" onclick="event.stopPropagation()">
@@ -1917,6 +1937,7 @@
 
     <button class="mobile-menu-link" onclick="go('about'); closeMobileMenu()">About</button>
     <button class="mobile-menu-link" onclick="go('contact'); closeMobileMenu()">Contact</button>
+    <button class="mobile-menu-link" onclick="go('dealers'); closeMobileMenu()">Dealer Applications</button>
 
     <button class="mobile-menu-link" onclick="go('catalog'); closeMobileMenu()">NoFear 001 Lookbook</button>
     <button class="mobile-menu-link" onclick="go('faq'); closeMobileMenu()">FAQ</button>
@@ -2378,6 +2399,36 @@
 </div>
 
 
+<div id="dealers" class="page">
+  <div style="border-top:1px solid #e8e8e8; padding: 80px 48px 100px; max-width: 760px;">
+    <p style="font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:300; color:#999; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:24px;">Wholesale</p>
+    <h1 style="font-family:'IBM Plex Mono',monospace; font-size:clamp(28px,4vw,48px); font-weight:300; letter-spacing:-0.02em; line-height:1.15; margin-bottom:32px;">Dealer<br>Applications.</h1>
+    <p style="font-family:'IBM Plex Mono',monospace; font-size:14px; font-weight:300; line-height:1.9; color:#333; margin-bottom:20px;">Interested in carrying No Fear Motocross in your shop? We're partnering with dealers across the country for both our motocross gear line and apparel.</p>
+    <p style="font-family:'IBM Plex Mono',monospace; font-size:14px; font-weight:300; line-height:1.9; color:#333; margin-bottom:56px;">Fill out the form below and our wholesale team will get back to you directly.</p>
+
+    <form onsubmit="handleDealerSubmit(event)" style="display:flex; flex-direction:column; gap:32px; max-width:560px;">
+      <input type="hidden" name="_subject" value="New Dealer Application — No Fear Motocross">
+      <input type="hidden" name="form_type" value="Dealer Application">
+      <div class="f-row"><label class="f-lbl">Rep Name</label><input class="f-in" type="text" name="rep_name" required placeholder="Your name"></div>
+      <div class="f-row"><label class="f-lbl">Phone Number</label><input class="f-in" type="tel" name="phone" required placeholder="Your number"></div>
+      <div class="f-row"><label class="f-lbl">Email</label><input class="f-in" type="email" name="email" required placeholder="your@email.com"></div>
+      <div class="f-row"><label class="f-lbl">Dealer Name</label><input class="f-in" type="text" name="dealer_name" required placeholder="Shop / dealership name"></div>
+      <div class="f-row">
+        <label class="f-lbl">Interested In</label>
+        <div class="dealer-int-opts">
+          <label class="dealer-int-opt"><input type="radio" name="interested_in" value="Merch" required><span>Merch</span></label>
+          <label class="dealer-int-opt"><input type="radio" name="interested_in" value="Motocross Gear"><span>Motocross Gear</span></label>
+          <label class="dealer-int-opt"><input type="radio" name="interested_in" value="Both"><span>Both</span></label>
+        </div>
+      </div>
+      <div>
+        <button type="submit" class="f-submit" style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; background:#000; color:#fff; border:none; padding:16px 40px; cursor:pointer;">Submit Application</button>
+        <p id="dealer-success" style="display:none; margin-top:16px; font-family:'IBM Plex Mono',monospace; font-size:13px; color:#555;">Thanks — our wholesale team will be in touch.</p>
+      </div>
+    </form>
+  </div>
+</div>
+
 <div id="contact" class="page">
   <div class="contact-banner">
     <img src="/assets/images/contact-banner.jpg" alt="No Fear Motocross" loading="lazy">
@@ -2575,7 +2626,7 @@
     setTimeout(() => logo.classList.add('in'), 100);
     setTimeout(() => fill.classList.add('go'), 300);
     // Determine page from URL path, then navigate just before loader fades
-    var knownPages = ['about','contact','faq','distributors','catalog','shop','product-page'];
+    var knownPages = ['about','contact','faq','distributors','dealers','ambassador','catalog','shop','product-page'];
     var pathParts = window.location.pathname.replace(/^\//, '').split('/');
     var pathSlug = pathParts[0];
     var initialPage = (pathSlug && knownPages.includes(pathSlug)) ? pathSlug : 'home';
@@ -2641,6 +2692,11 @@
       title: 'International Distributors | No Fear Motocross',
       desc:  'Find official No Fear Motocross distributors outside the United States. Contact our global distribution partners for international orders.',
       canonical: 'https://nofearmotocross.com/#distributors'
+    },
+    dealers: {
+      title: 'Dealer Applications | No Fear Motocross Wholesale',
+      desc:  'Apply to become an authorized No Fear Motocross dealer. Carry official No Fear motocross gear and apparel in your shop — submit a wholesale dealer application today.',
+      canonical: 'https://nofearmotocross.com/dealers'
     },
     ambassador: {
       title: 'Brand Ambassador Program | No Fear Motocross',
@@ -2795,6 +2851,32 @@
         btn.textContent = 'Submitted ✓';
         e.target.reset();
         document.getElementById('amb-success').style.display = 'block';
+        setTimeout(() => { btn.textContent = 'Submit Application'; btn.disabled = false; }, 4000);
+      } else {
+        btn.textContent = 'Error — try again';
+        btn.disabled = false;
+      }
+    } catch {
+      btn.textContent = 'Error — try again';
+      btn.disabled = false;
+    }
+  }
+
+  async function handleDealerSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('button[type="submit"]');
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+    try {
+      const res = await fetch('https://formspree.io/f/meendypv', {
+        method: 'POST',
+        body: new FormData(e.target),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        btn.textContent = 'Submitted ✓';
+        e.target.reset();
+        document.getElementById('dealer-success').style.display = 'block';
         setTimeout(() => { btn.textContent = 'Submit Application'; btn.disabled = false; }, 4000);
       } else {
         btn.textContent = 'Error — try again';
