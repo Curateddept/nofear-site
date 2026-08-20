@@ -1890,14 +1890,8 @@
     <button class="nav-item" onclick="go('about')">About</button>
     <button class="nav-item" onclick="go('contact')">Contact</button>
     <button class="nav-item" onclick="go('dealers')">Dealers</button>
-    <div class="nav-item" style="cursor:pointer;">
-      <span onclick="go('faq')">FAQ</span>
-      <div class="nav-dropdown" style="min-width:220px; grid-template-columns:1fr;" onclick="event.stopPropagation()">
-        <div class="nav-drop-links" style="border-right:none;">
-          <a class="nav-drop-link" href="#" onclick="go('distributors'); return false;">International Distributors</a>
-        </div>
-      </div>
-    </div>
+    <button class="nav-item" onclick="go('distributors')">Distributors</button>
+    <button class="nav-item" onclick="go('faq')">FAQ</button>
   </div>
 
   <div class="nav-logo-center" onclick="go('home')">
