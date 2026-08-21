@@ -625,8 +625,14 @@
       overflow: hidden;
       padding: 0 12px;
     }
+    #announce-bar { cursor: pointer; }
+    #announce-bar u { text-decoration: underline; text-underline-offset: 3px; }
+    #announce-bar:hover u { opacity: 0.7; }
+    #announce-bar .ab-mobile { display: none; }
     @media (max-width: 600px) {
       #announce-bar { font-size: 8.5px; letter-spacing: 0.06em; }
+      #announce-bar .ab-desktop { display: none; }
+      #announce-bar .ab-mobile { display: inline; }
     }
     .page.active { display: block; animation: fadeUp 0.4s ease; }
     @keyframes fadeUp {
@@ -1885,7 +1891,10 @@
 </div>
 
 <!-- ── ANNOUNCE BAR ── -->
-<div id="announce-bar">Oh by the way — Youth sizing available in clothing now</div>
+<div id="announce-bar" onclick="go('early-access')" role="link" tabindex="0" onkeydown="if(event.key==='Enter')go('early-access')">
+  <span class="ab-desktop">NoFear 002 — Coming August 23 &nbsp;·&nbsp; Early Access 12:00 PM PST &nbsp;·&nbsp; Public 2:30 PM PST &nbsp;·&nbsp; <u>Sign up for early access →</u></span>
+  <span class="ab-mobile">002 drops Aug 23 &nbsp;·&nbsp; Early access 12PM PST &nbsp;·&nbsp; <u>Sign up →</u></span>
+</div>
 
 <!-- ── NAV ── -->
 <nav id="nav">
