@@ -496,6 +496,51 @@
       opacity: 1 !important;
     }
     .nav-lookbook-btn:hover { background: #000 !important; color: #fff !important; opacity: 1 !important; }
+    .nav-early-btn {
+      margin-left: 8px;
+      background: #000 !important;
+      color: #fff !important;
+      border: 1px solid #000 !important;
+      padding: 6px 14px !important;
+      font-size: 11px !important;
+      letter-spacing: 0.08em;
+      opacity: 1 !important;
+    }
+    .nav-early-btn:hover { background: #fff !important; color: #000 !important; opacity: 1 !important; }
+
+    /* ── Early Access page + footer signup ── */
+    .ea-form { display: flex; gap: 0; max-width: 520px; }
+    .ea-form input {
+      flex: 1; min-width: 0;
+      background: #fff; border: 1px solid #000; border-right: none;
+      font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 300;
+      color: #000; padding: 14px 16px; outline: none; border-radius: 0;
+    }
+    .ea-form input::placeholder { color: #999; }
+    .ea-form button {
+      background: #000; color: #fff; border: 1px solid #000;
+      font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 14px 24px; cursor: pointer; white-space: nowrap; transition: background 0.15s, color 0.15s;
+    }
+    .ea-form button:hover { background: #fff; color: #000; }
+    .ea-form button:disabled { opacity: 0.6; cursor: default; }
+    .ea-success { display: none; font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #000; letter-spacing: 0.04em; }
+    .ea-perks { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: #e8e8e8; border: 1px solid #e8e8e8; margin: 56px 0 0; max-width: 760px; }
+    .ea-perk { background: #fff; padding: 24px 20px; }
+    .ea-perk-num { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: #999; letter-spacing: 0.1em; margin-bottom: 10px; }
+    .ea-perk-txt { font-family: 'IBM Plex Mono', monospace; font-size: 12px; line-height: 1.7; color: #000; }
+    .ft-early {
+      margin-bottom: 40px; padding-bottom: 40px; border-bottom: 1px solid #e8e8e8;
+      display: flex; flex-direction: column; align-items: center; gap: 14px;
+    }
+    .ft-early-lbl { font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #000; }
+    .ft-early-sub { font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 300; color: #777; margin-top: -6px; }
+    .ft-early .ea-form { width: 100%; max-width: 440px; }
+    @media (max-width: 600px) {
+      .ea-perks { grid-template-columns: 1fr; }
+      .ea-form { flex-direction: column; }
+      .ea-form input { border-right: 1px solid #000; border-bottom: none; }
+    }
     .nav-ig-btn { padding: 0 10px !important; color: #000; }
     .nav-ig-btn:hover { opacity: 0.5; }
     .nav-availability { color: #555; font-size: 10px !important; letter-spacing: 0.04em; white-space: nowrap; }
@@ -1903,7 +1948,6 @@
       <button class="nf-region-btn" id="nfRegBtnUS" onclick="nfSetRegion('us')">🇺🇸 US</button>
       <button class="nf-region-btn" id="nfRegBtnUK" onclick="nfSetRegion('uk')">🇬🇧 UK</button>
     </div>
-    <button class="nav-item" onclick="go('shop')">Shop</button>
     <span class="nf-cart-nav-wrap">
       <button class="nav-cart-btn" onclick="nfOpenCart()" aria-label="Cart">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
@@ -1913,6 +1957,7 @@
     <a class="nav-item nav-ig-btn" href="https://instagram.com/nofearmotocross" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="@nofearmotocross">
       <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
     </a>
+    <button class="nav-item nav-early-btn" onclick="go('early-access')">Early Access</button>
     <button class="nav-item nav-lookbook-btn" onclick="go('catalog')">NoFear 001 Lookbook</button>
   </div>
 </nav>
@@ -1923,6 +1968,7 @@
   <div class="mobile-menu-label">Menu</div>
   <div class="mobile-menu-links">
     <a class="mobile-menu-link" href="https://www.nofearmotocross.com/" onclick="closeMobileMenu()">Home</a>
+    <button class="mobile-menu-link" onclick="go('early-access'); closeMobileMenu()" style="font-weight:700;">Early Access →</button>
     <button class="mobile-menu-link" onclick="nfNavCol('frontpage'); closeMobileMenu()">Shop — All</button>
     <button class="mobile-menu-link" onclick="nfNavCol('seta'); closeMobileMenu()">Gear Sets</button>
     <button class="mobile-menu-link" onclick="nfNavCol('gloves'); closeMobileMenu()">Gloves</button>
@@ -2393,6 +2439,29 @@
 </div>
 
 
+<div id="early-access" class="page">
+  <div style="border-top:1px solid #e8e8e8; padding: 80px 48px 100px; max-width: 860px;">
+    <p style="font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:300; color:#999; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:24px;">Clothing — Coming Soon</p>
+    <h1 style="font-family:'IBM Plex Mono',monospace; font-size:clamp(32px,5vw,64px); font-weight:300; letter-spacing:-0.02em; line-height:1.05; margin-bottom:32px;">Get Early<br>Access.</h1>
+    <p style="font-family:'IBM Plex Mono',monospace; font-size:14px; font-weight:300; line-height:1.9; color:#333; margin-bottom:12px; max-width:560px;">The No Fear clothing line is almost here. Sign up and you'll be the first to know when it drops — before it goes public.</p>
+    <p style="font-family:'IBM Plex Mono',monospace; font-size:14px; font-weight:300; line-height:1.9; color:#333; margin-bottom:40px; max-width:560px;">No spam. Just the drop.</p>
+
+    <form class="ea-form" onsubmit="earlyAccessSubmit(event)">
+      <input type="email" name="email" placeholder="Your email address" required>
+      <input type="hidden" name="type" value="early_access">
+      <input type="hidden" name="_subject" value="Early Access Signup — No Fear Motocross">
+      <button type="submit">Notify Me</button>
+    </form>
+    <p class="ea-success" style="margin-top:16px;">You're on the list. See you soon.</p>
+
+    <div class="ea-perks">
+      <div class="ea-perk"><div class="ea-perk-num">01</div><div class="ea-perk-txt">First look at the full clothing line before public release.</div></div>
+      <div class="ea-perk"><div class="ea-perk-num">02</div><div class="ea-perk-txt">Early access to limited drops and capsule collections.</div></div>
+      <div class="ea-perk"><div class="ea-perk-num">03</div><div class="ea-perk-txt">Restocks, new colorways, and youth sizing announcements.</div></div>
+    </div>
+  </div>
+</div>
+
 <div id="dealers" class="page">
   <div style="border-top:1px solid #e8e8e8; padding: 80px 48px 100px; max-width: 760px;">
     <p style="font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:300; color:#999; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:24px;">Wholesale</p>
@@ -2571,6 +2640,17 @@
 </div>
 
 <footer>
+  <div class="ft-early">
+    <div class="ft-early-lbl">Get Early Access</div>
+    <div class="ft-early-sub">Clothing is coming soon — be first to know.</div>
+    <form class="ea-form" onsubmit="earlyAccessSubmit(event)">
+      <input type="email" name="email" placeholder="Your email address" required>
+      <input type="hidden" name="type" value="early_access">
+      <input type="hidden" name="_subject" value="Early Access Signup — No Fear Motocross">
+      <button type="submit">Notify Me</button>
+    </form>
+    <p class="ea-success">You're on the list. See you soon.</p>
+  </div>
   <div class="ft-contact">
     <div class="ft-contact-item">
       <div class="ft-contact-lbl">General & Wholesale</div>
@@ -2620,7 +2700,7 @@
     setTimeout(() => logo.classList.add('in'), 100);
     setTimeout(() => fill.classList.add('go'), 300);
     // Determine page from URL path, then navigate just before loader fades
-    var knownPages = ['about','contact','faq','distributors','dealers','ambassador','catalog','shop','product-page'];
+    var knownPages = ['about','contact','faq','distributors','dealers','early-access','ambassador','catalog','shop','product-page'];
     var pathParts = window.location.pathname.replace(/^\//, '').split('/');
     var pathSlug = pathParts[0];
     var initialPage = (pathSlug && knownPages.includes(pathSlug)) ? pathSlug : 'home';
@@ -2686,6 +2766,11 @@
       title: 'International Distributors | No Fear Motocross',
       desc:  'Find official No Fear Motocross distributors outside the United States. Contact our global distribution partners for international orders.',
       canonical: 'https://nofearmotocross.com/#distributors'
+    },
+    'early-access': {
+      title: 'Get Early Access | No Fear Motocross Clothing — Coming Soon',
+      desc:  'Sign up for early access to the No Fear Motocross clothing line. Be the first to know about the drop, limited capsules, and restocks before they go public.',
+      canonical: 'https://nofearmotocross.com/early-access'
     },
     dealers: {
       title: 'Dealer Applications | No Fear Motocross Wholesale',
@@ -2852,6 +2937,33 @@
       }
     } catch {
       btn.textContent = 'Error — try again';
+      btn.disabled = false;
+    }
+  }
+
+  // Shared by the Early Access page form and the footer signup — same Formspree as the gate
+  async function earlyAccessSubmit(e) {
+    e.preventDefault();
+    const form = e.target;
+    const btn = form.querySelector('button[type="submit"]');
+    const success = form.nextElementSibling && form.nextElementSibling.classList.contains('ea-success') ? form.nextElementSibling : null;
+    btn.textContent = 'Submitting...';
+    btn.disabled = true;
+    try {
+      const res = await fetch('https://formspree.io/f/meendypv', {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        form.style.display = 'none';
+        if (success) success.style.display = 'block';
+      } else {
+        btn.textContent = 'Try again';
+        btn.disabled = false;
+      }
+    } catch {
+      btn.textContent = 'Try again';
       btn.disabled = false;
     }
   }
