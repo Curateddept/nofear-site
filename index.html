@@ -1922,7 +1922,7 @@
       <div class="nav-dropdown">
         <div class="nav-drop-links">
           <button class="nav-drop-link" onclick="nfNavCol('frontpage')" style="font-weight:500;">All Products</button>
-          <button class="nav-drop-link" onclick="nfNavCol('seta')">Motocross Gear Sets</button>
+          <button class="nav-drop-link" onclick="nfNavCol('seta')">Motocross Gear</button>
           <button class="nav-drop-link" onclick="nfNavCol('gloves')">Gloves</button>
           <button class="nav-drop-link" onclick="nfNavCol('apparel')">T-Shirts &amp; Hoodies</button>
           <button class="nav-drop-link" onclick="nfNavCol('hats')">Hats &amp; Stickers</button>
@@ -1992,7 +1992,7 @@
     <a class="mobile-menu-link" href="https://www.nofearmotocross.com/" onclick="closeMobileMenu()">Home</a>
     <button class="mobile-menu-link" onclick="go('early-access'); closeMobileMenu()" style="font-weight:700;">Early Access →</button>
     <button class="mobile-menu-link" onclick="nfNavCol('frontpage'); closeMobileMenu()">Shop — All</button>
-    <button class="mobile-menu-link" onclick="nfNavCol('seta'); closeMobileMenu()">Gear Sets</button>
+    <button class="mobile-menu-link" onclick="nfNavCol('seta'); closeMobileMenu()">Motocross Gear</button>
     <button class="mobile-menu-link" onclick="nfNavCol('gloves'); closeMobileMenu()">Gloves</button>
     <button class="mobile-menu-link" onclick="nfNavCol('apparel'); closeMobileMenu()">T-Shirts &amp; Hoodies</button>
     <button class="mobile-menu-link" onclick="nfNavCol('hats'); closeMobileMenu()">Hats &amp; Stickers</button>
@@ -2087,7 +2087,7 @@
   <!-- McGrath Banner -->
   <a href="#" onclick="nfNavCol('seta'); return false;" style="display:block;">
   <div class="mcgrath-banner">
-    <img class="banner-bg" src="/assets/images/mcgrath-banner.jpg" alt="No Fear 002 — wheelie" loading="lazy" style="object-position:center 12%;">
+    <img class="banner-bg" src="/assets/images/mcgrath-banner.jpg" alt="No Fear 002 — wheelie" loading="lazy" style="object-position:center 50%;">
     <div class="banner-icon-strip">
       <div class="banner-icon-inner">
         <img src="/assets/strip-icon.png" alt=""><img src="/assets/strip-icon.png" alt=""><img src="/assets/strip-icon.png" alt=""><img src="/assets/strip-icon.png" alt=""><img src="/assets/strip-icon.png" alt=""><img src="/assets/strip-icon.png" alt=""><img src="/assets/strip-icon.png" alt=""><img src="/assets/strip-icon.png" alt=""><img src="/assets/strip-icon.png" alt=""><img src="/assets/strip-icon.png" alt=""><img src="/assets/strip-icon.png" alt=""><img src="/assets/strip-icon.png" alt=""><img src="/assets/strip-icon.png" alt=""><img src="/assets/strip-icon.png" alt=""><img src="/assets/strip-icon.png" alt=""><img src="/assets/strip-icon.png" alt=""><img src="/assets/strip-icon.png" alt=""><img src="/assets/strip-icon.png" alt=""><img src="/assets/strip-icon.png" alt=""><img src="/assets/strip-icon.png" alt=""><img src="/assets/strip-icon.png" alt=""><img src="/assets/strip-icon.png" alt=""><img src="/assets/strip-icon.png" alt=""><img src="/assets/strip-icon.png" alt=""><img src="/assets/strip-icon.png" alt=""><img src="/assets/strip-icon.png" alt=""><img src="/assets/strip-icon.png" alt=""><img src="/assets/strip-icon.png" alt=""><img src="/assets/strip-icon.png" alt=""><img src="/assets/strip-icon.png" alt="">
@@ -2774,7 +2774,7 @@
     </div>
     <div class="nfshop-tabs">
       <button class="nfshop-tab active" data-col="frontpage" onclick="nfNavCol('frontpage')">All</button>
-      <button class="nfshop-tab" data-col="seta" onclick="nfNavCol('seta')">Gear Sets</button>
+      <button class="nfshop-tab" data-col="seta" onclick="nfNavCol('seta')">Motocross Gear</button>
       <button class="nfshop-tab" data-col="gloves" onclick="nfNavCol('gloves')">Gloves</button>
       <button class="nfshop-tab" data-col="apparel" onclick="nfNavCol('apparel')">T-Shirts &amp; Hoodies</button>
       <button class="nfshop-tab" data-col="hats" onclick="nfNavCol('hats')">Hats &amp; Stickers</button>
@@ -3310,7 +3310,7 @@
 <script>
 // ── No Fear Storefront API Shop ──
 var NF_STORE = 'https://nofearmotocross.myshopify.com';
-var NF_COL_LABELS = { frontpage:'All Products', seta:'Gear Sets', gloves:'Gloves', apparel:'T-Shirts & Hoodies', hats:'Hats & Stickers' };
+var NF_COL_LABELS = { frontpage:'All Products', seta:'Motocross Gear', gloves:'Gloves', apparel:'T-Shirts & Hoodies', hats:'Hats & Stickers' };
 
 // ── Region / Currency ──
 var NF_GBP_RATE = 0.79; // update when rate changes
@@ -3488,10 +3488,37 @@ function nfRenderCartDrawer() {
 var nfProductsCache = {};
 var nfProdCache = {};
 
+// Standalone 001 jersey/pants are intentionally hidden from the site (sold as sets)
+var NF_HIDE = ['black-jersey','black-pants','patriot-jersey','patriot-pants'];
+// Safety net: products not yet assigned to a Shopify collection still land in the right tab by title
+var NF_TAB_MATCH = { seta: /jersey|pant|\bset\b/i, gloves: /glove/i };
+
+var _nfCatalogPromise = null;
+function nfFetchCatalog() {
+  if (!_nfCatalogPromise) {
+    _nfCatalogPromise = fetch(NF_STORE + '/products.json?limit=250')
+      .then(function(r){ return r.json(); })
+      .then(function(d){ return (d.products || []).filter(function(p){ return NF_HIDE.indexOf(p.handle) === -1; }); })
+      .catch(function(){ return []; });
+  }
+  return _nfCatalogPromise;
+}
+
 async function nfFetchCollection(handle) {
-  var url = NF_STORE + '/collections/' + handle + '/products.json?limit=50';
-  try { var r = await fetch(url); var d = await r.json(); return d.products || []; }
-  catch(e) { return []; }
+  // "All" = the full live catalog (minus hidden handles) so new active products show immediately
+  if (handle === 'frontpage') return nfFetchCatalog();
+  var col = [];
+  try { var r = await fetch(NF_STORE + '/collections/' + handle + '/products.json?limit=250'); var d = await r.json(); col = d.products || []; }
+  catch(e) { col = []; }
+  var rx = NF_TAB_MATCH[handle];
+  if (!rx) return col;
+  var cat = await nfFetchCatalog();
+  var seen = {};
+  col.forEach(function(p){ seen[p.handle] = true; });
+  cat.forEach(function(p) {
+    if (!seen[p.handle] && rx.test(p.title)) { seen[p.handle] = true; col.push(p); }
+  });
+  return col;
 }
 
 async function nfFetchProduct(handle) {
