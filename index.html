@@ -3503,7 +3503,12 @@ function nfFetchCatalog() {
   if (!_nfCatalogPromise) {
     _nfCatalogPromise = fetch(NF_STORE + '/products.json?limit=250')
       .then(function(r){ return r.json(); })
-      .then(function(d){ return (d.products || []).filter(function(p){ return NF_HIDE.indexOf(p.handle) === -1; }); })
+      .then(function(d){ return (d.products || []).filter(function(p){
+        if (NF_HIDE.indexOf(p.handle) > -1) return false;
+        // standalone jerseys/pants stay off the site — gear is sold as sets
+        if (/jersey|pant/i.test(p.title) && !/\bset\b/i.test(p.title)) return false;
+        return true;
+      }); })
       .catch(function(){ return []; });
   }
   return _nfCatalogPromise;
