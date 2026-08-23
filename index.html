@@ -244,7 +244,7 @@
       position: fixed;
       inset: 0;
       z-index: 10000;
-      display: none; /* password gate disabled — site is publicly accessible */
+      display: flex; /* password gate ON — hidden via .hidden once unlocked */
       flex-direction: column;
       align-items: center;
       justify-content: center;
@@ -1863,9 +1863,21 @@
   <div id="gate-content">
     <img id="gate-logo" src="/assets/nofear-logo.png" alt="No Fear Motocross">
 
-    <p style="font-family:'IBM Plex Mono',monospace; font-size:clamp(18px,3vw,28px); font-weight:300; color:rgba(0,0,0,0.7); letter-spacing:0.02em; margin-bottom:40px;">Clothing — Coming Soon.</p>
+    <p style="font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:300; color:rgba(0,0,0,0.45); letter-spacing:0.14em; text-transform:uppercase; margin-bottom:12px;">NoFear 002</p>
+    <p style="font-family:'IBM Plex Mono',monospace; font-size:clamp(22px,4vw,34px); font-weight:300; color:#000; letter-spacing:-0.01em; line-height:1.15; margin-bottom:28px;">Coming Sunday,<br>August 23.</p>
 
-    <p id="gate-early-label">Get Early Access</p>
+    <div style="display:flex; width:100%; border:1px solid #000; margin-bottom:32px;">
+      <div style="flex:1; padding:14px 12px; background:#000; color:#fff;">
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:9px; letter-spacing:0.12em; text-transform:uppercase; opacity:0.6; margin-bottom:5px;">Early Access</div>
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:15px; font-weight:700;">12:00 PM PST</div>
+      </div>
+      <div style="flex:1; padding:14px 12px; background:#fff; color:#000;">
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:9px; letter-spacing:0.12em; text-transform:uppercase; color:#999; margin-bottom:5px;">Public Launch</div>
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:15px; font-weight:700;">2:30 PM PST</div>
+      </div>
+    </div>
+
+    <p id="gate-early-label">Sign up for early access — get in before the public</p>
     <form onsubmit="gateEarlySubmit(event)">
       <input class="gate-input" type="email" name="email" placeholder="Your email address" required>
       <input type="hidden" name="type" value="early_access">
@@ -3064,8 +3076,10 @@
 
 
   /* ── PASSWORD GATE ── */
+  // Bumping NF_GATE_VER invalidates everyone's previous unlock (forces re-entry of the new password)
+  var NF_GATE_VER = '002';
   (function() {
-    if (localStorage.getItem('nf_unlocked') === '1') {
+    if (localStorage.getItem('nf_unlocked') === NF_GATE_VER) {
       document.getElementById('gate').classList.add('hidden');
     }
   })();
@@ -3073,8 +3087,8 @@
   function gateUnlock() {
     const pw = document.getElementById('gate-pw-input').value;
     const err = document.getElementById('gate-pw-error');
-    if (pw === '2026NoFear!') {
-      localStorage.setItem('nf_unlocked', '1');
+    if (pw.trim().toLowerCase() === 'nofear002') {
+      localStorage.setItem('nf_unlocked', NF_GATE_VER);
       const gate = document.getElementById('gate');
       gate.style.transition = 'opacity 0.6s ease';
       gate.style.opacity = '0';
