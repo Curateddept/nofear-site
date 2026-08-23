@@ -1924,11 +1924,11 @@
             <img src="/assets/images/gloves-cover.jpg" alt="Gloves">
             <span class="nav-drop-label">GLOVES</span>
           </button>
-          <button class="nav-drop-img-item" onclick="goProduct('no-fear-002-icon-pant')">
+          <button class="nav-drop-img-item" onclick="goProduct('no-fear-002-elektron-icon-gear-set')">
             <img src="/assets/images/icon-002.jpg" alt="No Fear 002 Elektron Icon Set" style="object-fit:contain;background:#fff;">
             <span class="nav-drop-label">002 ICON SET</span>
           </button>
-          <button class="nav-drop-img-item" onclick="goProduct('no-fear-elektron-strike-2-0-jersey')">
+          <button class="nav-drop-img-item" onclick="goProduct('no-fear-002-strike-2-0-set')">
             <img src="/assets/images/strike-002.jpg" alt="No Fear 002 Elektron Strike 2.0 Set" style="object-fit:contain;background:#fff;">
             <span class="nav-drop-label">002 STRIKE 2.0 SET</span>
           </button>
@@ -2188,22 +2188,22 @@
         <button class="collection-shop-label" onclick="nfNavCol('hats')">Shop Now</button>
       </div>
     </div>
-    <div class="collection-cell" onclick="goProduct('no-fear-002-icon-pant')" style="cursor:pointer;">
+    <div class="collection-cell" onclick="goProduct('no-fear-002-elektron-icon-gear-set')" style="cursor:pointer;">
       <div class="collection-img-wrap">
         <img src="/assets/images/icon-002.jpg" alt="No Fear 002 Elektron Icon Motocross Gear Set — Jersey and Pant" loading="lazy">
       </div>
       <div class="collection-label">
         <span class="collection-name">No Fear 002 — Elektron Icon Set</span>
-        <button class="collection-shop-label" onclick="goProduct('no-fear-002-icon-pant')">Shop Now</button>
+        <button class="collection-shop-label" onclick="goProduct('no-fear-002-elektron-icon-gear-set')">Shop Now</button>
       </div>
     </div>
-    <div class="collection-cell" onclick="goProduct('no-fear-elektron-strike-2-0-jersey')" style="cursor:pointer; border-right:none;">
+    <div class="collection-cell" onclick="goProduct('no-fear-002-strike-2-0-set')" style="cursor:pointer; border-right:none;">
       <div class="collection-img-wrap">
         <img src="/assets/images/strike-002.jpg" alt="No Fear 002 Elektron Strike 2.0 Motocross Gear Set — Jersey and Pant" loading="lazy">
       </div>
       <div class="collection-label">
         <span class="collection-name">No Fear 002 — Elektron Strike 2.0 Set</span>
-        <button class="collection-shop-label" onclick="goProduct('no-fear-elektron-strike-2-0-jersey')">Shop Now</button>
+        <button class="collection-shop-label" onclick="goProduct('no-fear-002-strike-2-0-set')">Shop Now</button>
       </div>
     </div>
   </div>
@@ -3495,7 +3495,8 @@ var nfProdCache = {};
 // Standalone 001 jersey/pants are intentionally hidden from the site (sold as sets)
 var NF_HIDE = ['black-jersey','black-pants','patriot-jersey','patriot-pants'];
 // Safety net: products not yet assigned to a Shopify collection still land in the right tab by title
-var NF_TAB_MATCH = { seta: /jersey|pant|\bset\b/i, gloves: /glove/i };
+var NF_TAB_MATCH = { gloves: /glove/i };
+var NF_GEAR_RX = /jersey|pant|\bset\b/i; // used to keep gear out of the apparel strip
 
 var _nfCatalogPromise = null;
 function nfFetchCatalog() {
@@ -3810,8 +3811,8 @@ async function nfLoadStaples() {
 // Motocross Gear strip: the 4 sets in fixed order (002 Icon, 002 Strike 2.0, 001 Blackout, 001 Patriot).
 // If a 002 set listing doesn't exist in Shopify yet, fall back to the closest live product and use the set photo.
 var NF_GEAR_STRIP = [
-  { handle: 'no-fear-002-elektron-icon-set',       fallback: 'no-fear-002-icon-pant',               img: '/assets/images/icon-002.jpg' },
-  { handle: 'no-fear-002-elektron-strike-2-0-set', fallback: 'no-fear-elektron-strike-2-0-jersey',  img: '/assets/images/strike-002.jpg' },
+  { handle: 'no-fear-002-elektron-icon-gear-set', fallback: 'no-fear-002-icon-pant',              img: '/assets/images/icon-002.jpg' },
+  { handle: 'no-fear-002-strike-2-0-set',          fallback: 'no-fear-elektron-strike-2-0-jersey', img: '/assets/images/strike-002.jpg' },
   { handle: 'no-fear-001-elektron-blackout-set' },
   { handle: 'no-fear-001-elektron-patriot-set' }
 ];
@@ -3819,10 +3820,11 @@ async function nfLoadGearStrip() {
   if (!document.getElementById('nfGearTrack')) return;
   var products = await Promise.all(NF_GEAR_STRIP.map(async function(entry) {
     var p = nfProdCache[entry.handle] || await nfFetchProduct(entry.handle);
-    if (!p && entry.fallback) p = nfProdCache[entry.fallback] || await nfFetchProduct(entry.fallback);
+    var usedFallback = false;
+    if (!p && entry.fallback) { p = nfProdCache[entry.fallback] || await nfFetchProduct(entry.fallback); usedFallback = true; }
     if (!p) return null;
     nfProdCache[p.handle] = p;
-    if (entry.img && !p._nfImgOverride) {
+    if (usedFallback && entry.img && !p._nfImgOverride) {
       // shallow copy so the product page still shows Shopify's own photos
       p = Object.assign({}, p, { images: [{ src: entry.img }].concat(p.images || []), _nfImgOverride: true });
     }
@@ -3835,7 +3837,7 @@ async function nfLoadGearStrip() {
 async function nfLoadMerchStrip() {
   if (!document.getElementById('nfMerchTrack')) return;
   if (!nfProductsCache['frontpage']) nfProductsCache['frontpage'] = await nfFetchCollection('frontpage');
-  var isGear = function(p) { return NF_TAB_MATCH.seta.test(p.title) || NF_TAB_MATCH.gloves.test(p.title) || /youth/i.test(p.title); };
+  var isGear = function(p) { return NF_GEAR_RX.test(p.title) || NF_TAB_MATCH.gloves.test(p.title) || /youth/i.test(p.title); };
   var merch = nfProductsCache['frontpage'].filter(function(p) {
     return NF_STAPLES.indexOf(p.handle) === -1 && !isGear(p);
   }).sort(function(a, b) { return new Date(b.created_at) - new Date(a.created_at); }); // newest first
