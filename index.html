@@ -1814,9 +1814,9 @@
     .nf-feat-img-wrap { aspect-ratio:1/1; overflow:hidden; background:#f0f0f0; }
     .nf-feat-img-wrap img { width:100%; height:100%; object-fit:cover; object-position:center top; transition:transform 0.5s ease; display:block; }
     .nf-feat-card:hover .nf-feat-img-wrap img { transform:scale(1.04); }
-    /* Motocross Gear strip: show the whole set image, uniform square boxes */
-    #nfGearTrack .nf-feat-img-wrap { background:#fff; }
-    #nfGearTrack .nf-feat-img-wrap img { object-fit:contain; object-position:center center; padding:6%; box-sizing:border-box; }
+    /* All home strips: uniform square boxes, whole product image visible */
+    .nf-staples-track .nf-feat-img-wrap { background:#fff; }
+    .nf-staples-track .nf-feat-img-wrap img { object-fit:contain; object-position:center center; padding:6%; box-sizing:border-box; }
     .nf-feat-info { padding:10px 14px 4px; }
     .nf-feat-title { font-family:'IBM Plex Mono',monospace; font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:0.07em; line-height:1.4; margin-bottom:3px; }
     .nf-feat-price { font-family:'IBM Plex Mono',monospace; font-size:9px; color:#666; }
@@ -1901,6 +1901,7 @@
         <div class="nav-drop-links">
           <button class="nav-drop-link" onclick="nfNavCol('frontpage')" style="font-weight:500;">All Products</button>
           <button class="nav-drop-link" onclick="nfNavCol('seta')">Motocross Gear</button>
+          <button class="nav-drop-link" onclick="nfNavCol('youth-motocross-gear')">Youth Motocross Gear</button>
           <button class="nav-drop-link" onclick="nfNavCol('gloves')">Gloves</button>
           <button class="nav-drop-link" onclick="nfNavCol('apparel')">T-Shirts &amp; Hoodies</button>
           <button class="nav-drop-link" onclick="nfNavCol('hats')">Hats &amp; Stickers</button>
@@ -1971,6 +1972,7 @@
     <button class="mobile-menu-link" onclick="go('early-access'); closeMobileMenu()" style="font-weight:700;">Early Access →</button>
     <button class="mobile-menu-link" onclick="nfNavCol('frontpage'); closeMobileMenu()">Shop — All</button>
     <button class="mobile-menu-link" onclick="nfNavCol('seta'); closeMobileMenu()">Motocross Gear</button>
+    <button class="mobile-menu-link" onclick="nfNavCol('youth-motocross-gear'); closeMobileMenu()">Youth Gear</button>
     <button class="mobile-menu-link" onclick="nfNavCol('gloves'); closeMobileMenu()">Gloves</button>
     <button class="mobile-menu-link" onclick="nfNavCol('apparel'); closeMobileMenu()">T-Shirts &amp; Hoodies</button>
     <button class="mobile-menu-link" onclick="nfNavCol('hats'); closeMobileMenu()">Hats &amp; Stickers</button>
@@ -2060,12 +2062,12 @@
         <button class="ed-label-link" onclick="nfNavCol('seta')">Shop Now</button>
       </div>
     </div>
-    <div class="ed-cell" onclick="nfNavCol('seta')" style="cursor:pointer; border-right:none;">
+    <div class="ed-cell" onclick="nfNavCol('youth-motocross-gear')" style="cursor:pointer; border-right:none;">
       <img src="/assets/images/youth-cover.jpg" alt="No Fear 002 Youth Motocross Gear Sets" loading="lazy" style="object-position:center center;">
       <div class="ed-label">
         <div class="ed-label-name">002 Youth Motocross Gear Sets</div>
         <span class="ed-label-sub">Icon &amp; Strike 2.0 — Youth Sizing</span>
-        <button class="ed-label-link" onclick="nfNavCol('seta')">Shop Now</button>
+        <button class="ed-label-link" onclick="nfNavCol('youth-motocross-gear')">Shop Now</button>
       </div>
     </div>
   </div>
@@ -2082,13 +2084,13 @@
   </div>
   </a>
 
-  <!-- Staples Swipe -->
+  <!-- Merch Swipe (everything else) -->
   <div class="nf-staples">
     <div class="nf-staples-header">
-      <span class="nf-staples-label">The Staples</span>
-      <span class="nf-staples-sub">Shop the essentials</span>
+      <span class="nf-staples-label">NoFear 002 Apparel</span>
+      <span class="nf-staples-sub nf-strip-link" onclick="nfNavCol('apparel')">New drop — shop all →</span>
     </div>
-    <div class="nf-staples-track" id="nfStaplesTrack">
+    <div class="nf-staples-track" id="nfMerchTrack">
       <div class="nf-staples-loading">Loading…</div>
     </div>
   </div>
@@ -2104,13 +2106,13 @@
     </div>
   </div>
 
-  <!-- Merch Swipe (everything else) -->
+  <!-- Staples Swipe -->
   <div class="nf-staples">
     <div class="nf-staples-header">
-      <span class="nf-staples-label">Merch</span>
-      <span class="nf-staples-sub nf-strip-link" onclick="nfNavCol('frontpage')">Shop all →</span>
+      <span class="nf-staples-label">The Staples</span>
+      <span class="nf-staples-sub">Shop the essentials</span>
     </div>
-    <div class="nf-staples-track" id="nfMerchTrack">
+    <div class="nf-staples-track" id="nfStaplesTrack">
       <div class="nf-staples-loading">Loading…</div>
     </div>
   </div>
@@ -2765,6 +2767,7 @@
     <div class="nfshop-tabs">
       <button class="nfshop-tab active" data-col="frontpage" onclick="nfNavCol('frontpage')">All</button>
       <button class="nfshop-tab" data-col="seta" onclick="nfNavCol('seta')">Motocross Gear</button>
+      <button class="nfshop-tab" data-col="youth-motocross-gear" onclick="nfNavCol('youth-motocross-gear')">Youth</button>
       <button class="nfshop-tab" data-col="gloves" onclick="nfNavCol('gloves')">Gloves</button>
       <button class="nfshop-tab" data-col="apparel" onclick="nfNavCol('apparel')">T-Shirts &amp; Hoodies</button>
       <button class="nfshop-tab" data-col="hats" onclick="nfNavCol('hats')">Hats &amp; Stickers</button>
@@ -3300,7 +3303,7 @@
 <script>
 // ── No Fear Storefront API Shop ──
 var NF_STORE = 'https://nofearmotocross.myshopify.com';
-var NF_COL_LABELS = { frontpage:'All Products', seta:'Motocross Gear', gloves:'Gloves', apparel:'T-Shirts & Hoodies', hats:'Hats & Stickers' };
+var NF_COL_LABELS = { frontpage:'All Products', seta:'Motocross Gear', 'youth-motocross-gear':'Youth Gear', gloves:'Gloves', apparel:'T-Shirts & Hoodies', hats:'Hats & Stickers' };
 
 // ── Region / Currency ──
 var NF_GBP_RATE = 0.79; // update when rate changes
@@ -3506,7 +3509,7 @@ async function nfFetchCollection(handle) {
   var seen = {};
   col.forEach(function(p){ seen[p.handle] = true; });
   cat.forEach(function(p) {
-    if (!seen[p.handle] && rx.test(p.title)) { seen[p.handle] = true; col.push(p); }
+    if (!seen[p.handle] && rx.test(p.title) && !/youth/i.test(p.title)) { seen[p.handle] = true; col.push(p); }
   });
   return col;
 }
@@ -3821,10 +3824,10 @@ async function nfLoadGearStrip() {
 async function nfLoadMerchStrip() {
   if (!document.getElementById('nfMerchTrack')) return;
   if (!nfProductsCache['frontpage']) nfProductsCache['frontpage'] = await nfFetchCollection('frontpage');
-  var isGear = function(p) { return NF_TAB_MATCH.seta.test(p.title) || NF_TAB_MATCH.gloves.test(p.title); };
+  var isGear = function(p) { return NF_TAB_MATCH.seta.test(p.title) || NF_TAB_MATCH.gloves.test(p.title) || /youth/i.test(p.title); };
   var merch = nfProductsCache['frontpage'].filter(function(p) {
     return NF_STAPLES.indexOf(p.handle) === -1 && !isGear(p);
-  });
+  }).sort(function(a, b) { return new Date(b.created_at) - new Date(a.created_at); }); // newest first
   nfRenderStrip('nfMerchTrack', merch, 'nfmr');
 }
 
