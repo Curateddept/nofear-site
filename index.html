@@ -1006,33 +1006,8 @@
       transition: none;
     }
     .collection-cycle .cycle-img:first-child { position: relative; }
-    .collection-cycle .cycle-img:not(:first-child) { opacity: 0; }
-    @keyframes cycle-1 {
-      0%, 28%  { opacity: 1; }
-      33%, 95% { opacity: 0; }
-      100%     { opacity: 1; }
-    }
-    @keyframes cycle-2 {
-      0%, 28%  { opacity: 0; }
-      33%, 61% { opacity: 1; }
-      66%, 100%{ opacity: 0; }
-    }
-    @keyframes cycle-3 {
-      0%, 61%  { opacity: 0; }
-      66%, 95% { opacity: 1; }
-      100%     { opacity: 0; }
-    }
-    .collection-cell:hover .collection-cycle .cycle-img:nth-child(1) { animation: cycle-1 2.4s step-end infinite; }
-    .collection-cell:hover .collection-cycle .cycle-img:nth-child(2) { animation: cycle-2 2.4s step-end infinite; }
-    .collection-cell:hover .collection-cycle .cycle-img:nth-child(3) { animation: cycle-3 2.4s step-end infinite; }
-    @keyframes cycle-4a { 0%, 23% { opacity: 1; } 25%, 100% { opacity: 0; } }
-    @keyframes cycle-4b { 0%, 24% { opacity: 0; } 25%, 48% { opacity: 1; } 50%, 100% { opacity: 0; } }
-    @keyframes cycle-4c { 0%, 49% { opacity: 0; } 50%, 73% { opacity: 1; } 75%, 100% { opacity: 0; } }
-    @keyframes cycle-4d { 0%, 74% { opacity: 0; } 75%, 98% { opacity: 1; } 100% { opacity: 0; } }
-    .collection-cell:hover .collection-cycle.collection-cycle-4 .cycle-img:nth-child(1) { animation: cycle-4a 2.4s step-end infinite; }
-    .collection-cell:hover .collection-cycle.collection-cycle-4 .cycle-img:nth-child(2) { animation: cycle-4b 2.4s step-end infinite; }
-    .collection-cell:hover .collection-cycle.collection-cycle-4 .cycle-img:nth-child(3) { animation: cycle-4c 2.4s step-end infinite; }
-    .collection-cell:hover .collection-cycle.collection-cycle-4 .cycle-img:nth-child(4) { animation: cycle-4d 2.4s step-end infinite; }
+    .collection-cycle .cycle-img { opacity: 0; }
+    .collection-cycle .cycle-img.on, .collection-cycle .cycle-img:first-child:only-child { opacity: 1; }
     .collection-over {
       position: absolute;
       inset: 0;
@@ -2129,20 +2104,20 @@
     </div>
   </div>
 
-  <!-- 4th of July Capsule -->
+  <!-- Capsules -->
   <div class="sec-header">
-    <span class="sec-title">Shop 4th of July Capsule</span>
-    <span class="sec-sub">Limited Drop</span>
+    <span class="sec-title">Shop Capsules</span>
+    <span class="sec-sub">Limited Drops</span>
   </div>
 
   <div class="collections-grid">
     <div class="collection-cell" onclick="nfNavCol('apparel')" style="cursor:pointer;">
       <div class="collection-img-wrap">
-        <img src="/assets/images/4july-cell1.jpg" alt="No Fear 4th of July Capsule" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;">
+        <img src="/assets/images/capsule-002.jpg" alt="No Fear 002 Capsule" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center center;display:block;">
       </div>
       <div class="collection-label">
-        <span class="collection-name">These Colors Don't Run</span>
-        <button class="collection-shop-label" onclick="nfNavCol('apparel')">Shop Now</button>
+        <span class="collection-name">No Fear 002 Capsule</span>
+        <button class="collection-shop-label" onclick="nfNavCol('apparel')">Shop 002 Apparel</button>
       </div>
     </div>
     <div class="collection-cell" onclick="nfNavCol('apparel')" style="cursor:pointer; border-right:none;">
@@ -2164,11 +2139,13 @@
 
   <div class="collections-grid">
     <div class="collection-cell" onclick="nfNavCol('apparel')" style="cursor:pointer;">
-      <div class="collection-img-wrap collection-cycle collection-cycle-4">
-        <img class="cycle-img" src="/assets/images/tshirts-product.png" alt="No Fear T-Shirts — Nostalgia" loading="lazy">
-        <img class="cycle-img" src="/assets/images/tshirts-product2.png" alt="No Fear T-Shirts — Carnage" loading="lazy">
-        <img class="cycle-img" src="/assets/images/tshirts-product3.png" alt="No Fear T-Shirts — Dangerous Blue" loading="lazy">
-        <img class="cycle-img" src="/assets/images/hoodie-product.png" alt="No Fear Hoodie — Black" loading="lazy">
+      <div class="collection-img-wrap collection-cycle">
+        <img class="cycle-img" src="/assets/images/cycle/tee-chicken.jpg" alt="No Fear Chicken Pussy Tee" loading="lazy">
+        <img class="cycle-img" src="/assets/images/cycle/ls-red-flame.jpg" alt="No Fear Red Flame Long Sleeve" loading="lazy">
+        <img class="cycle-img" src="/assets/images/cycle/hoodie-zip.jpg" alt="No Fear Icon Zip Hoodie" loading="lazy">
+        <img class="cycle-img" src="/assets/images/cycle/hoodie-awaken.jpg" alt="No Fear Awaken Hoodie" loading="lazy">
+        <img class="cycle-img" src="/assets/images/cycle/tee-skull.jpg" alt="No Fear Black Skull Tee" loading="lazy">
+        <img class="cycle-img" src="/assets/images/cycle/tee-needing.jpg" alt="No Fear You'll Be Needing These Tee" loading="lazy">
       </div>
       <div class="collection-label">
         <span class="collection-name">No Fear T-Shirts & Hoodies</span>
@@ -2177,6 +2154,8 @@
     </div>
     <div class="collection-cell" onclick="nfNavCol('hats')" style="cursor:pointer; border-right:none;">
       <div class="collection-img-wrap collection-cycle">
+        <img class="cycle-img" src="/assets/images/cycle/hat-icon.jpg" alt="No Fear Icon Snapback Black" loading="lazy">
+        <img class="cycle-img" src="/assets/images/cycle/hat-skull.jpg" alt="No Fear Flaming Skull Snapback Black" loading="lazy">
         <img class="cycle-img" src="/assets/images/hat-product.png" alt="No Fear Flatbill Black" loading="lazy">
         <img class="cycle-img" src="/assets/images/hat-product2.png" alt="No Fear Flatbill Grey & Black" loading="lazy">
         <img class="cycle-img" src="/assets/images/hat-product3.png" alt="No Fear Trucker Black" loading="lazy">
@@ -3854,6 +3833,22 @@ function nfFeatATC(handle, pfx) {
 (function(){ nfSetRegion(nfRegion); })();
 // Load home-page product strips (Staples, Motocross Gear, Merch)
 nfLoadHomeStrips();
+
+// Auto-cycle product images in the home collection squares (quick flip, any image count)
+(function() {
+  var NF_CYCLE_MS = 900;
+  document.querySelectorAll('.collection-cycle').forEach(function(wrap) {
+    var imgs = wrap.querySelectorAll('.cycle-img');
+    if (imgs.length < 2) return;
+    imgs.forEach(function(i){ i.loading = 'eager'; });
+    var idx = 0; imgs[0].classList.add('on');
+    setInterval(function() {
+      imgs[idx].classList.remove('on');
+      idx = (idx + 1) % imgs.length;
+      imgs[idx].classList.add('on');
+    }, NF_CYCLE_MS);
+  });
+})();
 </script>
 
 </body>
