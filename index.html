@@ -1573,11 +1573,15 @@
     .catalog-nav-btn:disabled { opacity: 0.15; cursor: default; }
     .catalog-dots {
       display: flex;
+      flex-wrap: wrap;
       gap: 8px;
       justify-content: center;
-      padding: 20px 0 28px;
+      padding: 20px 24px 28px;
+      max-width: 560px;
+      margin: 0 auto;
     }
     .catalog-dot {
+      flex-shrink: 0;
       width: 5px;
       height: 5px;
       border-radius: 50%;
@@ -1981,7 +1985,7 @@
       <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
     </a>
     <button class="nav-item nav-early-btn" onclick="go('early-access')">Early Access</button>
-    <button class="nav-item nav-lookbook-btn" onclick="go('catalog')">NoFear 001 Lookbook</button>
+    <button class="nav-item nav-lookbook-btn" onclick="go('catalog')">NoFear 002 Lookbook</button>
   </div>
 </nav>
 
@@ -2002,7 +2006,7 @@
     <button class="mobile-menu-link" onclick="go('contact'); closeMobileMenu()">Contact</button>
     <button class="mobile-menu-link" onclick="go('dealers'); closeMobileMenu()">Dealer Applications</button>
 
-    <button class="mobile-menu-link" onclick="go('catalog'); closeMobileMenu()">NoFear 001 Lookbook</button>
+    <button class="mobile-menu-link" onclick="go('catalog'); closeMobileMenu()">NoFear 002 Lookbook</button>
     <button class="mobile-menu-link" onclick="go('faq'); closeMobileMenu()">FAQ</button>
     <button class="mobile-menu-link" onclick="go('distributors'); closeMobileMenu()">International Distributors</button>
   </div>
@@ -2583,87 +2587,185 @@
      CATALOG
 ════════════════════════ -->
 <div id="catalog" class="page">
-  <div class="catalog-counter"><span id="cat-cur">1</span> / <span id="cat-tot">19</span></div>
+  <div class="catalog-counter"><span id="cat-cur">1</span> / <span id="cat-tot">56</span></div>
 
   <div class="catalog-stage" id="catalogStage">
     <button class="catalog-nav-btn prev" id="catPrev" onclick="catalogNav(-1)">←</button>
 
-    <div class="catalog-slide active" data-cap="No Fear — The Rack">
-      <img src="/assets/images/catalog/ls01.jpg" alt="No Fear lifestyle — apparel rack" loading="lazy">
+    <div class="catalog-slide active" data-cap="NoFear 002 — 01 / 56">
+      <img src="/assets/images/catalog/002-01.jpg" alt="No Fear 002 lookbook — image 1" loading="lazy">
     </div>
-    <div class="catalog-slide" data-cap="No Fear — Barn Session">
-      <img src="/assets/images/catalog/ls02.jpg" alt="No Fear lifestyle — barn session" loading="lazy">
+    <div class="catalog-slide" data-cap="NoFear 002 — 02 / 56">
+      <img src="/assets/images/catalog/002-02.jpg" alt="No Fear 002 lookbook — image 2" loading="lazy">
     </div>
-    <div class="catalog-slide" data-cap="No Fear — Does Not Play Well">
-      <img src="/assets/images/catalog/ls03.jpg" alt="No Fear lifestyle — does not play well with others tee" loading="lazy">
+    <div class="catalog-slide" data-cap="NoFear 002 — 03 / 56">
+      <img src="/assets/images/catalog/002-03.jpg" alt="No Fear 002 lookbook — image 3" loading="lazy">
     </div>
-    <div class="catalog-slide" data-cap="No Fear — Two Up">
-      <img src="/assets/images/catalog/ls04.jpg" alt="No Fear lifestyle — two up on the Honda" loading="lazy">
+    <div class="catalog-slide" data-cap="NoFear 002 — 04 / 56">
+      <img src="/assets/images/catalog/002-04.jpg" alt="No Fear 002 lookbook — image 4" loading="lazy">
     </div>
-    <div class="catalog-slide" data-cap="No Fear — Wooden Structure">
-      <img src="/assets/images/catalog/ls05.jpg" alt="No Fear lifestyle — black tee at wooden structure" loading="lazy">
+    <div class="catalog-slide" data-cap="NoFear 002 — 05 / 56">
+      <img src="/assets/images/catalog/002-05.jpg" alt="No Fear 002 lookbook — image 5" loading="lazy">
     </div>
-    <div class="catalog-slide" data-cap="No Fear — Hats On The Bike">
-      <img src="/assets/images/catalog/ls06.jpg" alt="No Fear lifestyle — hats on the bike" loading="lazy">
+    <div class="catalog-slide" data-cap="NoFear 002 — 06 / 56">
+      <img src="/assets/images/catalog/002-06.jpg" alt="No Fear 002 lookbook — image 6" loading="lazy">
     </div>
-    <div class="catalog-slide" data-cap="No Fear — Cap & Tee">
-      <img src="/assets/images/catalog/ls07.jpg" alt="No Fear lifestyle — cap and tee portrait" loading="lazy">
+    <div class="catalog-slide" data-cap="NoFear 002 — 07 / 56">
+      <img src="/assets/images/catalog/002-07.jpg" alt="No Fear 002 lookbook — image 7" loading="lazy">
     </div>
-
-    <div class="catalog-slide" data-cap="001 Patriot — On The Bike">
-      <img src="/assets/images/catalog/01.jpg" alt="No Fear 001 Patriot motocross gear set — on the bike" loading="lazy">
+    <div class="catalog-slide" data-cap="NoFear 002 — 08 / 56">
+      <img src="/assets/images/catalog/002-08.jpg" alt="No Fear 002 lookbook — image 8" loading="lazy">
     </div>
-    <div class="catalog-slide" data-cap="001 Patriot — Golden Hour">
-      <img src="/assets/images/catalog/02.jpg" alt="No Fear 001 Patriot motocross jersey and pants — golden hour" loading="lazy">
+    <div class="catalog-slide" data-cap="NoFear 002 — 09 / 56">
+      <img src="/assets/images/catalog/002-09.jpg" alt="No Fear 002 lookbook — image 9" loading="lazy">
     </div>
-    <div class="catalog-slide" data-cap="001 Patriot Gloves — Detail">
-      <img src="/assets/images/catalog/03.jpg" alt="No Fear 001 Patriot motocross gloves — detail shot" loading="lazy">
+    <div class="catalog-slide" data-cap="NoFear 002 — 10 / 56">
+      <img src="/assets/images/catalog/002-10.jpg" alt="No Fear 002 lookbook — image 10" loading="lazy">
     </div>
-    <div class="catalog-slide" data-cap="001 Blackout — In The Field">
-      <img src="/assets/images/catalog/04.jpg" alt="No Fear 001 Blackout motocross gear set — in the field" loading="lazy">
+    <div class="catalog-slide" data-cap="NoFear 002 — 11 / 56">
+      <img src="/assets/images/catalog/002-11.jpg" alt="No Fear 002 lookbook — image 11" loading="lazy">
     </div>
-    <div class="catalog-slide" data-cap="Two Riders — Night Session">
-      <img src="/assets/images/catalog/05.jpg" alt="Two riders in No Fear motocross gear — night session" loading="lazy">
+    <div class="catalog-slide" data-cap="NoFear 002 — 12 / 56">
+      <img src="/assets/images/catalog/002-12.jpg" alt="No Fear 002 lookbook — image 12" loading="lazy">
     </div>
-    <div class="catalog-slide" data-cap="001 Patriot — Motion">
-      <img src="/assets/images/catalog/06.jpg" alt="No Fear 001 Patriot motocross gear in motion" loading="lazy">
+    <div class="catalog-slide" data-cap="NoFear 002 — 13 / 56">
+      <img src="/assets/images/catalog/002-13.jpg" alt="No Fear 002 lookbook — image 13" loading="lazy">
     </div>
-    <div class="catalog-slide" data-cap="Whip — Palm Springs">
-      <img src="/assets/images/catalog/08.jpg" alt="Motocross whip in No Fear gear — Palm Springs" loading="lazy">
+    <div class="catalog-slide" data-cap="NoFear 002 — 14 / 56">
+      <img src="/assets/images/catalog/002-14.jpg" alt="No Fear 002 lookbook — image 14" loading="lazy">
     </div>
-    <div class="catalog-slide" data-cap="001 Patriot — On The Hill">
-      <img src="/assets/images/catalog/09.jpg" alt="No Fear 001 Patriot rider on the hill" loading="lazy">
+    <div class="catalog-slide" data-cap="NoFear 002 — 15 / 56">
+      <img src="/assets/images/catalog/002-15.jpg" alt="No Fear 002 lookbook — image 15" loading="lazy">
     </div>
-    <div class="catalog-slide" data-cap="Both Colorways — The Hill">
-      <img src="/assets/images/catalog/10.jpg" alt="No Fear 001 Patriot and Blackout colorways on the hill" loading="lazy">
+    <div class="catalog-slide" data-cap="NoFear 002 — 16 / 56">
+      <img src="/assets/images/catalog/002-16.jpg" alt="No Fear 002 lookbook — image 16" loading="lazy">
     </div>
-    <div class="catalog-slide" data-cap="001 Patriot — Full Send">
-      <img src="/assets/images/catalog/11.jpg" alt="No Fear 001 Patriot motocross rider full send" loading="lazy">
+    <div class="catalog-slide" data-cap="NoFear 002 — 17 / 56">
+      <img src="/assets/images/catalog/002-17.jpg" alt="No Fear 002 lookbook — image 17" loading="lazy">
     </div>
-    <div class="catalog-slide" data-cap="001 Patriot — Honda CRF">
-      <img src="/assets/images/catalog/12.jpg" alt="No Fear 001 Patriot rider on Honda CRF motocross bike" loading="lazy">
+    <div class="catalog-slide" data-cap="NoFear 002 — 18 / 56">
+      <img src="/assets/images/catalog/002-18.jpg" alt="No Fear 002 lookbook — image 18" loading="lazy">
     </div>
-    <div class="catalog-slide" data-cap="001 Blackout — Low & Fast">
-      <img src="/assets/images/catalog/13.jpg" alt="No Fear 001 Blackout motocross gear — low and fast" loading="lazy">
+    <div class="catalog-slide" data-cap="NoFear 002 — 19 / 56">
+      <img src="/assets/images/catalog/002-19.jpg" alt="No Fear 002 lookbook — image 19" loading="lazy">
     </div>
-    <div class="catalog-slide" data-cap="001 Blackout — Berm">
-      <img src="/assets/images/catalog/14.jpg" alt="No Fear 001 Blackout rider hitting a berm" loading="lazy">
+    <div class="catalog-slide" data-cap="NoFear 002 — 20 / 56">
+      <img src="/assets/images/catalog/002-20.jpg" alt="No Fear 002 lookbook — image 20" loading="lazy">
     </div>
-    <div class="catalog-slide" data-cap="Both Colorways — Head On">
-      <img src="/assets/images/catalog/15.jpg" alt="No Fear 001 Patriot and Blackout gear sets head on" loading="lazy">
+    <div class="catalog-slide" data-cap="NoFear 002 — 21 / 56">
+      <img src="/assets/images/catalog/002-21.jpg" alt="No Fear 002 lookbook — image 21" loading="lazy">
     </div>
-    <div class="catalog-slide" data-cap="001 Patriot & Blackout — Golden Hour">
-      <img src="/assets/images/catalog/16.jpg" alt="No Fear 001 Patriot and Blackout motocross sets — golden hour" loading="lazy">
+    <div class="catalog-slide" data-cap="NoFear 002 — 22 / 56">
+      <img src="/assets/images/catalog/002-22.jpg" alt="No Fear 002 lookbook — image 22" loading="lazy">
     </div>
-    <div class="catalog-slide" data-cap="001 Patriot — Sunset Field">
-      <img src="/assets/images/catalog/17.jpg" alt="No Fear 001 Patriot motocross rider in sunset field" loading="lazy">
+    <div class="catalog-slide" data-cap="NoFear 002 — 23 / 56">
+      <img src="/assets/images/catalog/002-23.jpg" alt="No Fear 002 lookbook — image 23" loading="lazy">
+    </div>
+    <div class="catalog-slide" data-cap="NoFear 002 — 24 / 56">
+      <img src="/assets/images/catalog/002-24.jpg" alt="No Fear 002 lookbook — image 24" loading="lazy">
+    </div>
+    <div class="catalog-slide" data-cap="NoFear 002 — 25 / 56">
+      <img src="/assets/images/catalog/002-25.jpg" alt="No Fear 002 lookbook — image 25" loading="lazy">
+    </div>
+    <div class="catalog-slide" data-cap="NoFear 002 — 26 / 56">
+      <img src="/assets/images/catalog/002-26.jpg" alt="No Fear 002 lookbook — image 26" loading="lazy">
+    </div>
+    <div class="catalog-slide" data-cap="NoFear 002 — 27 / 56">
+      <img src="/assets/images/catalog/002-27.jpg" alt="No Fear 002 lookbook — image 27" loading="lazy">
+    </div>
+    <div class="catalog-slide" data-cap="NoFear 002 — 28 / 56">
+      <img src="/assets/images/catalog/002-28.jpg" alt="No Fear 002 lookbook — image 28" loading="lazy">
+    </div>
+    <div class="catalog-slide" data-cap="NoFear 002 — 29 / 56">
+      <img src="/assets/images/catalog/002-29.jpg" alt="No Fear 002 lookbook — image 29" loading="lazy">
+    </div>
+    <div class="catalog-slide" data-cap="NoFear 002 — 30 / 56">
+      <img src="/assets/images/catalog/002-30.jpg" alt="No Fear 002 lookbook — image 30" loading="lazy">
+    </div>
+    <div class="catalog-slide" data-cap="NoFear 002 — 31 / 56">
+      <img src="/assets/images/catalog/002-31.jpg" alt="No Fear 002 lookbook — image 31" loading="lazy">
+    </div>
+    <div class="catalog-slide" data-cap="NoFear 002 — 32 / 56">
+      <img src="/assets/images/catalog/002-32.jpg" alt="No Fear 002 lookbook — image 32" loading="lazy">
+    </div>
+    <div class="catalog-slide" data-cap="NoFear 002 — 33 / 56">
+      <img src="/assets/images/catalog/002-33.jpg" alt="No Fear 002 lookbook — image 33" loading="lazy">
+    </div>
+    <div class="catalog-slide" data-cap="NoFear 002 — 34 / 56">
+      <img src="/assets/images/catalog/002-34.jpg" alt="No Fear 002 lookbook — image 34" loading="lazy">
+    </div>
+    <div class="catalog-slide" data-cap="NoFear 002 — 35 / 56">
+      <img src="/assets/images/catalog/002-35.jpg" alt="No Fear 002 lookbook — image 35" loading="lazy">
+    </div>
+    <div class="catalog-slide" data-cap="NoFear 002 — 36 / 56">
+      <img src="/assets/images/catalog/002-36.jpg" alt="No Fear 002 lookbook — image 36" loading="lazy">
+    </div>
+    <div class="catalog-slide" data-cap="NoFear 002 — 37 / 56">
+      <img src="/assets/images/catalog/002-37.jpg" alt="No Fear 002 lookbook — image 37" loading="lazy">
+    </div>
+    <div class="catalog-slide" data-cap="NoFear 002 — 38 / 56">
+      <img src="/assets/images/catalog/002-38.jpg" alt="No Fear 002 lookbook — image 38" loading="lazy">
+    </div>
+    <div class="catalog-slide" data-cap="NoFear 002 — 39 / 56">
+      <img src="/assets/images/catalog/002-39.jpg" alt="No Fear 002 lookbook — image 39" loading="lazy">
+    </div>
+    <div class="catalog-slide" data-cap="NoFear 002 — 40 / 56">
+      <img src="/assets/images/catalog/002-40.jpg" alt="No Fear 002 lookbook — image 40" loading="lazy">
+    </div>
+    <div class="catalog-slide" data-cap="NoFear 002 — 41 / 56">
+      <img src="/assets/images/catalog/002-41.jpg" alt="No Fear 002 lookbook — image 41" loading="lazy">
+    </div>
+    <div class="catalog-slide" data-cap="NoFear 002 — 42 / 56">
+      <img src="/assets/images/catalog/002-42.jpg" alt="No Fear 002 lookbook — image 42" loading="lazy">
+    </div>
+    <div class="catalog-slide" data-cap="NoFear 002 — 43 / 56">
+      <img src="/assets/images/catalog/002-43.jpg" alt="No Fear 002 lookbook — image 43" loading="lazy">
+    </div>
+    <div class="catalog-slide" data-cap="NoFear 002 — 44 / 56">
+      <img src="/assets/images/catalog/002-44.jpg" alt="No Fear 002 lookbook — image 44" loading="lazy">
+    </div>
+    <div class="catalog-slide" data-cap="NoFear 002 — 45 / 56">
+      <img src="/assets/images/catalog/002-45.jpg" alt="No Fear 002 lookbook — image 45" loading="lazy">
+    </div>
+    <div class="catalog-slide" data-cap="NoFear 002 — 46 / 56">
+      <img src="/assets/images/catalog/002-46.jpg" alt="No Fear 002 lookbook — image 46" loading="lazy">
+    </div>
+    <div class="catalog-slide" data-cap="NoFear 002 — 47 / 56">
+      <img src="/assets/images/catalog/002-47.jpg" alt="No Fear 002 lookbook — image 47" loading="lazy">
+    </div>
+    <div class="catalog-slide" data-cap="NoFear 002 — 48 / 56">
+      <img src="/assets/images/catalog/002-48.jpg" alt="No Fear 002 lookbook — image 48" loading="lazy">
+    </div>
+    <div class="catalog-slide" data-cap="NoFear 002 — 49 / 56">
+      <img src="/assets/images/catalog/002-49.jpg" alt="No Fear 002 lookbook — image 49" loading="lazy">
+    </div>
+    <div class="catalog-slide" data-cap="NoFear 002 — 50 / 56">
+      <img src="/assets/images/catalog/002-50.jpg" alt="No Fear 002 lookbook — image 50" loading="lazy">
+    </div>
+    <div class="catalog-slide" data-cap="NoFear 002 — 51 / 56">
+      <img src="/assets/images/catalog/002-51.jpg" alt="No Fear 002 lookbook — image 51" loading="lazy">
+    </div>
+    <div class="catalog-slide" data-cap="NoFear 002 — 52 / 56">
+      <img src="/assets/images/catalog/002-52.jpg" alt="No Fear 002 lookbook — image 52" loading="lazy">
+    </div>
+    <div class="catalog-slide" data-cap="NoFear 002 — 53 / 56">
+      <img src="/assets/images/catalog/002-53.jpg" alt="No Fear 002 lookbook — image 53" loading="lazy">
+    </div>
+    <div class="catalog-slide" data-cap="NoFear 002 — 54 / 56">
+      <img src="/assets/images/catalog/002-54.jpg" alt="No Fear 002 lookbook — image 54" loading="lazy">
+    </div>
+    <div class="catalog-slide" data-cap="NoFear 002 — 55 / 56">
+      <img src="/assets/images/catalog/002-55.jpg" alt="No Fear 002 lookbook — image 55" loading="lazy">
+    </div>
+    <div class="catalog-slide" data-cap="NoFear 002 — 56 / 56">
+      <img src="/assets/images/catalog/002-56.jpg" alt="No Fear 002 lookbook — image 56" loading="lazy">
     </div>
 
     <button class="catalog-nav-btn next" id="catNext" onclick="catalogNav(1)">→</button>
   </div>
 
   <div class="catalog-dots" id="catDots"></div>
-  <div class="catalog-caption" id="catCaption">001 Patriot — On The Bike</div>
+  <div class="catalog-caption" id="catCaption">NoFear 002 — 01 / 56</div>
 </div>
 
 <!-- ════════════════════════
@@ -2798,8 +2900,8 @@
       canonical: 'https://nofearmotocross.com/'
     },
     catalog: {
-      title: 'NoFear 001 Lookbook | Official Motocross Gear Collection',
-      desc:  'View the No Fear 001 Lookbook — the first official drop featuring Elektron gear sets, gloves, and apparel from the iconic No Fear Motocross brand.',
+      title: 'NoFear 002 Lookbook | No Fear Motocross',
+      desc:  'View the NoFear 002 Lookbook — the second official drop from No Fear Motocross. Gear, apparel, and lifestyle from the 002 collection.',
       canonical: 'https://nofearmotocross.com/#catalog'
     },
     about: {
