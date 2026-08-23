@@ -1845,6 +1845,8 @@
     .nf-feat-atc { display:block; width:calc(100% - 28px); margin:8px 14px 14px; background:#000; color:#fff; border:none; font-family:'IBM Plex Mono',monospace; font-size:8px; font-weight:700; text-transform:uppercase; letter-spacing:0.12em; padding:9px 6px; cursor:pointer; transition:opacity 0.2s; }
     .nf-feat-atc:hover { opacity:0.75; }
     .nf-staples-loading { font-family:'IBM Plex Mono',monospace; font-size:11px; color:#aaa; padding:40px; }
+    .nf-strip-link { cursor:pointer; color:#000; transition:opacity 0.15s; }
+    .nf-strip-link:hover { opacity:0.5; }
     @media (max-width:900px) { .nf-feat-card { flex:0 0 38vw; min-width:0; } }
     @media (max-width:600px) { .nf-feat-card { flex:0 0 72vw; } .nf-staples-header { padding:24px 20px 14px; } }
   </style>
@@ -2090,6 +2092,28 @@
       <span class="nf-staples-sub">Shop the essentials</span>
     </div>
     <div class="nf-staples-track" id="nfStaplesTrack">
+      <div class="nf-staples-loading">Loading…</div>
+    </div>
+  </div>
+
+  <!-- Motocross Gear Swipe (gear sets + gloves) -->
+  <div class="nf-staples">
+    <div class="nf-staples-header">
+      <span class="nf-staples-label">Motocross Gear</span>
+      <span class="nf-staples-sub nf-strip-link" onclick="nfNavCol('seta')">Shop all gear →</span>
+    </div>
+    <div class="nf-staples-track" id="nfGearTrack">
+      <div class="nf-staples-loading">Loading…</div>
+    </div>
+  </div>
+
+  <!-- Merch Swipe (everything else) -->
+  <div class="nf-staples">
+    <div class="nf-staples-header">
+      <span class="nf-staples-label">Merch</span>
+      <span class="nf-staples-sub nf-strip-link" onclick="nfNavCol('frontpage')">Shop all →</span>
+    </div>
+    <div class="nf-staples-track" id="nfMerchTrack">
       <div class="nf-staples-loading">Loading…</div>
     </div>
   </div>
@@ -3204,7 +3228,7 @@ function nfSetRegion(r) {
     if (nfProductsCache[cur]) nfRenderGrid(nfProductsCache[cur]);
   }
   // Re-render staples if visible
-  if (document.getElementById('nfStaplesTrack')) nfLoadStaples();
+  if (document.getElementById('nfStaplesTrack')) nfLoadHomeStrips();
   // Re-render product price if visible
   var priceEl = document.getElementById('nfprod-price');
   if (priceEl && nfProdHandle && nfProdCache[nfProdHandle]) {
@@ -3598,22 +3622,20 @@ function nfProdAtc() {
 // ── Staples featured swipe ──
 var NF_STAPLES = ['staple-t-shirt-white','staple-t-shirt','staple-hoodie','staple-no-fear-hat-black','staple-no-fear-hat-grey'];
 
-async function nfLoadStaples() {
-  var track = document.getElementById('nfStaplesTrack');
+// Shared renderer for home-page swipe strips. `pfx` keeps select ids unique per strip.
+function nfRenderStrip(trackId, products, pfx) {
+  var track = document.getElementById(trackId);
   if (!track) return;
-  var products = await Promise.all(NF_STAPLES.map(function(h) {
-    if (nfProdCache[h]) return Promise.resolve(nfProdCache[h]);
-    return nfFetchProduct(h).then(function(p) { if (p) nfProdCache[h] = p; return p; });
-  }));
-  var valid = products.filter(Boolean);
-  if (!valid.length) { track.innerHTML = ''; return; }
+  var valid = (products || []).filter(Boolean);
+  if (!valid.length) { track.closest('.nf-staples').style.display = 'none'; return; }
+  valid.forEach(function(p) { nfProdCache[p.handle] = p; });
   track.innerHTML = valid.map(function(p) {
     var img = p.images[0] ? p.images[0].src : '';
     var price = nfFormatPrice(p.variants[0].price);
     var selHtml = p.options.map(function(opt, optIdx) {
       var key = 'option' + (optIdx + 1);
       var label = nfShortOptName(opt.name);
-      return '<select class="nfpc-sel" id="nfst-sel-' + p.handle + '-' + optIdx + '" onclick="event.stopPropagation()" style="width:100%;">' +
+      return '<select class="nfpc-sel" id="' + pfx + '-sel-' + p.handle + '-' + optIdx + '" onclick="event.stopPropagation()" style="width:100%;">' +
         '<option value="">— ' + label + ' —</option>' +
         opt.values.map(function(v) {
           var vt = p.variants.find(function(vv){ return vv[key] === v; });
@@ -3629,16 +3651,56 @@ async function nfLoadStaples() {
         '<div class="nf-feat-price">' + price + '</div>' +
       '</div>' +
       '<div style="padding:0 14px 2px;">' + selHtml + '</div>' +
-      '<button class="nf-feat-atc" onclick="event.stopPropagation();nfFeatATC(\'' + p.handle + '\')">Add to cart</button>' +
+      '<button class="nf-feat-atc" onclick="event.stopPropagation();nfFeatATC(\'' + p.handle + '\',\'' + pfx + '\')">Add to cart</button>' +
     '</div>';
   }).join('');
 }
 
-function nfFeatATC(handle) {
+async function nfLoadStaples() {
+  if (!document.getElementById('nfStaplesTrack')) return;
+  var products = await Promise.all(NF_STAPLES.map(function(h) {
+    if (nfProdCache[h]) return Promise.resolve(nfProdCache[h]);
+    return nfFetchProduct(h).then(function(p) { if (p) nfProdCache[h] = p; return p; });
+  }));
+  nfRenderStrip('nfStaplesTrack', products, 'nfst');
+}
+
+// Motocross Gear strip: gear sets + gloves collections
+async function nfLoadGearStrip() {
+  if (!document.getElementById('nfGearTrack')) return;
+  var lists = await Promise.all(['seta','gloves'].map(async function(h) {
+    if (!nfProductsCache[h]) nfProductsCache[h] = await nfFetchCollection(h);
+    return nfProductsCache[h];
+  }));
+  var seen = {};
+  var merged = [].concat.apply([], lists).filter(function(p) { if (seen[p.handle]) return false; seen[p.handle] = true; return true; });
+  nfRenderStrip('nfGearTrack', merged, 'nfgr');
+}
+
+// Merch strip: everything in the All collection that isn't a staple or motocross gear
+async function nfLoadMerchStrip() {
+  if (!document.getElementById('nfMerchTrack')) return;
+  if (!nfProductsCache['frontpage']) nfProductsCache['frontpage'] = await nfFetchCollection('frontpage');
+  var gearHandles = {};
+  ['seta','gloves'].forEach(function(h) { (nfProductsCache[h] || []).forEach(function(p) { gearHandles[p.handle] = true; }); });
+  var merch = nfProductsCache['frontpage'].filter(function(p) {
+    return NF_STAPLES.indexOf(p.handle) === -1 && !gearHandles[p.handle];
+  });
+  nfRenderStrip('nfMerchTrack', merch, 'nfmr');
+}
+
+async function nfLoadHomeStrips() {
+  await nfLoadStaples();
+  await nfLoadGearStrip();   // must run before merch so gear handles are known for exclusion
+  await nfLoadMerchStrip();
+}
+
+function nfFeatATC(handle, pfx) {
   var p = nfProdCache[handle];
   if (!p) return;
+  pfx = pfx || 'nfst';
   var selVals = p.options.map(function(opt, i) {
-    var s = document.getElementById('nfst-sel-' + handle + '-' + i);
+    var s = document.getElementById(pfx + '-sel-' + handle + '-' + i);
     return s ? s.value : '';
   });
   var match = p.variants.find(function(v) {
@@ -3652,8 +3714,8 @@ function nfFeatATC(handle) {
 (function(){ var c = nfCart.reduce(function(s,i){ return s+i.qty; },0); if(c>0) nfBadgeUpdate(c); })();
 // Init region toggle active state
 (function(){ nfSetRegion(nfRegion); })();
-// Load staples on home page
-nfLoadStaples();
+// Load home-page product strips (Staples, Motocross Gear, Merch)
+nfLoadHomeStrips();
 </script>
 
 </body>
