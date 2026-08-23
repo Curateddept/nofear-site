@@ -3855,12 +3855,11 @@ async function nfLoadMerchStrip() {
   nfRenderStrip('nfMerchTrack', mixed, 'nfmr');
 }
 
-// Hats & Stickers strip: the hats collection, newest first
+// Hats & Stickers strip: the hats collection in its Shopify-curated order
 async function nfLoadHatsStrip() {
   if (!document.getElementById('nfHatsTrack')) return;
   if (!nfProductsCache['hats']) nfProductsCache['hats'] = await nfFetchCollection('hats');
-  var items = nfProductsCache['hats'].slice().sort(function(a, b) { return new Date(b.created_at) - new Date(a.created_at); });
-  nfRenderStrip('nfHatsTrack', items, 'nfht');
+  nfRenderStrip('nfHatsTrack', nfProductsCache['hats'], 'nfht');
 }
 
 async function nfLoadHomeStrips() {
