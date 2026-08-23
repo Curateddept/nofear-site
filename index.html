@@ -551,7 +551,7 @@
       position: absolute;
       top: 52px;
       left: 0;
-      min-width: 600px;
+      min-width: 960px;
       background: #fff;
       border: 1px solid #e8e8e8;
       border-top: none;
@@ -580,9 +580,9 @@
 
     .nav-drop-images {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2px;
-      padding: 8px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 4px;
+      padding: 10px;
     }
     .nav-drop-img-item { position: relative; overflow: hidden; cursor: pointer; }
     .nav-drop-img-item img {
@@ -1902,6 +1902,7 @@
           <button class="nav-drop-link" onclick="nfNavCol('frontpage')" style="font-weight:500;">All Products</button>
           <button class="nav-drop-link" onclick="nfNavCol('seta')">Motocross Gear</button>
           <button class="nav-drop-link" onclick="nfNavCol('youth-motocross-gear')">Youth Motocross Gear</button>
+          <button class="nav-drop-link" onclick="nfNavCol('youth-apparel')">Youth Apparel</button>
           <button class="nav-drop-link" onclick="nfNavCol('gloves')">Gloves</button>
           <button class="nav-drop-link" onclick="nfNavCol('apparel')">T-Shirts &amp; Hoodies</button>
           <button class="nav-drop-link" onclick="nfNavCol('hats')">Hats &amp; Stickers</button>
@@ -1923,13 +1924,21 @@
             <img src="/assets/images/gloves-cover.jpg" alt="Gloves">
             <span class="nav-drop-label">GLOVES</span>
           </button>
-          <button class="nav-drop-img-item" onclick="goProduct('no-fear-001-elektron-blackout-set')">
-            <img src="/assets/images/blackout-001.png" alt="Blackout Set">
-            <span class="nav-drop-label">BLACKOUT</span>
+          <button class="nav-drop-img-item" onclick="goProduct('no-fear-002-icon-pant')">
+            <img src="/assets/images/icon-002.jpg" alt="No Fear 002 Elektron Icon Set" style="object-fit:contain;background:#fff;">
+            <span class="nav-drop-label">002 ICON SET</span>
           </button>
-          <button class="nav-drop-img-item" onclick="goProduct('no-fear-001-elektron-patriot-set')">
-            <img src="/assets/images/patriot-001.png" alt="Patriot Set">
-            <span class="nav-drop-label">PATRIOT</span>
+          <button class="nav-drop-img-item" onclick="goProduct('no-fear-elektron-strike-2-0-jersey')">
+            <img src="/assets/images/strike-002.jpg" alt="No Fear 002 Elektron Strike 2.0 Set" style="object-fit:contain;background:#fff;">
+            <span class="nav-drop-label">002 STRIKE 2.0 SET</span>
+          </button>
+          <button class="nav-drop-img-item" onclick="nfNavCol('youth-motocross-gear')">
+            <img src="/assets/images/youth-cover.jpg" alt="Youth Motocross Gear">
+            <span class="nav-drop-label">YOUTH GEAR</span>
+          </button>
+          <button class="nav-drop-img-item" onclick="nfNavCol('youth-apparel')">
+            <img src="/assets/images/youth-apparel-cover.jpg" alt="Youth Apparel">
+            <span class="nav-drop-label">YOUTH APPAREL</span>
           </button>
         </div>
       </div>
@@ -1973,6 +1982,7 @@
     <button class="mobile-menu-link" onclick="nfNavCol('frontpage'); closeMobileMenu()">Shop — All</button>
     <button class="mobile-menu-link" onclick="nfNavCol('seta'); closeMobileMenu()">Motocross Gear</button>
     <button class="mobile-menu-link" onclick="nfNavCol('youth-motocross-gear'); closeMobileMenu()">Youth Gear</button>
+    <button class="mobile-menu-link" onclick="nfNavCol('youth-apparel'); closeMobileMenu()">Youth Apparel</button>
     <button class="mobile-menu-link" onclick="nfNavCol('gloves'); closeMobileMenu()">Gloves</button>
     <button class="mobile-menu-link" onclick="nfNavCol('apparel'); closeMobileMenu()">T-Shirts &amp; Hoodies</button>
     <button class="mobile-menu-link" onclick="nfNavCol('hats'); closeMobileMenu()">Hats &amp; Stickers</button>
@@ -2767,7 +2777,8 @@
     <div class="nfshop-tabs">
       <button class="nfshop-tab active" data-col="frontpage" onclick="nfNavCol('frontpage')">All</button>
       <button class="nfshop-tab" data-col="seta" onclick="nfNavCol('seta')">Motocross Gear</button>
-      <button class="nfshop-tab" data-col="youth-motocross-gear" onclick="nfNavCol('youth-motocross-gear')">Youth</button>
+      <button class="nfshop-tab" data-col="youth-motocross-gear" onclick="nfNavCol('youth-motocross-gear')">Youth Gear</button>
+      <button class="nfshop-tab" data-col="youth-apparel" onclick="nfNavCol('youth-apparel')">Youth Apparel</button>
       <button class="nfshop-tab" data-col="gloves" onclick="nfNavCol('gloves')">Gloves</button>
       <button class="nfshop-tab" data-col="apparel" onclick="nfNavCol('apparel')">T-Shirts &amp; Hoodies</button>
       <button class="nfshop-tab" data-col="hats" onclick="nfNavCol('hats')">Hats &amp; Stickers</button>
@@ -3303,7 +3314,7 @@
 <script>
 // ── No Fear Storefront API Shop ──
 var NF_STORE = 'https://nofearmotocross.myshopify.com';
-var NF_COL_LABELS = { frontpage:'All Products', seta:'Motocross Gear', 'youth-motocross-gear':'Youth Gear', gloves:'Gloves', apparel:'T-Shirts & Hoodies', hats:'Hats & Stickers' };
+var NF_COL_LABELS = { frontpage:'All Products', seta:'Motocross Gear', 'youth-motocross-gear':'Youth Gear', 'youth-apparel':'Youth Apparel', gloves:'Gloves', apparel:'T-Shirts & Hoodies', hats:'Hats & Stickers' };
 
 // ── Region / Currency ──
 var NF_GBP_RATE = 0.79; // update when rate changes
