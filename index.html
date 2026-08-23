@@ -2116,13 +2116,13 @@
     </div>
   </div>
 
-  <!-- Staples Swipe -->
+  <!-- Hats & Stickers Swipe -->
   <div class="nf-staples">
     <div class="nf-staples-header">
-      <span class="nf-staples-label">The Staples</span>
-      <span class="nf-staples-sub">Shop the essentials</span>
+      <span class="nf-staples-label">Hats &amp; Stickers</span>
+      <span class="nf-staples-sub nf-strip-link" onclick="nfNavCol('hats')">Shop all →</span>
     </div>
-    <div class="nf-staples-track" id="nfStaplesTrack">
+    <div class="nf-staples-track" id="nfHatsTrack">
       <div class="nf-staples-loading">Loading…</div>
     </div>
   </div>
@@ -3343,7 +3343,7 @@ function nfSetRegion(r) {
     if (nfProductsCache[cur]) nfRenderGrid(nfProductsCache[cur]);
   }
   // Re-render staples if visible
-  if (document.getElementById('nfStaplesTrack')) nfLoadHomeStrips();
+  if (document.getElementById('nfMerchTrack')) nfLoadHomeStrips();
   // Re-render product price if visible
   var priceEl = document.getElementById('nfprod-price');
   if (priceEl && nfProdHandle && nfProdCache[nfProdHandle]) {
@@ -3833,21 +3833,35 @@ async function nfLoadGearStrip() {
   nfRenderStrip('nfGearTrack', products, 'nfgr');
 }
 
-// Merch strip: everything in the All collection that isn't a staple or motocross gear
+// 002 Apparel strip: the apparel collection (adult), newest first, tees interleaved with hoodies so both show up front
 async function nfLoadMerchStrip() {
   if (!document.getElementById('nfMerchTrack')) return;
-  if (!nfProductsCache['frontpage']) nfProductsCache['frontpage'] = await nfFetchCollection('frontpage');
-  var isGear = function(p) { return NF_GEAR_RX.test(p.title) || NF_TAB_MATCH.gloves.test(p.title) || /youth/i.test(p.title); };
-  var merch = nfProductsCache['frontpage'].filter(function(p) {
-    return NF_STAPLES.indexOf(p.handle) === -1 && !isGear(p);
-  }).sort(function(a, b) { return new Date(b.created_at) - new Date(a.created_at); }); // newest first
-  nfRenderStrip('nfMerchTrack', merch, 'nfmr');
+  if (!nfProductsCache['apparel']) nfProductsCache['apparel'] = await nfFetchCollection('apparel');
+  var items = nfProductsCache['apparel']
+    .filter(function(p) { return NF_STAPLES.indexOf(p.handle) === -1 && !/youth/i.test(p.title); })
+    .sort(function(a, b) { return new Date(b.created_at) - new Date(a.created_at); });
+  var hoodies = items.filter(function(p){ return /hoodie|crew|sweat/i.test(p.title); });
+  var tees    = items.filter(function(p){ return !/hoodie|crew|sweat/i.test(p.title); });
+  var mixed = [];
+  while (tees.length || hoodies.length) {
+    if (tees.length)    mixed.push(tees.shift());
+    if (hoodies.length) mixed.push(hoodies.shift());
+  }
+  nfRenderStrip('nfMerchTrack', mixed, 'nfmr');
+}
+
+// Hats & Stickers strip: the hats collection, newest first
+async function nfLoadHatsStrip() {
+  if (!document.getElementById('nfHatsTrack')) return;
+  if (!nfProductsCache['hats']) nfProductsCache['hats'] = await nfFetchCollection('hats');
+  var items = nfProductsCache['hats'].slice().sort(function(a, b) { return new Date(b.created_at) - new Date(a.created_at); });
+  nfRenderStrip('nfHatsTrack', items, 'nfht');
 }
 
 async function nfLoadHomeStrips() {
-  await nfLoadStaples();
-  await nfLoadGearStrip();   // must run before merch so gear handles are known for exclusion
   await nfLoadMerchStrip();
+  await nfLoadGearStrip();
+  await nfLoadHatsStrip();
 }
 
 function nfFeatATC(handle, pfx) {
