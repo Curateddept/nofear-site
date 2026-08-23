@@ -3782,26 +3782,37 @@ async function nfLoadStaples() {
   nfRenderStrip('nfStaplesTrack', products, 'nfst');
 }
 
-// Motocross Gear strip: gear sets + gloves collections
+// Motocross Gear strip: the 4 sets in fixed order (002 Icon, 002 Strike 2.0, 001 Blackout, 001 Patriot).
+// If a 002 set listing doesn't exist in Shopify yet, fall back to the closest live product and use the set photo.
+var NF_GEAR_STRIP = [
+  { handle: 'no-fear-002-elektron-icon-set',       fallback: 'no-fear-002-icon-pant',               img: '/assets/images/icon-002.jpg' },
+  { handle: 'no-fear-002-elektron-strike-2-0-set', fallback: 'no-fear-elektron-strike-2-0-jersey',  img: '/assets/images/strike-002.jpg' },
+  { handle: 'no-fear-001-elektron-blackout-set' },
+  { handle: 'no-fear-001-elektron-patriot-set' }
+];
 async function nfLoadGearStrip() {
   if (!document.getElementById('nfGearTrack')) return;
-  var lists = await Promise.all(['seta','gloves'].map(async function(h) {
-    if (!nfProductsCache[h]) nfProductsCache[h] = await nfFetchCollection(h);
-    return nfProductsCache[h];
+  var products = await Promise.all(NF_GEAR_STRIP.map(async function(entry) {
+    var p = nfProdCache[entry.handle] || await nfFetchProduct(entry.handle);
+    if (!p && entry.fallback) p = nfProdCache[entry.fallback] || await nfFetchProduct(entry.fallback);
+    if (!p) return null;
+    nfProdCache[p.handle] = p;
+    if (entry.img && !p._nfImgOverride) {
+      // shallow copy so the product page still shows Shopify's own photos
+      p = Object.assign({}, p, { images: [{ src: entry.img }].concat(p.images || []), _nfImgOverride: true });
+    }
+    return p;
   }));
-  var seen = {};
-  var merged = [].concat.apply([], lists).filter(function(p) { if (seen[p.handle]) return false; seen[p.handle] = true; return true; });
-  nfRenderStrip('nfGearTrack', merged, 'nfgr');
+  nfRenderStrip('nfGearTrack', products, 'nfgr');
 }
 
 // Merch strip: everything in the All collection that isn't a staple or motocross gear
 async function nfLoadMerchStrip() {
   if (!document.getElementById('nfMerchTrack')) return;
   if (!nfProductsCache['frontpage']) nfProductsCache['frontpage'] = await nfFetchCollection('frontpage');
-  var gearHandles = {};
-  ['seta','gloves'].forEach(function(h) { (nfProductsCache[h] || []).forEach(function(p) { gearHandles[p.handle] = true; }); });
+  var isGear = function(p) { return NF_TAB_MATCH.seta.test(p.title) || NF_TAB_MATCH.gloves.test(p.title); };
   var merch = nfProductsCache['frontpage'].filter(function(p) {
-    return NF_STAPLES.indexOf(p.handle) === -1 && !gearHandles[p.handle];
+    return NF_STAPLES.indexOf(p.handle) === -1 && !isGear(p);
   });
   nfRenderStrip('nfMerchTrack', merch, 'nfmr');
 }
