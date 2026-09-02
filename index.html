@@ -3534,6 +3534,20 @@ var NF_HIDE = ['black-jersey','black-pants','patriot-jersey','patriot-pants'];
 var NF_TAB_MATCH = { gloves: /glove/i };
 var NF_GEAR_RX = /jersey|pant|\bset\b/i; // used to keep gear out of the apparel strip
 
+// All Products display order: tees, hoodies, hats, stickers, moto sets, gloves
+function nfCatRank(p) {
+  var t = p.title;
+  var r;
+  if (/hoodie|crew|zip|sweat/i.test(t)) r = 2;
+  else if (/sticker/i.test(t)) r = 4;
+  else if (/hat\b|snapback|trucker|cap\b/i.test(t)) r = 3;
+  else if (/\bset\b/i.test(t)) r = 5;
+  else if (/glove/i.test(t)) r = 6;
+  else r = 1; // tees, long sleeves, and any other apparel
+  if (/youth/i.test(t)) r += 0.5; // adult first within each group
+  return r;
+}
+
 var _nfCatalogPromise = null;
 function nfFetchCatalog() {
   if (!_nfCatalogPromise) {
@@ -3544,7 +3558,7 @@ function nfFetchCatalog() {
         // standalone jerseys/pants stay off the site — gear is sold as sets
         if (/jersey|pant/i.test(p.title) && !/\bset\b/i.test(p.title)) return false;
         return true;
-      }); })
+      }).sort(function(a, b) { return nfCatRank(a) - nfCatRank(b); }); })
       .catch(function(){ return []; });
   }
   return _nfCatalogPromise;
