@@ -3957,5 +3957,115 @@ nfLoadHomeStrips();
 })();
 </script>
 
+
+<!-- ── Cookie consent banner ── -->
+<style>
+#nf-consent { position:fixed; bottom:0; left:0; right:0; z-index:11000; background:#000; color:#fff; font-family:'IBM Plex Mono',monospace; padding:16px 20px; display:none; align-items:center; justify-content:center; gap:18px; flex-wrap:wrap; text-align:center; }
+#nf-consent.show { display:flex; }
+#nf-consent p { margin:0; font-size:11px; letter-spacing:0.04em; line-height:1.6; max-width:640px; }
+#nf-consent button { font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; padding:10px 22px; cursor:pointer; border:1px solid #fff; }
+#nf-consent .nfc-accept { background:#fff; color:#000; }
+#nf-consent .nfc-accept:hover { background:#ddd; }
+#nf-consent .nfc-decline { background:transparent; color:#fff; opacity:0.7; }
+#nf-consent .nfc-decline:hover { opacity:1; }
+</style>
+<div id="nf-consent" role="dialog" aria-label="Cookie consent">
+  <p>We use cookies to run analytics and show you relevant No Fear ads. By clicking Accept you agree to our use of cookies for analytics and advertising.</p>
+  <button class="nfc-accept" onclick="nfConsent('granted')">Accept</button>
+  <button class="nfc-decline" onclick="nfConsent('denied')">Decline</button>
+</div>
+
+<!-- ── Analytics: GA4 + Meta Pixel (consent-gated) ── -->
+<script>
+// IDs live here — swap or add without touching the rest of the code
+var NF_ANALYTICS = { ga4: 'G-N2KVV2T6LX', metaPixel: '28290454390591007' };
+
+var _nfTrackingLoaded = false;
+function nfLoadTracking() {
+  if (_nfTrackingLoaded) return;
+  _nfTrackingLoaded = true;
+  // Google Analytics 4
+  if (NF_ANALYTICS.ga4 && NF_ANALYTICS.ga4.indexOf('G-') === 0) {
+    var s = document.createElement('script');
+    s.async = true; s.src = 'https://www.googletagmanager.com/gtag/js?id=' + NF_ANALYTICS.ga4;
+    document.head.appendChild(s);
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function(){ dataLayer.push(arguments); };
+    gtag('js', new Date());
+    gtag('consent', 'default', { ad_storage:'granted', ad_user_data:'granted', ad_personalization:'granted', analytics_storage:'granted' });
+    gtag('config', NF_ANALYTICS.ga4, { send_page_view: true });
+  }
+  // Meta Pixel
+  if (NF_ANALYTICS.metaPixel && /^[0-9]+$/.test(NF_ANALYTICS.metaPixel)) {
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', NF_ANALYTICS.metaPixel);
+    fbq('track', 'PageView');
+  }
+}
+
+function nfConsent(choice) {
+  try { localStorage.setItem('nf_consent', choice); } catch(e) {}
+  document.getElementById('nf-consent').classList.remove('show');
+  if (choice === 'granted') nfLoadTracking();
+}
+
+(function() {
+  var c = null;
+  try { c = localStorage.getItem('nf_consent'); } catch(e) {}
+  if (c === 'granted') nfLoadTracking();
+  else if (c !== 'denied') document.getElementById('nf-consent').classList.add('show');
+})();
+
+// ── E-commerce events for GA4 + Meta (powers remarketing audiences) ──
+function nfTrack(gaEvent, gaParams, fbEvent, fbParams) {
+  try { if (window.gtag) gtag('event', gaEvent, gaParams); } catch(e) {}
+  try { if (window.fbq) fbq('track', fbEvent, fbParams); } catch(e) {}
+}
+
+(function() {
+  // SPA page views
+  var _go = window.go;
+  window.go = function(page) {
+    _go(page);
+    try { if (window.gtag) gtag('event', 'page_view', { page_location: location.href, page_title: document.title }); } catch(e) {}
+    try { if (window.fbq) fbq('track', 'PageView'); } catch(e) {}
+  };
+  // Product views
+  var _goProduct = window.goProduct;
+  window.goProduct = async function(handle) {
+    await _goProduct(handle);
+    var p = nfProdCache[handle];
+    if (p) nfTrack(
+      'view_item', { currency:'USD', value: parseFloat(p.variants[0].price), items:[{ item_id: p.handle, item_name: p.title, price: parseFloat(p.variants[0].price) }] },
+      'ViewContent', { content_ids:[p.handle], content_name: p.title, content_type:'product', value: parseFloat(p.variants[0].price), currency:'USD' }
+    );
+  };
+  // Add to cart
+  var _cartAdd = window.nfCartAdd;
+  window.nfCartAdd = function(variantId, qty, title, price, img) {
+    _cartAdd(variantId, qty, title, price, img);
+    nfTrack(
+      'add_to_cart', { currency:'USD', value: parseFloat(price) * qty, items:[{ item_id: String(variantId), item_name: title, price: parseFloat(price), quantity: qty }] },
+      'AddToCart', { content_ids:[String(variantId)], content_name: title, content_type:'product', value: parseFloat(price) * qty, currency:'USD' }
+    );
+  };
+  // Begin checkout
+  var _checkout = window.nfGoCheckout;
+  window.nfGoCheckout = function() {
+    if (nfCart.length) {
+      var total = nfCart.reduce(function(s,i){ return s + parseFloat(i.price) * i.qty; }, 0);
+      nfTrack(
+        'begin_checkout', { currency:'USD', value: total, items: nfCart.map(function(i){ return { item_id:i.id, item_name:i.title, price:parseFloat(i.price), quantity:i.qty }; }) },
+        'InitiateCheckout', { content_ids: nfCart.map(function(i){ return i.id; }), content_type:'product', value: total, currency:'USD', num_items: nfCart.reduce(function(s,i){ return s+i.qty; },0) }
+      );
+    }
+    _checkout();
+  };
+})();
+</script>
 </body>
 </html>
