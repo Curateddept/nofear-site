@@ -1838,6 +1838,14 @@
     .nf-cd-checkout-btn:hover { background:#222; }
     .nf-cd-continue { display:block; width:100%; text-align:center; font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.08em; text-transform:uppercase; color:#aaa; cursor:pointer; background:none; border:none; padding:4px; transition:color 0.15s; }
     .nf-cd-continue:hover { color:#000; }
+    .nfrs-addon { border:1px solid #000; margin-top:14px; padding:14px 16px; }
+    .nfrs-addon-head { display:flex; align-items:center; gap:10px; cursor:pointer; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.04em; text-transform:uppercase; }
+    .nfrs-addon-head input { width:16px; height:16px; accent-color:#000; flex-shrink:0; }
+    .nfrs-addon-head em { font-style:normal; color:#999; }
+    .nfrs-addon-fields { display:flex; gap:8px; margin-top:12px; }
+    .nfrs-addon-fields input { flex:1; min-width:0; border:1px solid #ccc; padding:10px 12px; font-family:'IBM Plex Mono',monospace; font-size:11px; border-radius:0; outline:none; }
+    .nfrs-addon-fields input:focus { border-color:#000; }
+    .nfrs-addon-fields input.nfrs-num { flex:0 0 30%; }
     /* ── Rider Support ── */
     .rs-lock { max-width:420px; margin:0 auto; padding:110px 24px 140px; text-align:center; }
     .rs-lock-eyebrow { font-family:'IBM Plex Mono',monospace; font-size:11px; color:#999; letter-spacing:0.14em; text-transform:uppercase; margin-bottom:14px; }
@@ -2591,7 +2599,7 @@
     <div class="rs-header">
       <div class="rs-eyebrow">Rider Support Program</div>
       <h1>Rider Support.</h1>
-      <p>Order your race gear with your name and number — we print them on your set. Add your gear below, enter your name and number on each set, and they'll come through on your order. Gloves ship as-is.</p>
+      <p>Supported riders get <strong>30% off everything</strong> — use code <strong>RIDERSUPPORT30</strong> at checkout. Click a gear set to order it with your rider name and number; the customization is a $40 flat add-on per set (not discounted).</p>
     </div>
     <div class="nf-staples">
       <div class="nf-staples-header">
@@ -2608,6 +2616,24 @@
         <span class="nf-staples-sub">Match your set</span>
       </div>
       <div class="nf-staples-track" id="nfRSGlovesTrack">
+        <div class="nf-staples-loading">Loading…</div>
+      </div>
+    </div>
+    <div class="nf-staples">
+      <div class="nf-staples-header">
+        <span class="nf-staples-label">T-Shirts &amp; Hoodies</span>
+        <span class="nf-staples-sub">Rep the brand</span>
+      </div>
+      <div class="nf-staples-track" id="nfRSApparelTrack">
+        <div class="nf-staples-loading">Loading…</div>
+      </div>
+    </div>
+    <div class="nf-staples">
+      <div class="nf-staples-header">
+        <span class="nf-staples-label">Hats &amp; Stickers</span>
+        <span class="nf-staples-sub">Top it off</span>
+      </div>
+      <div class="nf-staples-track" id="nfRSHatsTrack">
         <div class="nf-staples-loading">Loading…</div>
       </div>
     </div>
@@ -3405,6 +3431,7 @@
   </div>
   <div class="nf-cd-items" id="nf-cd-items"></div>
   <div class="nf-cd-foot" id="nf-cd-foot" style="display:none">
+    <div id="nf-cd-rider-note" style="display:none; font-family:'IBM Plex Mono',monospace; font-size:9px; letter-spacing:0.06em; text-transform:uppercase; color:#888; margin-bottom:10px;">Rider Support — enter code RIDERSUPPORT30 at checkout for 30% off</div>
     <div class="nf-cd-subtotal-row">
       <span class="nf-cd-subtotal-label">Subtotal</span>
       <span class="nf-cd-subtotal-val" id="nf-cd-subtotal"></span>
@@ -3498,6 +3525,7 @@ function nfCheckoutUrl() {
   var customLines = nfCart.filter(function(i){ return i.custom; })
     .map(function(i){ return i.title + ' (x' + i.qty + '): ' + i.custom; });
   if (customLines.length) params.push('note=' + encodeURIComponent('RIDER SUPPORT CUSTOMIZATION\n' + customLines.join('\n')));
+
   if (params.length) url += '?' + params.join('&');
   return url;
 }
@@ -3578,6 +3606,10 @@ function nfRenderCartDrawer() {
 
   footEl.style.display = '';
   subtotalEl.textContent = nfFormatPrice(totalAmt);
+  var noteEl = document.getElementById('nf-cd-rider-note');
+  var riderOk = false;
+  try { riderOk = localStorage.getItem('nf_rider_unlocked') === NF_RS_VER; } catch(e) {}
+  if (noteEl) noteEl.style.display = riderOk ? 'block' : 'none';
 
   itemsEl.innerHTML = nfCart.map(function(item, idx) {
     var linePrice = nfFormatPrice(parseFloat(item.price) * item.qty);
@@ -3606,7 +3638,8 @@ var nfProductsCache = {};
 var nfProdCache = {};
 
 // Standalone 001 jersey/pants are intentionally hidden from the site (sold as sets)
-var NF_HIDE = ['black-jersey','black-pants','patriot-jersey','patriot-pants'];
+var NF_HIDE = ['black-jersey','black-pants','patriot-jersey','patriot-pants','rider-name-number-customization'];
+var NF_RS_ADDON_VARIANT = '50619850129456'; // Rider Name & Number Customization, $40
 // Safety net: products not yet assigned to a Shopify collection still land in the right tab by title
 var NF_TAB_MATCH = { gloves: /glove/i };
 var NF_GEAR_RX = /jersey|pant|\bset\b/i; // used to keep gear out of the apparel strip
@@ -3828,6 +3861,7 @@ function nfRenderProduct(p) {
           '</select>' +
           '<button class="nfprod-atc-btn" id="nfprod-atc-btn" onclick="nfProdAtc()">Add to cart</button>' +
         '</div>' +
+        nfRSAddonHtml(p) +
         descHtml +
       '</div>' +
     '</div>';
@@ -3891,7 +3925,33 @@ function nfProdAtc() {
   var btn = document.getElementById('nfprod-atc-btn');
   if (btn) { btn.textContent = 'Adding…'; btn.disabled = true; }
   nfCartAdd(String(match.id), qty, p.title, match.price, nfVariantImg(p, match));
+  var addonChk = document.getElementById('nfrs-addon-chk');
+  if (addonChk && addonChk.checked) {
+    var name = (document.getElementById('nfrs-addon-name').value || '').trim();
+    var num = (document.getElementById('nfrs-addon-num').value || '').trim();
+    if (name || num) {
+      var custom = 'For ' + p.title + ' — ' + (name ? 'Name: ' + name : '') + (name && num ? ' / ' : '') + (num ? 'Number: ' + num : '');
+      nfCartAdd(NF_RS_ADDON_VARIANT, qty, 'Rider Name & Number Customization', '40.00', '', custom);
+    }
+  }
   if (btn) { setTimeout(function(){ btn.textContent = 'Add to cart'; btn.disabled = false; }, 400); }
+}
+
+// Rider Support add-on block — gear set product pages, rider access only
+function nfRSAddonHtml(p) {
+  var unlocked = false;
+  try { unlocked = localStorage.getItem('nf_rider_unlocked') === NF_RS_VER; } catch(e) {}
+  if (!unlocked || !/\bset\b/i.test(p.title)) return '';
+  return '<div class="nfrs-addon">' +
+    '<label class="nfrs-addon-head">' +
+      '<input type="checkbox" id="nfrs-addon-chk" onchange="document.getElementById(\'nfrs-addon-fields\').style.display = this.checked ? \'flex\' : \'none\'">' +
+      '<span>Add Rider Name &amp; Number — <strong>+' + nfFormatPrice('40.00') + '</strong> <em>(not discounted)</em></span>' +
+    '</label>' +
+    '<div id="nfrs-addon-fields" style="display:none" class="nfrs-addon-fields">' +
+      '<input type="text" id="nfrs-addon-name" placeholder="Rider name" maxlength="30">' +
+      '<input type="text" id="nfrs-addon-num" class="nfrs-num" placeholder="No." maxlength="4">' +
+    '</div>' +
+  '</div>';
 }
 
 // ── Staples featured swipe ──
@@ -4041,52 +4101,28 @@ async function nfRSLoad() {
   track.innerHTML = gear.map(function(p) {
     var img = p.images[0] ? p.images[0].src : '';
     var price = nfFormatPrice(p.variants[0].price);
-    var selHtml = p.options.map(function(opt, optIdx) {
-      var key = 'option' + (optIdx + 1);
-      var label = nfShortOptName(opt.name);
-      return '<select class="nfpc-sel" id="nfrs-sel-' + p.handle + '-' + optIdx + '" onclick="event.stopPropagation()" style="width:100%;">' +
-        '<option value="">— ' + label + ' —</option>' +
-        opt.values.map(function(v) {
-          var vt = p.variants.find(function(vv){ return vv[key] === v; });
-          var unavail = vt && vt.available === false;
-          return '<option value="' + v + '"' + (unavail ? ' disabled' : '') + '>' + v + (unavail ? ' — Sold Out' : '') + '</option>';
-        }).join('') +
-      '</select>';
-    }).join('');
-    return '<div class="nf-feat-card">' +
+    return '<div class="nf-feat-card" onclick="goProduct(\'' + p.handle + '\')">' +
       (img ? '<div class="nf-feat-img-wrap"><img src="' + img + '" alt="' + p.title.replace(/"/g,'&quot;') + '" loading="lazy"></div>' : '') +
       '<div class="nf-feat-info">' +
         '<div class="nf-feat-title">' + p.title.replace(/</g,'&lt;') + '</div>' +
-        '<div class="nf-feat-price">' + price + '</div>' +
+        '<div class="nf-feat-price"><s style="color:#bbb">' + price + '</s> ' + nfFormatPrice((parseFloat(p.variants[0].price) * 0.7).toFixed(2)) + ' rider price <span style="color:#999">· +' + nfFormatPrice('40.00') + ' name &amp; number</span></div>' +
       '</div>' +
-      '<div style="padding:0 14px 2px;">' + selHtml + '</div>' +
-      '<div class="nfrs-custom">' +
-        '<input type="text" id="nfrs-name-' + p.handle + '" placeholder="Rider name" maxlength="30">' +
-        '<input type="text" class="nfrs-num" id="nfrs-num-' + p.handle + '" placeholder="No." maxlength="4">' +
-      '</div>' +
-      '<button class="nf-feat-atc" onclick="nfRSATC(\'' + p.handle + '\')">Add to cart</button>' +
+      '<button class="nf-feat-atc">Customize &amp; Order</button>' +
     '</div>';
   }).join('');
-  var gloves = await nfFetchCollection('gloves');
-  nfRenderStrip('nfRSGlovesTrack', gloves, 'nfrg');
+  await nfRSStrip('gloves', 'nfRSGlovesTrack', 'nfrg');
+  await nfRSStrip('apparel', 'nfRSApparelTrack', 'nfrsa');
+  await nfRSStrip('hats', 'nfRSHatsTrack', 'nfrsh');
 }
 
-function nfRSATC(handle) {
-  var p = nfProdCache[handle];
-  if (!p) return;
-  var selVals = p.options.map(function(opt, i) {
-    var s = document.getElementById('nfrs-sel-' + handle + '-' + i);
-    return s ? s.value : '';
+// Rider Support strip: standard cards + rider (30% off) pricing line
+async function nfRSStrip(collection, trackId, pfx) {
+  var items = await nfFetchCollection(collection);
+  nfRenderStrip(trackId, items, pfx);
+  var prices = document.querySelectorAll('#' + trackId + ' .nf-feat-price');
+  items.forEach(function(p, i) {
+    if (prices[i]) prices[i].innerHTML = '<s style="color:#bbb">' + nfFormatPrice(p.variants[0].price) + '</s> ' + nfFormatPrice((parseFloat(p.variants[0].price) * 0.7).toFixed(2)) + ' rider price';
   });
-  var match = p.variants.find(function(v) {
-    return p.options.every(function(opt, i) { return !selVals[i] || v['option'+(i+1)] === selVals[i]; });
-  }) || p.variants[0];
-  if (!match || match.available === false) return;
-  var name = (document.getElementById('nfrs-name-' + handle).value || '').trim();
-  var num = (document.getElementById('nfrs-num-' + handle).value || '').trim();
-  var custom = '';
-  if (name || num) custom = (name ? 'Name: ' + name : '') + (name && num ? ' / ' : '') + (num ? 'Number: ' + num : '');
-  nfCartAdd(String(match.id), 1, p.title, match.price, nfVariantImg(p, match), custom);
 }
 
 // Init badge on load
