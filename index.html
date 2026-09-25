@@ -1823,6 +1823,7 @@
     .nf-cd-item-img img { width:100%; height:100%; object-fit:cover; display:block; }
     .nf-cd-item-title { font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.07em; text-transform:uppercase; color:#000; margin-bottom:5px; line-height:1.5; }
     .nf-cd-item-price { font-family:'IBM Plex Mono',monospace; font-size:10px; color:#666; margin-bottom:12px; }
+    .nf-cd-item-custom { font-family:'IBM Plex Mono',monospace; font-size:9px; color:#888; letter-spacing:0.04em; margin:-2px 0 6px; text-transform:uppercase; }
     .nf-cd-qty-row { display:flex; align-items:center; gap:10px; }
     .nf-cd-qty-btn { width:28px; height:28px; background:#f5f5f5; border:none; cursor:pointer; font-size:15px; line-height:1; display:flex; align-items:center; justify-content:center; font-family:'IBM Plex Mono',monospace; color:#000; transition:background 0.15s; flex-shrink:0; }
     .nf-cd-qty-btn:hover { background:#e0e0e0; }
@@ -1837,6 +1838,25 @@
     .nf-cd-checkout-btn:hover { background:#222; }
     .nf-cd-continue { display:block; width:100%; text-align:center; font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.08em; text-transform:uppercase; color:#aaa; cursor:pointer; background:none; border:none; padding:4px; transition:color 0.15s; }
     .nf-cd-continue:hover { color:#000; }
+    /* ── Rider Support ── */
+    .rs-lock { max-width:420px; margin:0 auto; padding:110px 24px 140px; text-align:center; }
+    .rs-lock-eyebrow { font-family:'IBM Plex Mono',monospace; font-size:11px; color:#999; letter-spacing:0.14em; text-transform:uppercase; margin-bottom:14px; }
+    .rs-lock h1 { font-family:'IBM Plex Mono',monospace; font-size:clamp(26px,4vw,40px); font-weight:300; letter-spacing:-0.01em; margin:0 0 12px; }
+    .rs-lock p { font-family:'IBM Plex Mono',monospace; font-size:12px; color:#666; line-height:1.8; margin:0 0 28px; }
+    .rs-lock input { width:100%; border:1px solid #ccc; padding:13px 16px; font-family:'IBM Plex Mono',monospace; font-size:13px; margin-bottom:10px; border-radius:0; outline:none; }
+    .rs-lock input:focus { border-color:#000; }
+    .rs-lock button { width:100%; background:#000; color:#fff; border:none; padding:14px; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; cursor:pointer; }
+    .rs-lock button:hover { background:#222; }
+    #rs-lock-err { display:none; font-family:'IBM Plex Mono',monospace; font-size:11px; color:#c33; margin-top:10px; }
+    .rs-header { padding:64px 40px 8px; max-width:860px; }
+    .rs-header .rs-eyebrow { font-family:'IBM Plex Mono',monospace; font-size:11px; color:#999; letter-spacing:0.14em; text-transform:uppercase; margin-bottom:14px; }
+    .rs-header h1 { font-family:'IBM Plex Mono',monospace; font-size:clamp(28px,4vw,48px); font-weight:300; letter-spacing:-0.01em; margin:0 0 16px; }
+    .rs-header p { font-family:'IBM Plex Mono',monospace; font-size:13px; color:#444; line-height:1.9; margin:0 0 24px; max-width:620px; }
+    .nfrs-custom { padding:0 14px 4px; display:flex; gap:6px; }
+    .nfrs-custom input { flex:1; min-width:0; border:1px solid #ccc; padding:8px 10px; font-family:'IBM Plex Mono',monospace; font-size:10px; text-transform:uppercase; letter-spacing:0.04em; border-radius:0; outline:none; }
+    .nfrs-custom input:focus { border-color:#000; }
+    .nfrs-custom input.nfrs-num { flex:0 0 34%; }
+    @media (max-width:600px) { .rs-header { padding:48px 20px 8px; } }
     /* ── Region toggle ── */
     .nf-region-toggle { display:inline-flex; align-items:center; gap:2px; background:#f0f0f0; border-radius:4px; padding:2px; }
     .nf-region-btn { background:none; border:none; cursor:pointer; font-family:'IBM Plex Mono',monospace; font-size:10px; font-weight:600; letter-spacing:0.05em; padding:4px 8px; border-radius:3px; color:#666; white-space:nowrap; transition:background 0.15s, color 0.15s; }
@@ -1943,6 +1963,7 @@
           <button class="nav-drop-link" onclick="nfNavCol('seta')">Motocross Gear</button>
           <button class="nav-drop-link" onclick="nfNavCol('youth-motocross-gear')">Youth Motocross Gear</button>
           <button class="nav-drop-link" onclick="nfNavCol('youth-apparel')">Youth Apparel</button>
+          <button class="nav-drop-link" onclick="go('rider-support')">Rider Support</button>
           <button class="nav-drop-link" onclick="nfNavCol('gloves')">Gloves</button>
           <button class="nav-drop-link" onclick="nfNavCol('apparel')">No Fear Apparel</button>
           <button class="nav-drop-link" onclick="nfNavCol('hats')">Hats &amp; Stickers</button>
@@ -2030,6 +2051,7 @@
     <button class="mobile-menu-link" onclick="go('about'); closeMobileMenu()">About</button>
     <button class="mobile-menu-link" onclick="go('contact'); closeMobileMenu()">Contact</button>
     <button class="mobile-menu-link" onclick="go('dealers'); closeMobileMenu()">Dealer Applications</button>
+    <button class="mobile-menu-link" onclick="go('rider-support'); closeMobileMenu()">Rider Support</button>
 
     <button class="mobile-menu-link" onclick="go('catalog'); closeMobileMenu()">NoFear 002 Lookbook</button>
     <button class="mobile-menu-link" onclick="go('faq'); closeMobileMenu()">FAQ</button>
@@ -2554,6 +2576,45 @@
   </div>
 </div>
 
+<div id="rider-support" class="page">
+  <div id="rs-lock" style="border-top:1px solid #e8e8e8;">
+    <div class="rs-lock">
+      <div class="rs-lock-eyebrow">No Fear Motocross</div>
+      <h1>Rider Support.</h1>
+      <p>This page is for supported riders and teams. Enter your access password to continue.</p>
+      <input type="password" id="rs-pw" placeholder="Access password" onkeydown="if(event.key==='Enter')nfRSUnlock()">
+      <button onclick="nfRSUnlock()">Enter</button>
+      <p id="rs-lock-err">Incorrect password. Try again.</p>
+    </div>
+  </div>
+  <div id="rs-content" style="display:none; border-top:1px solid #e8e8e8;">
+    <div class="rs-header">
+      <div class="rs-eyebrow">Rider Support Program</div>
+      <h1>Rider Support.</h1>
+      <p>Order your race gear with your name and number — we print them on your set. Add your gear below, enter your name and number on each set, and they'll come through on your order. Gloves ship as-is.</p>
+    </div>
+    <div class="nf-staples">
+      <div class="nf-staples-header">
+        <span class="nf-staples-label">Motocross Gear Sets</span>
+        <span class="nf-staples-sub">Name &amp; number printed</span>
+      </div>
+      <div class="nf-staples-track" id="nfRSGearTrack">
+        <div class="nf-staples-loading">Loading…</div>
+      </div>
+    </div>
+    <div class="nf-staples">
+      <div class="nf-staples-header">
+        <span class="nf-staples-label">Gloves</span>
+        <span class="nf-staples-sub">Match your set</span>
+      </div>
+      <div class="nf-staples-track" id="nfRSGlovesTrack">
+        <div class="nf-staples-loading">Loading…</div>
+      </div>
+    </div>
+    <div style="height:60px"></div>
+  </div>
+</div>
+
 <div id="dealers" class="page">
   <div style="border-top:1px solid #e8e8e8; padding: 80px 48px 100px; max-width: 760px;">
     <p style="font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:300; color:#999; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:24px;">Wholesale</p>
@@ -2892,7 +2953,7 @@
     setTimeout(() => logo.classList.add('in'), 100);
     setTimeout(() => fill.classList.add('go'), 300);
     // Determine page from URL path, then navigate just before loader fades
-    var knownPages = ['about','contact','faq','distributors','dealers','early-access','ambassador','catalog','shop','product-page'];
+    var knownPages = ['about','contact','faq','distributors','dealers','early-access','rider-support','ambassador','catalog','shop','product-page'];
     var pathParts = window.location.pathname.replace(/^\//, '').split('/');
     var pathSlug = pathParts[0];
     var initialPage = (pathSlug && knownPages.includes(pathSlug)) ? pathSlug : 'home';
@@ -2959,6 +3020,11 @@
       desc:  'Find official No Fear Motocross distributors outside the United States. Contact our global distribution partners for international orders.',
       canonical: 'https://nofearmotocross.com/#distributors'
     },
+    'rider-support': {
+      title: 'Rider Support | No Fear Motocross',
+      desc:  'No Fear Motocross rider support — order your race gear with your name and number printed on your set.',
+      canonical: 'https://nofearmotocross.com/rider-support'
+    },
     'early-access': {
       title: 'Early Access | Next Drop Sunday Aug 23 — No Fear Motocross',
       desc:  'Next No Fear Motocross drop: Sunday, August 23. Early access opens 12:00 PM PST, public launch 2:30 PM PST. Sign up to get in first.',
@@ -2998,6 +3064,7 @@
     window.scrollTo({ top: 0, behavior: 'instant' });
     if (page === 'catalog') initCatalog();
     if (page === 'shop' && !window._nfShopLoaded) { window._nfShopLoaded = true; nfShopInit('frontpage'); }
+    if (page === 'rider-support') nfRSInit();
     // Hide footer contact section on the contact page (separate assets)
     var ftContact = document.querySelector('.ft-contact');
     if (ftContact) ftContact.style.display = page === 'contact' ? 'none' : '';
@@ -3396,10 +3463,11 @@ var nfCart = JSON.parse(localStorage.getItem('nf_cart') || '[]');
 
 function nfCartSave() { localStorage.setItem('nf_cart', JSON.stringify(nfCart)); }
 
-function nfCartAdd(variantId, qty, title, price, img) {
+function nfCartAdd(variantId, qty, title, price, img, custom) {
   variantId = String(variantId);
-  var item = nfCart.find(function(i){ return i.id === variantId; });
-  if (item) { item.qty += qty; if (img && !item.img) item.img = img; } else { nfCart.push({ id: variantId, qty: qty, title: title, price: price, img: img || '' }); }
+  custom = custom || '';
+  var item = nfCart.find(function(i){ return i.id === variantId && (i.custom || '') === custom; });
+  if (item) { item.qty += qty; if (img && !item.img) item.img = img; } else { nfCart.push({ id: variantId, qty: qty, title: title, price: price, img: img || '', custom: custom }); }
   nfCartSave();
   nfBadgeUpdate(nfCart.reduce(function(s, i){ return s + i.qty; }, 0));
   nfToast('Added to cart');
@@ -3422,12 +3490,21 @@ function nfToast(msg) {
   window._nfToastT = setTimeout(function() { toast.classList.remove('show'); }, 3000);
 }
 
-function nfGoCheckout() {
-  if (!nfCart.length) return;
+function nfCheckoutUrl() {
   var items = nfCart.map(function(i){ return i.id + ':' + i.qty; }).join(',');
   var url = NF_STORE + '/cart/' + items;
-  if (nfRegion === 'uk') url += '?currency=GBP';
-  window.location.href = url;
+  var params = [];
+  if (nfRegion === 'uk') params.push('currency=GBP');
+  var customLines = nfCart.filter(function(i){ return i.custom; })
+    .map(function(i){ return i.title + ' (x' + i.qty + '): ' + i.custom; });
+  if (customLines.length) params.push('note=' + encodeURIComponent('RIDER SUPPORT CUSTOMIZATION\n' + customLines.join('\n')));
+  if (params.length) url += '?' + params.join('&');
+  return url;
+}
+
+function nfGoCheckout() {
+  if (!nfCart.length) return;
+  window.location.href = nfCheckoutUrl();
 }
 
 function nfOpenCart() {
@@ -3465,15 +3542,15 @@ function nfCloseCart() {
   document.body.style.overflow = '';
 }
 
-function nfCartRemove(id) {
-  nfCart = nfCart.filter(function(i) { return i.id !== id; });
+function nfCartRemove(idx) {
+  nfCart.splice(idx, 1);
   nfCartSave();
   nfBadgeUpdate(nfCart.reduce(function(s,i){ return s+i.qty; }, 0));
   nfRenderCartDrawer();
 }
 
-function nfCartQtyUpdate(id, delta) {
-  var item = nfCart.find(function(i) { return i.id === id; });
+function nfCartQtyUpdate(idx, delta) {
+  var item = nfCart[idx];
   if (!item) return;
   item.qty = Math.max(1, item.qty + delta);
   nfCartSave();
@@ -3502,8 +3579,7 @@ function nfRenderCartDrawer() {
   footEl.style.display = '';
   subtotalEl.textContent = nfFormatPrice(totalAmt);
 
-  itemsEl.innerHTML = nfCart.map(function(item) {
-    var safeId = item.id.replace(/\\/g,'\\\\').replace(/'/g,"\\'");
+  itemsEl.innerHTML = nfCart.map(function(item, idx) {
     var linePrice = nfFormatPrice(parseFloat(item.price) * item.qty);
     var imgHtml = item.img
       ? '<div class="nf-cd-item-img"><img src="' + item.img.replace(/"/g,'&quot;') + '" alt="" loading="lazy"></div>'
@@ -3512,14 +3588,15 @@ function nfRenderCartDrawer() {
       imgHtml +
       '<div>' +
         '<div class="nf-cd-item-title">' + item.title.replace(/</g,'&lt;') + '</div>' +
+        (item.custom ? '<div class="nf-cd-item-custom">' + item.custom.replace(/</g,'&lt;') + '</div>' : '') +
         '<div class="nf-cd-item-price">' + linePrice + '</div>' +
         '<div class="nf-cd-qty-row">' +
-          '<button class="nf-cd-qty-btn" onclick="nfCartQtyUpdate(\'' + safeId + '\',-1)">−</button>' +
+          '<button class="nf-cd-qty-btn" onclick="nfCartQtyUpdate(' + idx + ',-1)">−</button>' +
           '<span class="nf-cd-qty-val">' + item.qty + '</span>' +
-          '<button class="nf-cd-qty-btn" onclick="nfCartQtyUpdate(\'' + safeId + '\',1)">+</button>' +
+          '<button class="nf-cd-qty-btn" onclick="nfCartQtyUpdate(' + idx + ',1)">+</button>' +
         '</div>' +
       '</div>' +
-      '<button class="nf-cd-remove" onclick="nfCartRemove(\'' + safeId + '\')" aria-label="Remove item">×</button>' +
+      '<button class="nf-cd-remove" onclick="nfCartRemove(' + idx + ')" aria-label="Remove item">×</button>' +
     '</div>';
   }).join('');
 }
@@ -3933,6 +4010,85 @@ function nfFeatATC(handle, pfx) {
   nfCartAdd(String(match.id), 1, p.title, match.price, nfVariantImg(p, match));
 }
 
+// ── Rider Support page ──
+var NF_RS_VER = '26';
+var _nfRSLoaded = false;
+
+function nfRSInit() {
+  var ok = false;
+  try { ok = localStorage.getItem('nf_rider_unlocked') === NF_RS_VER; } catch(e) {}
+  document.getElementById('rs-lock').style.display = ok ? 'none' : '';
+  document.getElementById('rs-content').style.display = ok ? '' : 'none';
+  if (ok && !_nfRSLoaded) { _nfRSLoaded = true; nfRSLoad(); }
+}
+
+function nfRSUnlock() {
+  var pw = (document.getElementById('rs-pw').value || '').trim().toLowerCase();
+  if (pw === 'nofearrider26') {
+    try { localStorage.setItem('nf_rider_unlocked', NF_RS_VER); } catch(e) {}
+    document.getElementById('rs-lock-err').style.display = 'none';
+    nfRSInit();
+  } else {
+    document.getElementById('rs-lock-err').style.display = 'block';
+    document.getElementById('rs-pw').value = '';
+  }
+}
+
+async function nfRSLoad() {
+  var gear = await nfFetchCollection('seta');
+  var track = document.getElementById('nfRSGearTrack');
+  gear.forEach(function(p){ nfProdCache[p.handle] = p; });
+  track.innerHTML = gear.map(function(p) {
+    var img = p.images[0] ? p.images[0].src : '';
+    var price = nfFormatPrice(p.variants[0].price);
+    var selHtml = p.options.map(function(opt, optIdx) {
+      var key = 'option' + (optIdx + 1);
+      var label = nfShortOptName(opt.name);
+      return '<select class="nfpc-sel" id="nfrs-sel-' + p.handle + '-' + optIdx + '" onclick="event.stopPropagation()" style="width:100%;">' +
+        '<option value="">— ' + label + ' —</option>' +
+        opt.values.map(function(v) {
+          var vt = p.variants.find(function(vv){ return vv[key] === v; });
+          var unavail = vt && vt.available === false;
+          return '<option value="' + v + '"' + (unavail ? ' disabled' : '') + '>' + v + (unavail ? ' — Sold Out' : '') + '</option>';
+        }).join('') +
+      '</select>';
+    }).join('');
+    return '<div class="nf-feat-card">' +
+      (img ? '<div class="nf-feat-img-wrap"><img src="' + img + '" alt="' + p.title.replace(/"/g,'&quot;') + '" loading="lazy"></div>' : '') +
+      '<div class="nf-feat-info">' +
+        '<div class="nf-feat-title">' + p.title.replace(/</g,'&lt;') + '</div>' +
+        '<div class="nf-feat-price">' + price + '</div>' +
+      '</div>' +
+      '<div style="padding:0 14px 2px;">' + selHtml + '</div>' +
+      '<div class="nfrs-custom">' +
+        '<input type="text" id="nfrs-name-' + p.handle + '" placeholder="Rider name" maxlength="30">' +
+        '<input type="text" class="nfrs-num" id="nfrs-num-' + p.handle + '" placeholder="No." maxlength="4">' +
+      '</div>' +
+      '<button class="nf-feat-atc" onclick="nfRSATC(\'' + p.handle + '\')">Add to cart</button>' +
+    '</div>';
+  }).join('');
+  var gloves = await nfFetchCollection('gloves');
+  nfRenderStrip('nfRSGlovesTrack', gloves, 'nfrg');
+}
+
+function nfRSATC(handle) {
+  var p = nfProdCache[handle];
+  if (!p) return;
+  var selVals = p.options.map(function(opt, i) {
+    var s = document.getElementById('nfrs-sel-' + handle + '-' + i);
+    return s ? s.value : '';
+  });
+  var match = p.variants.find(function(v) {
+    return p.options.every(function(opt, i) { return !selVals[i] || v['option'+(i+1)] === selVals[i]; });
+  }) || p.variants[0];
+  if (!match || match.available === false) return;
+  var name = (document.getElementById('nfrs-name-' + handle).value || '').trim();
+  var num = (document.getElementById('nfrs-num-' + handle).value || '').trim();
+  var custom = '';
+  if (name || num) custom = (name ? 'Name: ' + name : '') + (name && num ? ' / ' : '') + (num ? 'Number: ' + num : '');
+  nfCartAdd(String(match.id), 1, p.title, match.price, nfVariantImg(p, match), custom);
+}
+
 // Init badge on load
 (function(){ var c = nfCart.reduce(function(s,i){ return s+i.qty; },0); if(c>0) nfBadgeUpdate(c); })();
 // Init region toggle active state
@@ -4047,7 +4203,7 @@ function nfTrack(gaEvent, gaParams, fbEvent, fbParams) {
   // Add to cart
   var _cartAdd = window.nfCartAdd;
   window.nfCartAdd = function(variantId, qty, title, price, img) {
-    _cartAdd(variantId, qty, title, price, img);
+    _cartAdd.apply(this, arguments);
     nfTrack(
       'add_to_cart', { currency:'USD', value: parseFloat(price) * qty, items:[{ item_id: String(variantId), item_name: title, price: parseFloat(price), quantity: qty }] },
       'AddToCart', { content_ids:[String(variantId)], content_name: title, content_type:'product', value: parseFloat(price) * qty, currency:'USD' }
