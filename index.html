@@ -4026,9 +4026,23 @@ async function nfLoadGearStrip() {
 }
 
 // 002 Apparel strip: the apparel collection (adult), newest first, tees interleaved with hoodies so both show up front
+// Newest drop pinned to the front of the first home strip
+var NF_FEATURED_FIRST = [
+  'no-fear-elektron-limited-monogram-jersey',
+  'no-fear-elektron-monogram-pants',
+  'no-fear-crystal-zip-hoodie',
+  'no-fear-monogram-tee-black',
+  'no-fear-crystal-blur-tee',
+  'no-fear-puff-trucker-hat'
+];
+
 async function nfLoadMerchStrip() {
   if (!document.getElementById('nfMerchTrack')) return;
   if (!nfProductsCache['apparel']) nfProductsCache['apparel'] = await nfFetchCollection('apparel');
+  var pinned = (await Promise.all(NF_FEATURED_FIRST.map(function(hd) {
+    if (nfProdCache[hd]) return Promise.resolve(nfProdCache[hd]);
+    return nfFetchProduct(hd).then(function(p){ if (p) nfProdCache[hd] = p; return p; });
+  }))).filter(Boolean);
   var items = nfProductsCache['apparel']
     .filter(function(p) { return NF_STAPLES.indexOf(p.handle) === -1 && !/youth/i.test(p.title); })
     .sort(function(a, b) { return new Date(b.created_at) - new Date(a.created_at); });
@@ -4039,6 +4053,9 @@ async function nfLoadMerchStrip() {
     if (tees.length)    mixed.push(tees.shift());
     if (hoodies.length) mixed.push(hoodies.shift());
   }
+  var pinnedHandles = {};
+  pinned.forEach(function(p){ pinnedHandles[p.handle] = true; });
+  mixed = pinned.concat(mixed.filter(function(p){ return !pinnedHandles[p.handle]; }));
   nfRenderStrip('nfMerchTrack', mixed, 'nfmr');
 }
 
