@@ -494,11 +494,11 @@
     }
 
     .nav-item {
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 400;
       letter-spacing: 0.02em;
       color: #000;
-      padding: 0 14px;
+      padding: 0 8px;
       height: 52px;
       display: flex;
       align-items: center;
@@ -1724,7 +1724,7 @@
     }
     .mobile-menu-sub a:hover { color: #fff; }
 
-    @media (max-width: 768px) {
+    @media (max-width: 1120px) {
       .nav-hamburger { display: flex; }
       .nav-left .nav-item { display: none; }
       .nav-right .nav-item:not(.nav-ig-btn) { display: none; }
@@ -1971,7 +1971,7 @@
           <button class="nav-drop-link" onclick="nfNavCol('seta')">Motocross Gear</button>
           <button class="nav-drop-link" onclick="nfNavCol('youth-motocross-gear')">Youth Motocross Gear</button>
           <button class="nav-drop-link" onclick="nfNavCol('youth-apparel')">Youth Apparel</button>
-          <button class="nav-drop-link" onclick="go('rider-support')">Rider Support</button>
+          <button class="nav-drop-link" onclick="go('rider-support')">Rider Portal (Team)</button>
           <button class="nav-drop-link" onclick="nfNavCol('gloves')">Gloves</button>
           <button class="nav-drop-link" onclick="nfNavCol('apparel')">No Fear Apparel</button>
           <button class="nav-drop-link" onclick="nfNavCol('hats')">Hats &amp; Stickers</button>
@@ -2015,7 +2015,8 @@
     <button class="nav-item" onclick="go('about')">About</button>
     <button class="nav-item" onclick="go('contact')">Contact</button>
     <button class="nav-item" onclick="go('dealers')">Dealers</button>
-    <button class="nav-item" onclick="go('distributors')">Distributors</button>
+    <button class="nav-item" onclick="go('distributors')">Distro</button>
+    <button class="nav-item" onclick="go('rider-application')">Rider Support</button>
     <button class="nav-item" onclick="go('faq')">FAQ</button>
   </div>
 
@@ -2059,7 +2060,8 @@
     <button class="mobile-menu-link" onclick="go('about'); closeMobileMenu()">About</button>
     <button class="mobile-menu-link" onclick="go('contact'); closeMobileMenu()">Contact</button>
     <button class="mobile-menu-link" onclick="go('dealers'); closeMobileMenu()">Dealer Applications</button>
-    <button class="mobile-menu-link" onclick="go('rider-support'); closeMobileMenu()">Rider Support</button>
+    <button class="mobile-menu-link" onclick="go('rider-application'); closeMobileMenu()">Rider Support</button>
+    <button class="mobile-menu-link" onclick="go('rider-support'); closeMobileMenu()">Rider Portal (Team)</button>
 
     <button class="mobile-menu-link" onclick="go('catalog'); closeMobileMenu()">NoFear 002 Lookbook</button>
     <button class="mobile-menu-link" onclick="go('faq'); closeMobileMenu()">FAQ</button>
@@ -2584,6 +2586,29 @@
   </div>
 </div>
 
+<div id="rider-application" class="page">
+  <div style="border-top:1px solid #e8e8e8; padding: 80px 48px 100px; max-width: 760px;">
+    <p style="font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:300; color:#999; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:24px;">No Fear Rider Support — 2026/2027</p>
+    <h1 style="font-family:'IBM Plex Mono',monospace; font-size:clamp(28px,4vw,48px); font-weight:300; letter-spacing:-0.02em; line-height:1.15; margin-bottom:32px;">Rider Support<br>Application.</h1>
+    <p style="font-family:'IBM Plex Mono',monospace; font-size:14px; font-weight:300; line-height:1.9; color:#333; margin-bottom:20px;">We're introducing the first tier of the No Fear Rider Support Program for 2026/2027 — and we're opening it up to a big group.</p>
+    <p style="font-family:'IBM Plex Mono',monospace; font-size:14px; font-weight:300; line-height:1.9; color:#333; margin-bottom:56px;">If you ride dirt bikes and want to rep No Fear, this is for you. Fill out the application below and our team will be in touch.</p>
+
+    <form onsubmit="handleRiderAppSubmit(event)" style="display:flex; flex-direction:column; gap:32px; max-width:560px;">
+      <input type="hidden" name="_subject" value="Rider Support Application — No Fear Motocross 2026/2027">
+      <input type="hidden" name="form_type" value="Rider Support Application">
+      <input type="hidden" name="season" value="2026/2027">
+      <div class="f-row"><label class="f-lbl">Name</label><input class="f-in" type="text" name="name" required placeholder="Your name"></div>
+      <div class="f-row"><label class="f-lbl">Email</label><input class="f-in" type="email" name="email" required placeholder="your@email.com"></div>
+      <div class="f-row"><label class="f-lbl">Phone Number</label><input class="f-in" type="tel" name="phone" required placeholder="Your number"></div>
+      <div class="f-row"><label class="f-lbl">Instagram Link</label><input class="f-in" type="text" name="instagram" required placeholder="instagram.com/yourhandle"></div>
+      <div>
+        <button type="submit" class="f-submit" style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; background:#000; color:#fff; border:none; padding:16px 40px; cursor:pointer;">Submit Application</button>
+        <p id="riderapp-success" style="display:none; margin-top:16px; font-family:'IBM Plex Mono',monospace; font-size:13px; color:#555;">Application received — we'll be in touch.</p>
+      </div>
+    </form>
+  </div>
+</div>
+
 <div id="rider-support" class="page">
   <div id="rs-lock" style="border-top:1px solid #e8e8e8;">
     <div class="rs-lock">
@@ -2979,7 +3004,7 @@
     setTimeout(() => logo.classList.add('in'), 100);
     setTimeout(() => fill.classList.add('go'), 300);
     // Determine page from URL path, then navigate just before loader fades
-    var knownPages = ['about','contact','faq','distributors','dealers','early-access','rider-support','ambassador','catalog','shop','product-page'];
+    var knownPages = ['about','contact','faq','distributors','dealers','early-access','rider-support','rider-application','ambassador','catalog','shop','product-page'];
     var pathParts = window.location.pathname.replace(/^\//, '').split('/');
     var pathSlug = pathParts[0];
     var initialPage = (pathSlug && knownPages.includes(pathSlug)) ? pathSlug : 'home';
@@ -3011,7 +3036,7 @@
   }
   // Auto-close mobile menu and release scroll lock if window is resized to desktop
   window.addEventListener('resize', function() {
-    if (window.innerWidth > 768) closeMobileMenu();
+    if (window.innerWidth > 1120) closeMobileMenu();
   });
 
   /* ── Per-page SEO meta ── */
@@ -3045,6 +3070,11 @@
       title: 'International Distributors | No Fear Motocross',
       desc:  'Find official No Fear Motocross distributors outside the United States. Contact our global distribution partners for international orders.',
       canonical: 'https://nofearmotocross.com/#distributors'
+    },
+    'rider-application': {
+      title: 'Rider Support Application | No Fear Motocross 2026/2027',
+      desc:  'Apply to the No Fear Rider Support Program for 2026/2027. First tier now open — if you ride dirt bikes and want to rep No Fear, this is for you.',
+      canonical: 'https://nofearmotocross.com/rider-application'
     },
     'rider-support': {
       title: 'Rider Support | No Fear Motocross',
@@ -3249,6 +3279,32 @@
       }
     } catch {
       btn.textContent = 'Try again';
+      btn.disabled = false;
+    }
+  }
+
+  async function handleRiderAppSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('button[type="submit"]');
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+    try {
+      const res = await fetch('https://formspree.io/f/meendypv', {
+        method: 'POST',
+        body: new FormData(e.target),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        btn.textContent = 'Submitted ✓';
+        e.target.reset();
+        document.getElementById('riderapp-success').style.display = 'block';
+        setTimeout(() => { btn.textContent = 'Submit Application'; btn.disabled = false; }, 4000);
+      } else {
+        btn.textContent = 'Error — try again';
+        btn.disabled = false;
+      }
+    } catch {
+      btn.textContent = 'Error — try again';
       btn.disabled = false;
     }
   }
