@@ -1952,8 +1952,8 @@
 
 <!-- ── ANNOUNCE BAR ── -->
 <div id="announce-bar">
-  <span class="ab-desktop">Free Shipping On Orders Over $100</span>
-  <span class="ab-mobile">Free Shipping On Orders Over $100</span>
+  <span class="ab-desktop">20% Off Site Wide — Applied At Checkout &nbsp;·&nbsp; Free Shipping On Orders Over $100</span>
+  <span class="ab-mobile">20% Off Site Wide &nbsp;·&nbsp; Free Shipping Over $100</span>
 </div>
 
 <!-- ── NAV ── -->
@@ -3521,7 +3521,7 @@
   <div class="nf-cd-foot" id="nf-cd-foot" style="display:none">
     <div id="nf-cd-rider-note" style="display:none; font-family:'IBM Plex Mono',monospace; font-size:9px; letter-spacing:0.06em; text-transform:uppercase; color:#888; margin-bottom:10px;">Rider Support — enter code RIDERSUPPORT30 at checkout for 30% off</div>
     <div class="nf-cd-subtotal-row">
-      <span class="nf-cd-subtotal-label">Subtotal</span>
+      <span class="nf-cd-subtotal-label">Subtotal — 20% off applied at checkout</span>
       <span class="nf-cd-subtotal-val" id="nf-cd-subtotal"></span>
     </div>
     <button class="nf-cd-checkout-btn" onclick="nfGoCheckout()">Checkout</button>
@@ -3542,6 +3542,13 @@ function nfFormatPrice(usdVal) {
   var n = parseFloat(usdVal);
   if (nfRegion === 'uk') return '£' + (n * NF_GBP_RATE).toFixed(2);
   return '$' + n.toFixed(2);
+}
+
+// ── Site-wide sale display (matches the Automatic 20% Off discount in Shopify) ──
+var NF_SALE_PCT = 0.20;
+function nfSalePrice(usdVal) {
+  var n = parseFloat(usdVal);
+  return '<s style="color:#bbb; font-weight:400;">' + nfFormatPrice(n) + '</s> ' + nfFormatPrice((n * (1 - NF_SALE_PCT)).toFixed(2));
 }
 
 function nfSetRegion(r) {
@@ -3569,7 +3576,7 @@ function nfSetRegion(r) {
     var match = p.variants.find(function(v) {
       return p.options.every(function(opt, i) { return !nfProdSel[opt.name] || v['option'+(i+1)] === nfProdSel[opt.name]; });
     }) || p.variants[0];
-    if (match) priceEl.textContent = nfFormatPrice(match.price);
+    if (match) priceEl.innerHTML = nfSalePrice(match.price);
   }
 }
 
@@ -3682,7 +3689,11 @@ function nfRenderCartDrawer() {
   if (!itemsEl) return;
 
   var totalQty = nfCart.reduce(function(s,i){ return s+i.qty; }, 0);
-  var totalAmt = nfCart.reduce(function(s,i){ return s + parseFloat(i.price)*i.qty; }, 0);
+  var totalAmt = nfCart.reduce(function(s,i){
+    var line = parseFloat(i.price) * i.qty;
+    if (String(i.id) !== NF_RS_ADDON_VARIANT) line = line * (1 - NF_SALE_PCT); // site-wide sale, add-on excluded
+    return s + line;
+  }, 0);
 
   countEl.textContent = totalQty ? ' (' + totalQty + ')' : '';
 
@@ -3700,7 +3711,8 @@ function nfRenderCartDrawer() {
   if (noteEl) noteEl.style.display = riderOk ? 'block' : 'none';
 
   itemsEl.innerHTML = nfCart.map(function(item, idx) {
-    var linePrice = nfFormatPrice(parseFloat(item.price) * item.qty);
+    var isAddon = String(item.id) === NF_RS_ADDON_VARIANT;
+    var linePrice = isAddon ? nfFormatPrice(parseFloat(item.price) * item.qty) : nfSalePrice(parseFloat(item.price) * item.qty);
     var imgHtml = item.img
       ? '<div class="nf-cd-item-img"><img src="' + item.img.replace(/"/g,'&quot;') + '" alt="" loading="lazy"></div>'
       : '<div class="nf-cd-item-img"></div>';
@@ -3820,7 +3832,7 @@ function nfRenderGrid(products) {
   grid.innerHTML = products.map(function(p) {
     var img = p.images[0] ? p.images[0].src : '';
     var alt = (p.images[0] && p.images[0].alt) ? p.images[0].alt : p.title;
-    var price = nfFormatPrice(p.variants[0].price);
+    var price = nfSalePrice(p.variants[0].price);
     var selHtml = p.options.map(function(opt, optIdx) {
       var key = 'option' + (optIdx + 1);
       var label = nfShortOptName(opt.name);
@@ -3902,7 +3914,7 @@ function nfRenderProduct(p) {
   if (!el) return;
   var images = p.images;
   var variants = p.variants;
-  var price = nfFormatPrice(variants[0].price);
+  var price = nfSalePrice(variants[0].price);
 
   var galleryHtml = '<div class="nfprod-main-img">' +
     '<img id="nfprod-main-img" src="' + (images[0] ? images[0].src : '') + '" alt="' + ((images[0] && images[0].alt ? images[0].alt : p.title) || '').replace(/"/g,'&quot;') + '">' +
@@ -3990,7 +4002,7 @@ function nfProdSyncVariant() {
   });
   if (!match) return;
   var priceEl = document.getElementById('nfprod-price');
-  if (priceEl) priceEl.textContent = nfFormatPrice(match.price);
+  if (priceEl) priceEl.innerHTML = nfSalePrice(match.price);
   var btn = document.getElementById('nfprod-atc-btn');
   if (btn) { btn.disabled = match.available === false; btn.textContent = match.available === false ? 'Sold Out' : 'Add to cart'; }
   if (match.featured_image && match.featured_image.src) {
@@ -4054,7 +4066,7 @@ function nfRenderStrip(trackId, products, pfx) {
   valid.forEach(function(p) { nfProdCache[p.handle] = p; });
   track.innerHTML = valid.map(function(p) {
     var img = p.images[0] ? p.images[0].src : '';
-    var price = nfFormatPrice(p.variants[0].price);
+    var price = nfSalePrice(p.variants[0].price);
     var selHtml = p.options.map(function(opt, optIdx) {
       var key = 'option' + (optIdx + 1);
       var label = nfShortOptName(opt.name);
